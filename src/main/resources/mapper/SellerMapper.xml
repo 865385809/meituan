@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.SellerMapper">
+  <resultMap id="BaseResultMap" type="com.bean.Seller">
+    <id column="s_id" jdbcType="INTEGER" property="sId" />
+    <result column="s_username" jdbcType="VARCHAR" property="sUsername" />
+    <result column="s_password" jdbcType="VARCHAR" property="sPassword" />
+    <result column="s_mailbox" jdbcType="VARCHAR" property="sMailbox" />
+    <result column="s_phone" jdbcType="VARCHAR" property="sPhone" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    s_id, s_username, s_password, s_mailbox, s_phone
+  </sql>
+  <select id="selectByExample" parameterType="com.bean.SellerExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from seller
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from seller
+    where s_id = #{sId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from seller
+    where s_id = #{sId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bean.SellerExample">
+    delete from seller
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bean.Seller">
+    insert into seller (s_id, s_username, s_password, 
+      s_mailbox, s_phone)
+    values (#{sId,jdbcType=INTEGER}, #{sUsername,jdbcType=VARCHAR}, #{sPassword,jdbcType=VARCHAR}, 
+      #{sMailbox,jdbcType=VARCHAR}, #{sPhone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.Seller">
+    insert into seller
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sId != null">
+        s_id,
+      </if>
+      <if test="sUsername != null">
+        s_username,
+      </if>
+      <if test="sPassword != null">
+        s_password,
+      </if>
+      <if test="sMailbox != null">
+        s_mailbox,
+      </if>
+      <if test="sPhone != null">
+        s_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sId != null">
+        #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="sUsername != null">
+        #{sUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="sPassword != null">
+        #{sPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sMailbox != null">
+        #{sMailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="sPhone != null">
+        #{sPhone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bean.SellerExample" resultType="java.lang.Long">
+    select count(*) from seller
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update seller
+    <set>
+      <if test="record.sId != null">
+        s_id = #{record.sId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sUsername != null">
+        s_username = #{record.sUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sPassword != null">
+        s_password = #{record.sPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sMailbox != null">
+        s_mailbox = #{record.sMailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sPhone != null">
+        s_phone = #{record.sPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update seller
+    set s_id = #{record.sId,jdbcType=INTEGER},
+      s_username = #{record.sUsername,jdbcType=VARCHAR},
+      s_password = #{record.sPassword,jdbcType=VARCHAR},
+      s_mailbox = #{record.sMailbox,jdbcType=VARCHAR},
+      s_phone = #{record.sPhone,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.Seller">
+    update seller
+    <set>
+      <if test="sUsername != null">
+        s_username = #{sUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="sPassword != null">
+        s_password = #{sPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sMailbox != null">
+        s_mailbox = #{sMailbox,jdbcType=VARCHAR},
+      </if>
+      <if test="sPhone != null">
+        s_phone = #{sPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where s_id = #{sId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.Seller">
+    update seller
+    set s_username = #{sUsername,jdbcType=VARCHAR},
+      s_password = #{sPassword,jdbcType=VARCHAR},
+      s_mailbox = #{sMailbox,jdbcType=VARCHAR},
+      s_phone = #{sPhone,jdbcType=VARCHAR}
+    where s_id = #{sId,jdbcType=INTEGER}
+  </update>
+</mapper>
