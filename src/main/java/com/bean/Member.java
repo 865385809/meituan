@@ -1,15 +1,26 @@
 package com.bean;
 
 public class Member {
-    private Integer mId;
+    private Integer mId;    //会员
 
-    private String mUsername;
+    private String mUsername;   //会员名称
 
-    private String mPassword;
+    private String mPassword;   //会员密码
 
-    private String mMailbox;
+    private String mMailbox;    //会员邮箱
 
-    private String mPhone;
+    private String mPhone;      //会员手机
+
+    public Member() {
+    }
+
+    public Member(Integer mId, String mUsername, String mPassword, String mMailbox, String mPhone) {
+        this.mId = mId;
+        this.mUsername = mUsername;
+        this.mPassword = mPassword;
+        this.mMailbox = mMailbox;
+        this.mPhone = mPhone;
+    }
 
     public Integer getmId() {
         return mId;

@@ -47,7 +47,8 @@
 		<!-- table指定每个表的生成策略 -->
 		<table tableName="goods" domainObjectName="Goods"></table>
 		<table tableName="member" domainObjectName="Member"></table>
-		<table tableName="orders" domainObjectName="Orders"></table>
-		<table tableName="seller" domainObjectName="Seller"></table>
+		<!--<table tableName="orders" domainObjectName="Orders"></table>-->
+		<!--<table tableName="seller" domainObjectName="Seller"></table>-->
+
 	</context>
 </generatorConfiguration>
