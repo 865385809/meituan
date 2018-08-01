@@ -1,6 +1,7 @@
 package com.service;
 
 import com.bean.Member;
+import com.bean.MemberExample;
 import com.dao.MemberMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,5 +21,22 @@ public class MemberService {
     //插入会员
     public void saveMember(Member member) {
         memberMapper.insertSelective(member);
+    }
+    //检验用户名是否可用
+    public boolean checkmember(String membername) {
+        MemberExample example = new MemberExample();
+        MemberExample.Criteria criteria = example.createCriteria();
+        criteria.andMUsernameEqualTo(membername);
+        long count = memberMapper.countByExample(example);
+        return count==0;
+    }
+    //更新之前调用查看数据
+    public Member findMember(Integer m_id) {
+        Member member = memberMapper.selectByPrimaryKey(m_id);
+        return member;
+    }
+    //会员的更新
+    public void updateMember(Member member) {
+        memberMapper.updateByPrimaryKeySelective(member);
     }
 }

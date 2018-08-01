@@ -36,7 +36,7 @@
                 <a href="#">设为首页</a>
                 <a href="#">收藏</a>
                 <a href="#">RSS订阅</a>
-                <a href="/memberAllList">管理跳转信息</a>
+                <a href="/memberController/memberAllList">管理跳转信息</a>
             </div>
             <div class="hd-top-right">
                 <a href="member/register.html">注册</a>

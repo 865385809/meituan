@@ -6,11 +6,60 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.12.4.min.js"></script>
     <link href="${pageContext.request.contextPath}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <%--分页信息--%>
 
 
 </head>
 <body>
+<%--员工修改的模态框--%>
+<div class="modal fade" id="memberUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" >会员修改</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <%--会员用户名--%>
+                    <div class="form-group">
+                        <label for="mUsername_add_input" class="col-sm-2 control-label">Username</label>
+                        <div class="col-sm-10">
+                            <p class="form-control-static" id="mUsername_update_static"></p>
+                        </div>
+                    </div>
+                    <%--会员密码--%>
+                    <div class="form-group">
+                        <label for="mPassword_add_input" class="col-sm-2 control-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="mPassword" class="form-control" id="mPassword_update_input" placeholder="请输入密码">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <%--会员邮箱--%>
+                    <div class="form-group">
+                        <label for="mMail_add_input" class="col-sm-2 control-label">Mail</label>
+                        <div class="col-sm-10">
+                            <input type="text"  name="mMailbox" class="form-control" id="mMail_update_input" placeholder="123@qq.com">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <%--会员手机--%>
+                    <div class="form-group">
+                        <label for="mPhone_add_input"  class="col-sm-2 control-label">Phone</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="mPhone" class="form-control" id="mPhone_update_input" placeholder="请输入11位数字的手机号">
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="member_update_btn">修改</button>
+            </div>
+        </div>
+    </div>
+</div>
 <%--员工添加的模态框--%>
 <div class="modal fade" id="memberAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -26,27 +75,31 @@
                         <label for="mUsername_add_input" class="col-sm-2 control-label">Username</label>
                         <div class="col-sm-10">
                             <input type="text" name="mUsername" class="form-control" id="mUsername_add_input" placeholder="请输入用户名">
+                            <span class="help-block"></span>
                         </div>
                     </div>
                     <%--会员密码--%>
                     <div class="form-group">
                         <label for="mPassword_add_input" class="col-sm-2 control-label">Password</label>
                         <div class="col-sm-10">
-                            <input type="password" name="mPassword" class="form-control" id="mPassword_add_input" placeholder="请输入密码">
+                            <input type="text" name="mPassword" class="form-control" id="mPassword_add_input" placeholder="请输入密码">
+                            <span class="help-block"></span>
                         </div>
                     </div>
                     <%--会员邮箱--%>
                     <div class="form-group">
-                        <label for="mMail_add_input" class="col-sm-2 control-label">Phone</label>
+                        <label for="mMail_add_input" class="col-sm-2 control-label">Mail</label>
                         <div class="col-sm-10">
-                            <input type="text"  name="mMail" class="form-control" id="mMail_add_input" placeholder="123@qq.com">
+                            <input type="text"  name="mMailbox" class="form-control" id="mMail_add_input" placeholder="123@qq.com">
+                            <span class="help-block"></span>
                         </div>
                     </div>
                     <%--会员手机--%>
                     <div class="form-group">
-                        <label for="mPhone_add_input"  class="col-sm-2 control-label">Mail</label>
+                        <label for="mPhone_add_input"  class="col-sm-2 control-label">Phone</label>
                         <div class="col-sm-10">
                             <input type="text" name="mPhone" class="form-control" id="mPhone_add_input" placeholder="请输入11位数字的手机号">
+                            <span class="help-block"></span>
                         </div>
                     </div>
                 </form>
@@ -58,7 +111,78 @@
         </div>
     </div>
 </div>
-11
+
+<%--会员修改模态框--%>
+<script type="text/javascript">
+    //这样的话是在创建按钮之前就绑定了，绑定不上
+//    $(".edit_btn").click(function () {
+//        alert("edit");
+//    });
+    //jquery新版没有live,使用on进行替代
+    $(document).on("click",".edit_btn",function () {
+        //查询会员信息
+        findMember($(this).attr("edit_id"));
+        //显示模态框
+        $("#member_update_btn").attr("edit_btn_id",$(this).attr("edit_id"));
+        $("#memberUpdateModal").modal({
+           backdrop:"static"
+        });
+    });
+    //修改前查询会员信息
+    function findMember(m_id){
+        $.ajax({
+            url:"${pageContext.request.contextPath}/memberController/findMember/" +m_id,
+            type:"GET",
+            success:function(result){
+                //console.log(result);
+                var memberData = result.extend.member;
+                $("#mUsername_update_static").text(memberData.mUsername);
+                $("#mPassword_update_input").val(memberData.mPassword);
+                $("#mMail_update_input").val(memberData.mMailbox);
+                $("#mPhone_update_input").val(memberData.mPhone);
+            }
+        });
+    }
+    //更新会员信息
+    $("#member_update_btn").click(function () {
+        //密码
+        var memberpassword = $("#mPassword_update_input").val();
+        var regpassword = /^([a-zA-Z0-9_-]{6,18}$)/;
+        if(!regpassword.test(memberpassword)){
+            show_validate_msg("#mPassword_update_input", "error", "密码可以是6-18位的字母数字");
+            return false;
+        }else{
+            show_validate_msg("#mPassword_update_input", "success", "");
+        }
+        //邮箱
+        var membermail = $("#mMail_update_input").val();
+        var regmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+        if(!regmail.test(membermail)){
+            show_validate_msg("#mMail_update_input", "error", "邮箱格式不正确");
+            return false;
+        }else{
+            show_validate_msg("#mMail_update_input", "success", "");
+        }
+        //手机验证
+        var memberphone =  $("#mPhone_update_input").val();
+        var regphone = /^1\d{10}$/;
+        if(!regphone.test(memberphone)){
+            show_validate_msg("#mPhone_update_input", "error", "手机的长度是以1开头的11位数字");
+            return false;
+        }else{
+            show_validate_msg("#mPhone_update_input", "success", "");
+        }
+        //发送ajax请求更新会员
+        $.ajax({
+            url:"${pageContext.request.contextPath}/memberController/updateMember/" + $(this).attr("edit_btn_id"),
+            type:"POST",
+            data:$("#memberUpdateModal form").serialize() + "&_method=PUT",
+            success:function (result) {
+                alert(result.msg);
+            }
+        });
+    });
+</script>
 <%--会员显示页面--%>
 <div class="container">
     <%--标题--%>
@@ -101,7 +225,7 @@
         <div class="col-md-6" id="page_nav"></div>
     </div>
 </div>
-
+<%--分页ajax--%>
 <script type="text/javascript">
     var totalRecord;
     //只要进入页面就会发送请求发送ajax得到分页数据
@@ -112,7 +236,7 @@
     //调到指定的页面
     function to_page(pn){
         $.ajax({
-            url:"${pageContext.request.contextPath}/findAllMemberJson",
+            url:"${pageContext.request.contextPath}/memberController/findAllMemberJson",
             data:"pn="+pn,
             type:"GET",
             success:function(result){
@@ -200,9 +324,10 @@
             var mMailbox = $("<td></td>").append(item.mMailbox);
             var mPhone = $("<td></td>").append(item.mPhone);
             //两个按钮
-            var editBtn = $("<button></button>").addClass("btn btn-primary btn-sm")
-                .append($("<span></span>").addClass("glyphicon glyphicon-pencil").append("编辑"));
-            var deleteBtn = $("<button></button>").addClass("btn btn-danger btn-sm")
+            var editBtn = $("<button></button>").addClass("btn btn-primary btn-sm edit_btn")
+                .append($("<span></span>").addClass("glyphicon glyphicon-pencil").append("编辑"))
+                .attr("edit_id",item.mId);
+            var deleteBtn = $("<button></button>").addClass("btn btn-danger btn-sm delete_btn")
                 .append($("<span></span>").addClass("glyphicon glyphicon-trash").append("删除"));
             var btnTd = $("<td></td>").append(editBtn).append(" ").append(deleteBtn);
             //append方法执行完还是返回原来的元素
@@ -215,26 +340,148 @@
 
         });
     }
+</script>
+<%--前台校验--%>
+<script type="text/javascript">
+    //数据得校验
+    function validate_add_form() {
 
-
-
+        //用户名
+        var membername = $("#mUsername_add_input").val();
+        var regname = /^([a-zA-Z0-9_-]{6,16}$)|(^[\u2E80-\u9FFF]{2,5}$)/;
+        if(!regname.test(membername)){
+            show_validate_msg("#mUsername_add_input", "error", "用户名可以是2-5位中文或者6-16位英文和数字的组合");
+            return false;
+        }else{
+            show_validate_msg("#mUsername_add_input", "success", "");
+        }
+        //密码
+        var memberpassword = $("#mPassword_add_input").val();
+        var regpassword = /^([a-zA-Z0-9_-]{6,18}$)/;
+        if(!regpassword.test(memberpassword)){
+            show_validate_msg("#mPassword_add_input", "error", "密码可以是6-18位的字母数字");
+            return false;
+        }else{
+            show_validate_msg("#mPassword_add_input", "success", "");
+        }
+        //邮箱
+        var membermail = $("#mMail_add_input").val();
+        var regmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+        if(!regmail.test(membermail)){
+            show_validate_msg("#mMail_add_input", "error", "邮箱格式不正确");
+            return false;
+        }else{
+            show_validate_msg("#mMail_add_input", "success", "");
+        }
+        //手机验证
+        var memberphone =  $("#mPhone_add_input").val();
+        var regphone = /^1\d{10}$/;
+        if(!regphone.test(memberphone)){
+            show_validate_msg("#mPhone_add_input", "error", "手机的长度是以1开头的11位数字");
+            return false;
+        }else{
+            show_validate_msg("#mPhone_add_input", "success", "");
+        }
+        return true;
+    }
+    //显示校验结果的提示信息
+    function show_validate_msg(ele,status,msg){
+        //清除当前元素的校验状态
+        $(ele).parent().removeClass("has-success has-error");
+        $(ele).next("span").text("");
+        if("success"==status){
+            $(ele).parent().addClass("has-success");
+            $(ele).next("span").text(msg);
+        }else if("error" == status){
+            $(ele).parent().addClass("has-error");
+            $(ele).next("span").text(msg);
+        }
+    }
+</script>
+<%--用户名校验--%>
+<script type="text/javascript">
+    //校验用户名是否可用
+    $("#mUsername_add_input").change(function(){
+        //发送ajax请求校验用户名是否可用
+        var membername = this.value;
+        $.ajax({
+            url:"${pageContext.request.contextPath}/memberController/checkmember",
+            data:"membername="+membername,
+            type:"POST",
+            success:function(result){
+                if(result.code==100){
+                    show_validate_msg("#mUsername_add_input","success","用户名可用");
+                    $("#member_sava").attr("ajax-va","success");
+                }else{
+                    show_validate_msg("#mUsername_add_input","error",result.extend.va_msg);
+                    $("#member_sava").attr("ajax-va","error");
+                }
+            }
+        });
+    });
+</script>
+<%--打开模态框新增--%>
+<script type="text/javascript">
     <%--打开模态框--%>
+    //清空表单样式及内容
+    function reset_form(ele){
+        $(ele)[0].reset();
+        //清空表单样式
+        $(ele).find("*").removeClass("has-error has-success");
+        $(ele).find(".help-block").text("");
+    }
     //点击新增按钮弹出模态框。
     $("#member_add_modal_btn").click(function(){
+        //重置模态框,清空表单样式及内容
+        reset_form("#memberAddModal form");
         //本来是要发送ajax请求查询部门的信息
         //弹出模态框
         $("#memberAddModal").modal({
             backdrop:"static"
         });
     });
+
+    //添加会员
     $("#member_sava").click(function () {
+        //校验失败就不提交
+        if(!validate_add_form()){
+            return false;
+        }
+        //1、判断之前的ajax用户名校验是否成功。如果成功。
+        if($(this).attr("ajax-va")=="error"){
+            return false;
+        }
         $.ajax({
-            url:"${pageContext.request.contextPath}/member_save",
+            url:"${pageContext.request.contextPath}/memberController/member_save",
             type:"POST",
             data:$("#memberAddModal form").serialize(),
-            success:function () {
-                $("#memberAddModal").modal('hide');
-                to_page(totalRecord);
+            success:function (result) {
+                if(result.code == 100){
+                    //员工保存成功；
+                    //1、关闭模态框
+                    $("#memberAddModal").modal('hide');
+                    //2、来到最后一页，显示刚才保存的数据
+                    to_page(totalRecord);
+                }else{
+                    //显示失败信息
+                    //有哪个字段的错误信息就显示哪个字段的；
+                    if(undefined != result.extend.errorFields.mMailbox){
+                        //显示邮箱错误信息
+                        show_validate_msg("#mMail_add_input", "error", result.extend.errorFields.mMailbox);
+                    }
+                    if(undefined != result.extend.errorFields.mUsername){
+                        //显示员工名字的错误信息
+                        show_validate_msg("#mUsername_add_input", "error", result.extend.errorFields.mMailbox);
+                    }
+                    if(undefined != result.extend.errorFields.mPassword){
+                        //显示邮箱错误信息
+                        show_validate_msg("#mPassword_add_input", "error", result.extend.errorFields.mPassword);
+                    }
+                    if(undefined != result.extend.errorFields.mPhone){
+                        //显示员工名字的错误信息
+                        show_validate_msg("#mPhone_add_input", "error", result.extend.errorFields.mPhone);
+                    }
+                }
             }
         });
     });

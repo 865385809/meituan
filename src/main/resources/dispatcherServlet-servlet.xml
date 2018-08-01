@@ -31,12 +31,14 @@
     <!--<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>-->
 
 
-    <!--两个标准配置  -->
-    <!-- 将springmvc不能处理的请求交给tomcat -->
-    <mvc:default-servlet-handler/>
+
     <!-- 能支持springmvc更高级的一些功能，JSR303校验，快捷的ajax...映射动态请求
          此注解代替了下面的注解映射器以及注解适配器的配置
          同时默认加载很多参数绑定的方法比如json转换解析器-->
     <mvc:annotation-driven/>
-
+    <!--两个标准配置  -->
+    <!-- 将springmvc不能处理的请求交给tomcat -->
+    <mvc:default-servlet-handler/>
+    <!-- 静态资源配置   -->
+    <mvc:resources mapping="/static/**" location="/static/"/>
 </beans>
