@@ -39,4 +39,16 @@ public class MemberService {
     public void updateMember(Member member) {
         memberMapper.updateByPrimaryKeySelective(member);
     }
+
+    //会员的删除
+    public void deleteMemberById(Integer m_id) {
+        memberMapper.deleteByPrimaryKey(m_id);
+    }
+    //批量删除
+    public void deleteBatch(List<Integer> m_ids) {
+        MemberExample example = new MemberExample();
+        MemberExample.Criteria criteria = example.createCriteria();
+        criteria.andMIdIn(m_ids);
+        memberMapper.deleteByExample(example);
+    }
 }

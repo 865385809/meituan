@@ -13,6 +13,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +25,23 @@ public class MemberController {
 
     @Autowired
     MemberService memberService;
+    @RequestMapping(value="/deleteMemberById/{m_id}",method=RequestMethod.DELETE)
+    @ResponseBody
+    public Msg deleteMemberById(@PathVariable("m_id")String  m_id){
+        System.out.println("Asdffsdfsd");
+        if (m_id.contains("-")){
+            List<Integer> in_ids = new ArrayList<Integer>();
+            String[] m_ids = m_id.split("-");
+            for (String item :m_ids){
+                in_ids.add(Integer.parseInt(item));
+            }
+            memberService.deleteBatch(in_ids);
+        }else {
+            Integer id = Integer.parseInt(m_id);
+            memberService.deleteMemberById(id);
+        }
+        return Msg.success();
+    }
 
     //修改前查询会员数据
     @RequestMapping(value="/findMember/{m_id}",method=RequestMethod.GET)
@@ -32,7 +50,7 @@ public class MemberController {
         Member member = memberService.findMember(m_id);
         return Msg.success().add("member", member);
     }
-
+    //修改会员数据
     @ResponseBody
     @RequestMapping(value = "/updateMember/{mId}",method = RequestMethod.PUT)
     public Msg updateMember(Member member){
@@ -54,18 +72,12 @@ public class MemberController {
             return Msg.fail().add("va_msg","用户名不可用");
         }
     }
-    //添加员工
+    //添加员工，JSR303校验
     @RequestMapping(value = "/member_save",method = RequestMethod.POST)
     @ResponseBody
     public Msg saveMember(@Valid Member member, BindingResult result){
-
-        System.out.println("Asdasdas" +member.getmPhone());
-        System.out.println("Asdasdas" +member.getmPassword());
-        System.out.println("Asdasdas" +member.getmUsername());
-        System.out.println("Asdasdas" +result);
         System.out.println("%%%%%%%%%%%%%%%%%%%" +result.hasErrors());
         if (result.hasErrors()){
-            System.out.println("6165165116");
             Map<String, Object> map = new HashMap<>();
             List<FieldError> errors = result.getFieldErrors();
             for (FieldError fieldError : errors) {
@@ -75,7 +87,6 @@ public class MemberController {
             }
             return Msg.fail().add("errorFields", map);
         }else{
-            System.out.println("Asdasdasdfsdffffds");
             memberService.saveMember(member);
             return Msg.success();
         }

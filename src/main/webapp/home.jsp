@@ -14,14 +14,10 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="static/css/default.min.css?t=227" />
-    <!--[if (gte IE 9)|!(IE)]><!-->
     <script type="text/javascript" src="static/lib/jquery/jquery.min.js"></script>
-    <!--<![endif]-->
-    <!--[if lte IE 8 ]>
     <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
     <script src="static/lib/amazeui/amazeui.ie8polyfill.min.js"></script>
-    <![endif]-->
     <script type="text/javascript" src="static/lib/handlebars/handlebars.min.js"></script>
     <script type="text/javascript" src="static/lib/iscroll/iscroll-probe.js"></script>
     <script type="text/javascript" src="static/lib/amazeui/amazeui.min.js"></script>
@@ -40,6 +36,7 @@
             </div>
             <div class="hd-top-right">
                 <a href="member/register.html">注册</a>
+                <a href="member/member_register.jsp">会员注册</a>
                 <a href="member/login.html">登录</a>
                 <a href="member/member_login.jsp">会员登录</a>
             </div>

@@ -6,10 +6,53 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.12.4.min.js"></script>
     <link href="${pageContext.request.contextPath}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-
-
 </head>
 <body>
+<%--会员显示页面--%>
+<div class="container">
+    <%--标题--%>
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Meituan_Member</h1>
+        </div>
+    </div>
+    <%--按钮--%>
+    <div class="row">
+        <div class="col-md-4 col-md-offset-10">
+            <%--注意点击事件的JS代码应该放在下面，因为js代码的执行顺序--%>
+            <button id="member_add_modal_btn" class="btn btn-primary" >添加</button>
+            <button class="btn btn-danger" id="member_delete_all">删除</button>
+        </div>
+    </div>
+    <%--会员的列表--%>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-hover" id="member_tables">
+                <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" id="check_all">
+                    </th>
+                    <th>会员的ID</th>
+                    <th>会员名称</th>
+                    <th>会员邮箱</th>
+                    <th>会员手机</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <%--显示分页的信息--%>
+    <div class="row">
+        <%--分页的文字信息--%>
+        <div class="col-md-6" id="page_info"></div>
+        <%--分页条信息--%>
+        <div class="col-md-6" id="page_nav"></div>
+    </div>
+</div>
 <%--员工修改的模态框--%>
 <div class="modal fade" id="memberUpdateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -62,6 +105,7 @@
 </div>
 <%--员工添加的模态框--%>
 <div class="modal fade" id="memberAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -111,7 +155,61 @@
         </div>
     </div>
 </div>
-12
+
+<%--全选/全不选删除--%>
+<script type="text/javascript">
+    $("#check_all").click(function () {
+        //prop修改和读取dom原生的值
+        //全选/全不选
+        $(".check_item").prop("checked",$(this).prop("checked"));
+    });
+    //选满就会全选
+    $(document).on("click",".check_item",function () {
+       var flag = $(".check_item:checked").length==$(".check_item").length;
+       $("#check_all").prop("checked",flag);
+    });
+
+    //选择删除id
+    $("#member_delete_all").click(function () {
+        var membernames = "";
+        var del_ids = "";
+        $.each($(".check_item:checked"),function () {
+            membernames += $(this).parents("tr").find("td:eq(2)").text()+",";
+            del_ids += $(this).parents("tr").find("td:eq(1)").text()+"-";
+        });
+        membernames = membernames.substring(0,membernames.length-1);
+        del_ids = del_ids.substring(0,del_ids.length-1);
+        if (confirm("确认删除【"+membernames+"】吗？")){
+            $.ajax({
+               url:"${pageContext.request.contextPath}/memberController/deleteMemberById/" +  del_ids,
+                type:"DELETE",
+                success:function (result) {
+                    alert(result.msg);
+                    to_page(currentPage);
+                }
+            });
+        }
+    });
+</script>
+<%--删除js--%>
+<script type="text/javascript">
+    $(document).on("click",".delete_btn",function () {
+       // alert($(this).parents("tr").find("td:eq(1)").text());
+        var membername = $(this).parents("tr").find("td:eq(2)").text();
+        var m_id = $(this).attr("delete_id");
+        if(confirm("确认删除【"+ membername+"】吗？")){
+            $.ajax({
+               url:"${pageContext.request.contextPath}/memberController/deleteMemberById/" + m_id,
+               type:"DELETE",
+                success:function (result) {
+                    alert(result.msg);
+                    //回到当前页
+                    to_page(currentPage);
+                }
+            });
+        }
+    });
+</script>
 <%--会员修改模态框--%>
 <script type="text/javascript">
     //这样的话是在创建按钮之前就绑定了，绑定不上
@@ -175,56 +273,17 @@
         //发送ajax请求更新会员
         $.ajax({
             url:"${pageContext.request.contextPath}/memberController/updateMember/" + $(this).attr("edit_btn_id"),
-            type:"POST",
-            data:$("#memberUpdateModal form").serialize() + "&_method=PUT",
+            type:"PUT",
+            data:$("#memberUpdateModal form").serialize(),
             success:function (result) {
                 alert(result.msg);
+                $("#memberUpdateModal").modal("hide");
+                //回到本页面
+                to_page(currentPage);
             }
         });
     });
 </script>
-<%--会员显示页面--%>
-<div class="container">
-    <%--标题--%>
-    <div class="row">
-        <div class="col-md-12">
-            <h1>Meituan_Member</h1>
-        </div>
-    </div>
-    <%--按钮--%>
-    <div class="row">
-        <div class="col-md-4 col-md-offset-10">
-            <%--注意点击事件的JS代码应该放在下面，因为js代码的执行顺序--%>
-            <button id="member_add_modal_btn" class="btn btn-primary" >添加</button>
-            <button class="btn btn-danger" >删除</button>
-        </div>
-    </div>
-    <%--会员的列表--%>
-    <div class="row">
-        <div class="col-md-12">
-            <table class="table table-hover" id="member_tables">
-                <thead>
-                    <tr>
-                        <th>会员的ID</th>
-                        <th>会员名称</th>
-                        <th>会员邮箱</th>
-                        <th>会员手机</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <%--显示分页的信息--%>
-    <div class="row">
-        <%--分页的文字信息--%>
-        <div class="col-md-6" id="page_info"></div>
-        <%--分页条信息--%>
-        <div class="col-md-6" id="page_nav"></div>
-    </div>
-</div>
 <%--分页ajax--%>
 <script type="text/javascript">
     var totalRecord;
@@ -319,6 +378,7 @@
         $("#member_tables tbody").empty();
         var members = result.extend.memberListPage.list;
         $.each(members,function (index,item) {
+            var checkBoxId = $("<td><input type = 'checkbox' class='check_item'/></td>");
             var mId = $("<td></td>").append(item.mId);
             var mUsername = $("<td></td>").append(item.mUsername);
             var mMailbox = $("<td></td>").append(item.mMailbox);
@@ -328,10 +388,12 @@
                 .append($("<span></span>").addClass("glyphicon glyphicon-pencil").append("编辑"))
                 .attr("edit_id",item.mId);
             var deleteBtn = $("<button></button>").addClass("btn btn-danger btn-sm delete_btn")
-                .append($("<span></span>").addClass("glyphicon glyphicon-trash").append("删除"));
+                .append($("<span></span>").addClass("glyphicon glyphicon-trash").append("删除"))
+                .attr("delete_id",item.mId);
             var btnTd = $("<td></td>").append(editBtn).append(" ").append(deleteBtn);
             //append方法执行完还是返回原来的元素
-            $("<tr></tr>").append(mId)
+            $("<tr></tr>").append(checkBoxId)
+                .append(mId)
                 .append(mUsername)
                 .append(mMailbox)
                 .append(mPhone)
@@ -350,7 +412,7 @@
         var membername = $("#mUsername_add_input").val();
         var regname = /^([a-zA-Z0-9_-]{6,16}$)|(^[\u2E80-\u9FFF]{2,5}$)/;
         if(!regname.test(membername)){
-            show_validate_msg("#mUsername_add_input", "error", "用户名可以是2-5位中文或者6-16位英文和数字的组合");
+            show_validate_msg("#mUsername_add_input", "error", "用户名可以是2-5位中文或者6-16位英文和数字的组合,不能有特殊字符");
             return false;
         }else{
             show_validate_msg("#mUsername_add_input", "success", "");
@@ -463,7 +525,10 @@
                     //2、来到最后一页，显示刚才保存的数据
                     to_page(totalRecord);
                 }else{
+                    console.log(result);
+
                     //显示失败信息
+
                     //有哪个字段的错误信息就显示哪个字段的；
                     if(undefined != result.extend.errorFields.mMailbox){
                         //显示邮箱错误信息
