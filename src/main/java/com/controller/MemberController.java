@@ -12,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,10 +26,25 @@ public class MemberController {
 
     @Autowired
     MemberService memberService;
+
+    //登陆
+    @RequestMapping("/memberLoginOut")
+    public String memberLoginOut(HttpServletRequest request){
+        request.getSession().removeAttribute("member");
+        System.out.println("正常退出");
+        return "redirect:/home.jsp";
+    }
+    //登陆
+    @RequestMapping("/selectMember")
+    public String selectMember(HttpServletRequest request, String mUsername, String mPassword){
+        Member member = memberService.selectMember(mUsername, mPassword);
+        request.getSession().setAttribute("member",member);
+        return "redirect:/home.jsp";
+    }
+    //选择删除
     @RequestMapping(value="/deleteMemberById/{m_id}",method=RequestMethod.DELETE)
     @ResponseBody
     public Msg deleteMemberById(@PathVariable("m_id")String  m_id){
-        System.out.println("Asdffsdfsd");
         if (m_id.contains("-")){
             List<Integer> in_ids = new ArrayList<Integer>();
             String[] m_ids = m_id.split("-");
@@ -72,7 +88,7 @@ public class MemberController {
             return Msg.fail().add("va_msg","用户名不可用");
         }
     }
-    //添加员工，JSR303校验
+    //添加员工，JSR303校验，注册
     @RequestMapping(value = "/member_save",method = RequestMethod.POST)
     @ResponseBody
     public Msg saveMember(@Valid Member member, BindingResult result){

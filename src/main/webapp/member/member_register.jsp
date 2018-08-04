@@ -1,92 +1,106 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="zh-cn">
-<head>
+<html>
+
+<head lang="en">
     <title>注册</title>
-    <%--<meta charset="UTF-8">--%>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="format-detection" content="telephone=no">
-    <meta name="renderer" content="webkit">
-    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-    <meta http-equiv="Cache-Control" content="no-siteapp" />
-    <link rel="alternate icon" type="image/png" href="${pageContext.request.contextPath}/static/images/favicon.png">
-    <link rel='icon' href='favicon.ico' type='image/x-ico' />
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/default.min.css?t=227" />
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/lib/jquery/jquery.min.js"></script>
-    <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-    <script src="${pageContext.request.contextPath}/static/lib/amazeui/amazeui.ie8polyfill.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/lib/handlebars/handlebars.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/lib/iscroll/iscroll-probe.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/lib/amazeui/amazeui.min.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/lib/raty/jquery.raty.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/main.min.js?t=1"></script>
-
-    <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.12.4.min.js"></script>
-    <link href="${pageContext.request.contextPath}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="${pageContext.request.contextPath}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/meituan/AmazeUI-2.4.2/assets/css/amazeui.min.css" />
+    <link href="${pageContext.request.contextPath}/static/meituan/css/dlstyle.css" rel="stylesheet" type="text/css">
+    <script src="${pageContext.request.contextPath}/static/meituan/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/meituan/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
 </head>
-<body>
-﻿<header class="hd1">
-    <div class="cg">
-        <img class="am-hide-md-down" src="${pageContext.request.contextPath}/static/images/logo.jpg" height="100" width="150"/>
-        <div class="hd1-right">
-            <%--<a href="../login.html">登录</a>--%>
-            <%--<a href="../register.html">注册</a>--%>
-        </div>
-    </div>
-</header>
 
-<div class="user">
-    <div class="cgs">
-        <div class="am-u-sm-12 am-u-md-12 am-u-lg-7">
-            <div class="user-div">
-                <h1>用户注册</h1>
-                <ul id="register_ul">
-                    <form >
-                        <li><i>&#xe689;</i><input type="text" name="mUsername" value="" placeholder="请输入账号" /></li>
-                        <li><i>&#xe680;</i><input type="text" name="mPassword" value="" placeholder="请输入密码" /></li>
-                        <li><i>&#xe681;</i><input type="text" name="mMailbox" value="" placeholder="请输入邮箱"/></li>
-                        <li><i>&#xe6ed;</i><input type="text" name="mPhone" value="" placeholder="请输入手机号"/></li>
-                    </form>
+<body>
+
+<div class="login-boxtitle">
+    <a href="${pageContext.request.contextPath}/home.jsp"><img alt="美团" src="${pageContext.request.contextPath}/static/meituan/images/logobig3.png" /></a>
+</div>
+
+<div class="res-banner">
+    <div class="res-main">
+        <div class="login-banner-bg"><span></span><img src="${pageContext.request.contextPath}/static/meituan/images/big.jpg" /></div>
+        <div class="login-box">
+
+            <div class="am-tabs" id="doc-my-tabs">
+                <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
+                    <li class="am-active"><a href="">用户注册</a></li>
+                    <a href="${pageContext.request.contextPath}/member/member_login.jsp" class="zcnext am-fr am-btn-default">登陆</a>
                 </ul>
-                <span>
-                    <input type="checkbox" checked="true"  onclick="return false;"  />我已阅读并接受
-                    <a href="${pageContext.request.contextPath}/member/member_copyright.jsp">版权说明和隐私保护条款</a>
-                </span>
-                <button id="member_sava">注册</button>
-            </div>
-        </div>
-        <div class="am-hide-sm am-hide-md am-u-lg-5">
-            <div class="user-right">
-                已有帐号？
-                <button id="jump_login_btn">立即登录</button>
+
+                <div class="am-tabs-bd">
+                    <div id="register_div" class="am-tab-panel am-active">
+                        <form method="post">
+                            <div class="user-name">
+                                <label for="username"><i class="am-icon-user"></i></label>
+                                <input type="text" name="mUsername" id="username" placeholder="请输入账号">
+                            </div>
+                            <div class="user-pass">
+                                <label for="password"><i class="am-icon-lock"></i></label>
+                                <input type="password" name="mPassword" id="password" placeholder="设置密码">
+                            </div>
+                            <div class="user-email">
+                                <label for="email"><i class="am-icon-envelope-o"></i></label>
+                                <input type="email" name="mMailbox" id="email" placeholder="请输入邮箱">
+                            </div>
+                            <div class="user-phone">
+                                <label for="phone"><i class="am-icon-mobile-phone am-icon-md"></i></label>
+                                <input type="tel" name="mPhone" id="phone" placeholder="请输入手机号">
+                            </div>
+                        </form>
+
+                        <div class="login-links">
+                            <label for="reader-me">
+                                <input id="reader-me" type="checkbox" checked="true"  onclick="return false;"  />我已阅读并接受
+                                <a href="${pageContext.request.contextPath}/member/member_copyright.jsp">版权说明和隐私保护条款</a>
+                            </label>
+                        </div>
+                        <div class="am-cf">
+                            <input type="submit" name="" id="member_sava_sub" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<script type="text/javascript">
-    //点击跳转
-    $("#jump_login_btn").click(function () {
-        window.location.href="${pageContext.request.contextPath}/member/member_login.jsp";
-    });
-    //注册ajax提交表单数据
-    $("#member_sava").click(function () {
-        $.ajax({
-            url:"${pageContext.request.contextPath}/memberController/member_save",
-            type:"POST",
-            data:$("#register_ul form").serialize(),
-            success:function (result) {
-                if(result.code == 100){
-                    //会员注册成功；
-                    window.location.href="${pageContext.request.contextPath}/member/member_login.jsp";
-                    alert(result.msg);
+
+    <div class="footer ">
+        <div class="footer-hd ">
+            <p>
+                <a href="# ">恒望科技</a>
+                <b>|</b>
+                <a href="# ">商城首页</a>
+                <b>|</b>
+                <a href="# ">支付宝</a>
+                <b>|</b>
+                <a href="# ">物流</a>
+            </p>
+        </div>
+        <div class="footer-bd ">
+            <p>
+                <a href="# ">关于恒望</a>
+                <a href="# ">合作伙伴</a>
+                <a href="# ">联系我们</a>
+                <a href="# ">网站地图</a>
+                <em>© 2015-2025 Hengwang.com 版权所有. 更多模板 <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></em>
+            </p>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //注册ajax提交表单数据
+        $("#member_sava_sub").click(function () {
+            $.ajax({
+                url:"${pageContext.request.contextPath}/memberController/member_save",
+                type:"POST",
+                data:$("#register_div form").serialize(),
+                success:function (result) {
+                    if(result.code == 100){
+                        //会员注册成功；
+                        window.location.href="${pageContext.request.contextPath}/member/member_login.jsp";
+                        alert(result.msg);
+                    }
                 }
-            }
+            });
         });
-    });
-</script>
+    </script>
 </body>
 </html>
