@@ -15,8 +15,11 @@ public interface MemberMapper {
     int insert(Member record);
 
     int insertSelective(Member record);
+    //导入
+    int insertInfoBatch(List<Member> record);
 
     List<Member> selectByExample(MemberExample example);
+    //登陆
     Member selectMemberByExample(MemberExample example);
 
     Member selectByPrimaryKey(Integer mId);

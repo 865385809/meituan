@@ -252,9 +252,9 @@
             <li class="person">
                 <a href="#">订单信息</a>
                 <ul>
-                    <li><a href="order.html">代付款</a></li>
-                    <li> <a href="change.html">代使用</a></li>
-                    <li> <a href="change.html">代评价</a></li>
+                    <li><a href="order.html">待付款</a></li>
+                    <li> <a href="change.html">待使用</a></li>
+                    <li> <a href="change.html">待评价</a></li>
                     <li> <a href="change.html">售后</a></li>
                 </ul>
             </li>

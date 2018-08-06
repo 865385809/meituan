@@ -40,11 +40,11 @@
                             </div>
                             <div class="user-email">
                                 <label for="email"><i class="am-icon-envelope-o"></i></label>
-                                <input type="email" name="mMailbox" id="email" placeholder="请输入邮箱">
+                                <input type="email" name="mMailbox" id="email" placeholder="需要邮箱激活账号">
                             </div>
                             <div class="user-phone">
                                 <label for="phone"><i class="am-icon-mobile-phone am-icon-md"></i></label>
-                                <input type="tel" name="mPhone" id="phone" placeholder="请输入手机号">
+                                <input type="tel" name="mPhone" id="phone" placeholder="激活账号需要手机短信验证">
                             </div>
                         </form>
 

@@ -21,6 +21,58 @@
 
   <!--引入项目依赖的jar包 -->
   <dependencies>
+    <!--手机短信认证-->
+    <!-- https://mvnrepository.com/artifact/org.json/json -->
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20160810</version>
+    </dependency>
+
+    <!--邮箱验证-->
+    <!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>javax.mail-api</artifactId>
+      <version>1.5.6</version>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>javax.mail</artifactId>
+      <version>1.5.3</version>
+    </dependency>
+    <!--导出数据到excel表格-->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>3.14-beta1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml-schemas</artifactId>
+      <version>3.14-beta1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>3.14-beta1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.5.2</version>
+    </dependency>
+    <!--文件上传-->
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+      <version>1.3.1</version>
+    </dependency>
+    <!--<dependency>-->
+      <!--<groupId>org.apache.poi</groupId>-->
+      <!--<artifactId>poi</artifactId>-->
+      <!--<version>3.9</version>-->
+    <!--</dependency>-->
     <!--JSR303数据校验支持；tomcat7及以上的服务器，
 		tomcat7以下的服务器：el表达式。额外给服务器的lib包中替换新的标准的el
 		-->
@@ -30,11 +82,6 @@
       <artifactId>javax.el-api</artifactId>
       <version>2.2.4</version>
     </dependency>
-    <!--<dependency>-->
-      <!--<groupId>javax.validation</groupId>-->
-      <!--<artifactId>validation-api</artifactId>-->
-      <!--<version>1.1.0.Final</version>-->
-    <!--</dependency>-->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-validator</artifactId>

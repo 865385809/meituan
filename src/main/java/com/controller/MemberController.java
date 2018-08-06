@@ -5,6 +5,7 @@ import com.bean.Msg;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.service.MemberService;
+import com.utils.MailUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -27,6 +29,12 @@ public class MemberController {
     @Autowired
     MemberService memberService;
 
+    //发送邮件
+    @RequestMapping("/sendMail")
+    public String sendMail() throws MessagingException {
+        MailUtils.secdMail("2621372230@qq.com","ogcrugzbxtjfbbhc");
+        return "redirect:/member/member_login.jsp";
+    }
     //登陆
     @RequestMapping("/memberLoginOut")
     public String memberLoginOut(HttpServletRequest request){

@@ -22,6 +22,7 @@
                     <c:if test="${member==null}">
                         <a href="member/member_register.jsp">注册</a>
                         <a href="member/member_login.jsp">登录</a>
+                        <a href="${pageContext.request.contextPath}/memberController/sendMail">发送邮件</a>
                     </c:if>
                 </div>
             </div>
