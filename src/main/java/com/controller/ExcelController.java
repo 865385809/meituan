@@ -32,6 +32,11 @@ public class ExcelController {
     @Autowired
     ExcelService excelService;
 
+    //页面的转发
+    @RequestMapping("/excel")
+    public String adminfind(){
+        return "member/excel";
+    }
     @RequestMapping(value="/upLoadPayerCreditInfoExcel",method={RequestMethod.GET,RequestMethod.POST})
     public void uploadPayerCreditInfoExcel(HttpServletRequest request, HttpServletResponse response) throws Exception {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;

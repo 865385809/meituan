@@ -12,15 +12,23 @@
     <link href="${pageContext.request.contextPath}/static/meituan/css/hmstyle.css" rel="stylesheet" type="text/css" />
     <script src="${pageContext.request.contextPath}/static/meituan/AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/meituan/AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
+        <%--点击进行分页搜索--%>
+        <script type="text/javascript">
+            function conditionPage(stoType,stoClassify) {
+                document.getElementById("setStoType").value=stoType;
+                document.getElementById("setStoClassify").value=stoClassify;
+                $("#form1").submit();
+            }
+    </script>
 </head>
 
 <body>
+<%--搜索栏--%>
 <div class="hmtop">
     <!--顶部导航条 -->
     <jsp:include page="${pageContext.request.contextPath}/head.jsp"></jsp:include>
     <!--悬浮搜索框-->
     <div class="nav white">
-        <div class="logo"><img src="${pageContext.request.contextPath}/static/meituan/images/logo.png" /></div>
         <div class="logoBig">
             <li><img height="100" width="10" src="${pageContext.request.contextPath}/static/meituan/images/logobig3.png" /></li>
         </div>
@@ -42,27 +50,29 @@
         <div class="long-title"><span class="all-goods">全部分类</span></div>
         <div class="nav-cont">
             <ul>
-                <li class="index"><a href="#">首页</a></li>
-                <li class="qc"><a href="#">闪购</a></li>
-                <li class="qc"><a href="#">限时抢</a></li>
-                <li class="qc"><a href="#">团购</a></li>
-                <li class="qc last"><a href="#">大包装</a></li>
+                <li class="index"><a href="#" onclick="conditionPage('外卖','');return false;">美团外卖</a></li>
+                <li class="qc"><a href="#"  onclick="conditionPage('酒店','');return false;">酒店</a></li>
+                <li class="qc last"><a href="#"  onclick="conditionPage('电影','');return false;">电影</a></li>
             </ul>
         </div>
-
         <div class="bannerTwo">
             <!--轮播 -->
             <div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
                 <ul class="am-slides">
-                    <li class="banner1"><a href="introduction.html"><img src="${pageContext.request.contextPath}/static/meituan/images/lunbo4.jpg" /></a></li>
-                    <li class="banner2"><a><img src="${pageContext.request.contextPath}/static/meituan/images/lunbo5.jpg" /></a></li>
-                    <li class="banner3"><a><img src="${pageContext.request.contextPath}/static/meituan/images/lunbo2.jpg" /></a></li>
-                    <li class="banner4"><a><img src="${pageContext.request.contextPath}/static/meituan/images/lunbo3.jpg" /></a></li>
+                    <li class="banner1"><a href="#" target="_blank" onclick="conditionPage('电影','');return false;"><img src="${pageContext.request.contextPath}/static/meituan/images/lunbo4.jpg" /></a></li>
+                    <li class="banner2"><a href="#" target="_blank" onclick="conditionPage('美食','');return false;"><img src="${pageContext.request.contextPath}/static/meituan/images/lunbo5.jpg" /></a></li>
+                    <li class="banner3"><a href="#" target="_blank" onclick="conditionPage('生活服务','');return false;"><img src="${pageContext.request.contextPath}/static/meituan/images/lunbo2.jpg" /></a></li>
+                    <li class="banner4"><a href="#" target="_blank" onclick="conditionPage('外卖','');return false;"><img src="${pageContext.request.contextPath}/static/meituan/images/lunbo3.jpg" /></a></li>
                 </ul>
             </div>
             <div class="clear"></div>
         </div>
 
+
+        <form id="form1" method="post" action="${pageContext.request.contextPath}/storeController/searchShop">
+            <input type="hidden" id="setStoType" name="stoType">
+            <input type="hidden" id="setStoClassify" name="stoClassify">
+        </form>
         <!--左边侧边导航 -->
         <div id="nav" class="navfull" style="position: static;">
             <div class="area clearfix">
@@ -72,7 +82,11 @@
                         <ul class="category-list navTwo" id="js_climit_li">
                             <li>
                                 <div class="category-info">
-                                    <h3 class="category-name b-category-name"><i><img src="${pageContext.request.contextPath}/static/meituan/images/cake.png"></i><a class="ml-22" title="美食">美食</a></h3>
+                                    <h3 class="category-name b-category-name">
+                                        <i>
+                                            <img src="${pageContext.request.contextPath}/static/meituan/images/cake.png">
+                                        </i><a class="ml-22" title="美食" href="#" onclick="conditionPage('美食','');return false;">美食</a>
+                                    </h3>
                                     <em>&gt;</em></div>
                                 <div class="menu-item menu-in top">
                                     <div class="area-in">
@@ -81,38 +95,46 @@
                                                 <div class="sort-side">
                                                     <dl class="dl-sort">
                                                         <dt><span title="美食">美食</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                        <dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-                                                        <dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-                                                        <dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                    <dl class="dl-sort">
-                                                        <dt><span title="蛋糕">点心</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                        <dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-                                                        <dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-                                                        <dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
+                                                        <dd><a title="快餐" href="#" onclick="conditionPage('','快餐');return false;"><span>快餐</span></a></dd>
+                                                        <dd><a title="火锅" href="#" onclick="conditionPage('','火锅');return false;"><span>火锅</span></a></dd>
+                                                        <dd><a title="甜品" href="#" onclick="conditionPage('','甜品');return false;"><span>甜品</span></a></dd>
+                                                        <dd><a title="烧烤" href="#" onclick="conditionPage('','烧烤');return false;"><span>烧烤</span></a></dd>
+                                                        <dd><a title="海鲜" href="#" onclick="conditionPage('','海鲜');return false;"><span>海鲜</span></a></dd>
+                                                        <dd><a title="自助餐" href="#" onclick="conditionPage('','自助餐');return false;"><span>自助餐</span></a></dd>
+                                                        <dd><a title="西餐" href="#" onclick="conditionPage('','西餐');return false;"><span>西餐</span></a></dd>
                                                     </dl>
 
                                                 </div>
-                                                <div class="brand-side">
-                                                    <dl class="dl-sort"><dt><span>实力商家</span></dt>
-                                                        <dd><a rel="nofollow" title="呵官方旗舰店" target="_blank" href="#" rel="nofollow"><span  class="red" >呵官方旗舰店</span></a></dd>
-                                                        <dd><a rel="nofollow" title="格瑞旗舰店" target="_blank" href="#" rel="nofollow"><span >格瑞旗舰店</span></a></dd>
-                                                        <dd><a rel="nofollow" title="飞彦大厂直供" target="_blank" href="#" rel="nofollow"><span  class="red" >飞彦大厂直供</span></a></dd>
-                                                        <dd><a rel="nofollow" title="红e·艾菲妮" target="_blank" href="#" rel="nofollow"><span >红e·艾菲妮</span></a></dd>
-                                                        <dd><a rel="nofollow" title="本真旗舰店" target="_blank" href="#" rel="nofollow"><span  class="red" >本真旗舰店</span></a></dd>
-                                                        <dd><a rel="nofollow" title="杭派女装批发网" target="_blank" href="#" rel="nofollow"><span  class="red" >杭派女装批发网</span></a></dd>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <b class="arrow"></b>
+                            </li>
+                            <li >
+                                <div class="category-info">
+                                    <h3 class="category-name b-category-name">
+                                        <i>
+                                            <img src="${pageContext.request.contextPath}/static/meituan/images/cookies.png">
+                                        </i>
+                                        <a class="ml-22" title="外卖" href="#" onclick="conditionPage('外卖','');return false;">外卖</a>
+                                    </h3>
+                                    <em>&gt;</em></div>
+                                <div class="menu-item menu-in top">
+                                    <div class="area-in">
+                                        <div class="area-bg">
+                                            <div class="menu-srot">
+                                                <div class="sort-side">
+                                                    <dl class="dl-sort">
+                                                        <dt><span title="美团外卖">美团外卖</span></dt>
+                                                        <dd><a title="快餐" href="#" onclick="conditionPage('','快餐');return false;"><span>快餐</span></a></dd>
+                                                        <dd><a title="火锅" href="#" onclick="conditionPage('','火锅');return false;"><span>火锅</span></a></dd>
+                                                        <dd><a title="甜品" href="#" onclick="conditionPage('','甜品');return false;"><span>甜品</span></a></dd>
+                                                        <dd><a title="烧烤" href="#" onclick="conditionPage('','烧烤');return false;"><span>烧烤</span></a></dd>
+                                                        <dd><a title="海鲜" href="#" onclick="conditionPage('','海鲜');return false;"><span>海鲜</span></a></dd>
+                                                        <dd><a title="自助餐" href="#" onclick="conditionPage('','自助餐');return false;"><span>自助餐</span></a></dd>
+                                                        <dd><a title="西餐" href="#" onclick="conditionPage('','西餐');return false;"><span>西餐</span></a></dd>
                                                     </dl>
                                                 </div>
                                             </div>
@@ -123,7 +145,10 @@
                             </li>
                             <li >
                                 <div class="category-info">
-                                    <h3 class="category-name b-category-name"><i><img src="${pageContext.request.contextPath}/static/meituan/images/cookies.png"></i><a class="ml-22" title="外卖">外卖</a></h3>
+                                    <h3 class="category-name b-category-name">
+                                        <i>
+                                            <img src="${pageContext.request.contextPath}/static/meituan/images/meat.png">
+                                        </i><a class="ml-22" title="酒店" href="#" onclick="conditionPage('酒店','');return false;">酒店</a></h3>
                                     <em>&gt;</em></div>
                                 <div class="menu-item menu-in top">
                                     <div class="area-in">
@@ -131,48 +156,11 @@
                                             <div class="menu-srot">
                                                 <div class="sort-side">
                                                     <dl class="dl-sort">
-                                                        <dt><span title="饼干">饼干</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                    </dl>
-                                                    <dl class="dl-sort">
-                                                        <dt><span title="薯片">薯片</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                        <dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-                                                        <dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-                                                        <dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                    <dl class="dl-sort">
-                                                        <dt><span title="蛋糕">虾条</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                        <dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-                                                        <dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-                                                        <dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="brand-side">
-                                                    <dl class="dl-sort"><dt><span>实力商家</span></dt>
-                                                        <dd><a rel="nofollow" title="YYKCLOT" target="_blank" href="#" rel="nofollow"><span  class ="red" >YYKCLOT</span></a></dd>
-                                                        <dd><a rel="nofollow" title="池氏品牌男装" target="_blank" href="#" rel="nofollow"><span  class ="red" >池氏品牌男装</span></a></dd>
-                                                        <dd><a rel="nofollow" title="男装日志" target="_blank" href="#" rel="nofollow"><span >男装日志</span></a></dd>
-                                                        <dd><a rel="nofollow" title="索比诺官方旗舰店" target="_blank" href="#" rel="nofollow"><span >索比诺官方旗舰店</span></a></dd>
-                                                        <dd><a rel="nofollow" title="onTTno傲徒" target="_blank" href="#" rel="nofollow"><span  class ="red" >onTTno傲徒</span></a></dd>
-                                                        <dd><a rel="nofollow" title="玛狮路男装旗舰店" target="_blank" href="#" rel="nofollow"><span >玛狮路男装旗舰店</span></a></dd>
-                                                        <dd><a rel="nofollow" title="劳威特品牌男装" target="_blank" href="#" rel="nofollow"><span >劳威特品牌男装</span></a></dd>
-                                                        <dd><a rel="nofollow" title="卡斯郎世家批发城" target="_blank" href="#" rel="nofollow"><span  class ="red" >卡斯郎世家批发城</span></a></dd>
+                                                        <dt><span title="酒店">酒店</span></dt>
+                                                        <dd><a title="经济型" href="#" onclick="conditionPage('','经济型');return false;"><span>经济型</span></a></dd>
+                                                        <dd><a title="舒适/三星" href="#" onclick="conditionPage('','舒适/三星');return false;"><span>舒适/三星</span></a></dd>
+                                                        <dd><a title="高档/四星" href="#" onclick="conditionPage('','高档/四星');return false;"><span>高档/四星</span></a></dd>
+                                                        <dd><a title="豪华/五星" href="#" onclick="conditionPage('','豪华/五星');return false;"><span>豪华/五星</span></a></dd>
                                                     </dl>
                                                 </div>
                                             </div>
@@ -183,7 +171,10 @@
                             </li>
                             <li >
                                 <div class="category-info">
-                                    <h3 class="category-name b-category-name"><i><img src="${pageContext.request.contextPath}/static/meituan/images/meat.png"></i><a class="ml-22" title="酒店">酒店</a></h3>
+                                    <h3 class="category-name b-category-name">
+                                        <i>
+                                            <img src="${pageContext.request.contextPath}/static/meituan/images/bamboo.png">
+                                        </i><a class="ml-22" title="电影"  href="#" onclick="conditionPage('电影','');return false;">电影</a></h3>
                                     <em>&gt;</em></div>
                                 <div class="menu-item menu-in top">
                                     <div class="area-in">
@@ -191,41 +182,11 @@
                                             <div class="menu-srot">
                                                 <div class="sort-side">
                                                     <dl class="dl-sort">
-                                                        <dt><span title="猪肉脯">猪肉脯</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                    </dl>
-                                                    <dl class="dl-sort">
-                                                        <dt><span title="牛肉丝">牛肉丝</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                    </dl>
-                                                    <dl class="dl-sort">
-                                                        <dt><span title="小香肠">小香肠</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="brand-side">
-                                                    <dl class="dl-sort"><dt><span>实力商家</span></dt>
-                                                        <dd><a rel="nofollow" title="花颜巧语 " target="_blank" href="#" rel="nofollow"><span  class="red" >花颜巧语 </span></a></dd>
-                                                        <dd><a rel="nofollow" title="糖衣小屋" target="_blank" href="#" rel="nofollow"><span >糖衣小屋</span></a></dd>
-                                                        <dd><a rel="nofollow" title="卡拉迪克  " target="_blank" href="#" rel="nofollow"><span  class="red" >卡拉迪克  </span></a></dd>
-                                                        <dd><a rel="nofollow" title="暖春童话 " target="_blank" href="#" rel="nofollow"><span >暖春童话 </span></a></dd>
-                                                        <dd><a rel="nofollow" title="华盛童装批发行 " target="_blank" href="#" rel="nofollow"><span >华盛童装批发行 </span></a></dd>
-                                                        <dd><a rel="nofollow" title="奈仕华童装旗舰店" target="_blank" href="#" rel="nofollow"><span >奈仕华童装旗舰店</span></a></dd>
-                                                        <dd><a rel="nofollow" title="斑蒂尼BONDYNI" target="_blank" href="#" rel="nofollow"><span  class="red" >斑蒂尼BONDYNI</span></a></dd>
-                                                        <dd><a rel="nofollow" title="猫儿朵朵 " target="_blank" href="#" rel="nofollow"><span >猫儿朵朵 </span></a></dd>
-                                                        <dd><a rel="nofollow" title="童衣阁" target="_blank" href="#" rel="nofollow"><span  class="red" >童衣阁</span></a></dd>
+                                                        <dt><span title="电影">电影</span></dt>
+                                                        <dd><a title="惊悚" href="#" onclick="conditionPage('','惊悚');return false;"><span>惊悚</span></a></dd>
+                                                        <dd><a title="喜剧" href="#" onclick="conditionPage('','喜剧');return false;"><span>喜剧</span></a></dd>
+                                                        <dd><a title="动作" href="#" onclick="conditionPage('','动作');return false;"><span>动作</span></a></dd>
+                                                        <dd><a title="悬疑" href="#" onclick="conditionPage('','悬疑');return false;"><span>悬疑</span></a></dd>
                                                     </dl>
                                                 </div>
                                             </div>
@@ -236,7 +197,10 @@
                             </li>
                             <li >
                                 <div class="category-info">
-                                    <h3 class="category-name b-category-name"><i><img src="${pageContext.request.contextPath}/static/meituan/images/bamboo.png"></i><a class="ml-22" title="素食、卤味">电影</a></h3>
+                                    <h3 class="category-name b-category-name">
+                                        <i>
+                                            <img src="${pageContext.request.contextPath}/static/meituan/images/nut.png">
+                                        </i><a class="ml-22" title="生活服务" href="#" onclick="conditionPage('生活服务','');return false;">生活服务</a></h3>
                                     <em>&gt;</em></div>
                                 <div class="menu-item menu-in top">
                                     <div class="area-in">
@@ -244,38 +208,10 @@
                                             <div class="menu-srot">
                                                 <div class="sort-side">
                                                     <dl class="dl-sort">
-                                                        <dt><span title="豆干">豆干</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                    <dl class="dl-sort">
-                                                        <dt><span title="干笋">干笋</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                    <dl class="dl-sort">
-                                                        <dt><span title="鸭脖">鸭脖</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                        <dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-                                                        <dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-                                                        <dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="brand-side">
-                                                    <dl class="dl-sort"><dt><span>实力商家</span></dt>
-                                                        <dd><a rel="nofollow" title="歌芙品牌旗舰店" target="_blank" href="#" rel="nofollow"><span  class="red" >歌芙品牌旗舰店</span></a></dd>
-                                                        <dd><a rel="nofollow" title="爱丝蓝内衣厂" target="_blank" href="#" rel="nofollow"><span >爱丝蓝内衣厂</span></a></dd>
-                                                        <dd><a rel="nofollow" title="香港优蓓尔防辐射" target="_blank" href="#" rel="nofollow"><span >香港优蓓尔防辐射</span></a></dd>
-                                                        <dd><a rel="nofollow" title="蓉莉娜内衣批发" target="_blank" href="#" rel="nofollow"><span >蓉莉娜内衣批发</span></a></dd>
+                                                        <dt><span title="生活">生活</span></dt>
+                                                        <dd><a title="电脑维修" href="#" onclick="conditionPage('','电脑维修');return false;"><span>电脑维修</span></a></dd>
+                                                        <dd><a title="手机维修" href="#" onclick="conditionPage('','手机维修');return false;"><span>手机维修</span></a></dd>
+                                                        <dd><a title="送水" href="#" onclick="conditionPage('','送水');return false;"><span>送水</span></a></dd>
                                                     </dl>
                                                 </div>
                                             </div>
@@ -286,7 +222,10 @@
                             </li>
                             <li >
                                 <div class="category-info">
-                                    <h3 class="category-name b-category-name"><i><img src="${pageContext.request.contextPath}/static/meituan/images/nut.png"></i><a class="ml-22" title="生活服务">生活服务</a></h3>
+                                    <h3 class="category-name b-category-name">
+                                        <i>
+                                            <img src="${pageContext.request.contextPath}/static/meituan/images/candy.png">
+                                        </i><a class="ml-22" title="机票/火车票" href="#" onclick="conditionPage('机票/火车票','');return false;">机票/火车票</a></h3>
                                     <em>&gt;</em></div>
                                 <div class="menu-item menu-in top">
                                     <div class="area-in">
@@ -294,40 +233,10 @@
                                             <div class="menu-srot">
                                                 <div class="sort-side">
                                                     <dl class="dl-sort">
-                                                        <dt><span title="蛋糕">坚果</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                        <dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-                                                        <dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-                                                        <dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                    <dl class="dl-sort">
-                                                        <dt><span title="蛋糕">锅巴</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                        <dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-                                                        <dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-                                                        <dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="brand-side">
-                                                    <dl class="dl-sort"><dt><span>实力商家</span></dt>
-                                                        <dd><a rel="nofollow" title="呵呵嘿官方旗舰店" target="_blank" href="#" rel="nofollow"><span  class="red" >呵呵嘿官方旗舰店</span></a></dd>
-                                                        <dd><a rel="nofollow" title="格瑞旗舰店" target="_blank" href="#" rel="nofollow"><span >格瑞旗舰店</span></a></dd>
-                                                        <dd><a rel="nofollow" title="飞彦大厂直供" target="_blank" href="#" rel="nofollow"><span  class="red" >飞彦大厂直供</span></a></dd>
-                                                        <dd><a rel="nofollow" title="红e·艾菲妮" target="_blank" href="#" rel="nofollow"><span >红e·艾菲妮</span></a></dd>
-                                                        <dd><a rel="nofollow" title="本真旗舰店" target="_blank" href="#" rel="nofollow"><span  class="red" >本真旗舰店</span></a></dd>
-                                                        <dd><a rel="nofollow" title="杭派女装批发网" target="_blank" href="#" rel="nofollow"><span  class="red" >杭派女装批发网</span></a></dd>
-                                                        <dd><a rel="nofollow" title="华伊阁旗舰店" target="_blank" href="#" rel="nofollow"><span >华伊阁旗舰店</span></a></dd>
-                                                        <dd><a rel="nofollow" title="独家折扣旗舰店" target="_blank" href="#" rel="nofollow"><span >独家折扣旗舰店</span></a></dd>
+                                                        <dt><span title="票">票</span></dt>
+                                                        <dd><a title="国内机票" href="#" onclick="conditionPage('','国内机票');return false;"><span>国内机票</span></a></dd>
+                                                        <dd><a title="国外机票" href="#" onclick="conditionPage('','国外机票');return false;"><span>国外机票</span></a></dd>
+                                                        <dd><a title="火车票" href="#" onclick="conditionPage('','火车票');return false;"><span>火车票</span></a></dd>
                                                     </dl>
                                                 </div>
                                             </div>
@@ -338,7 +247,10 @@
                             </li>
                             <li >
                                 <div class="category-info">
-                                    <h3 class="category-name b-category-name"><i><img src="${pageContext.request.contextPath}/static/meituan/images/candy.png"></i><a class="ml-22" title="机票/火车票">机票/火车票</a></h3>
+                                    <h3 class="category-name b-category-name">
+                                        <i>
+                                            <img src="${pageContext.request.contextPath}/static/meituan/images/chocolate.png">
+                                        </i><a class="ml-22" title="亲子/儿童乐园" href="#" onclick="conditionPage('亲子/儿童乐园','');return false;">亲子/儿童乐园</a></h3>
                                     <em>&gt;</em></div>
                                 <div class="menu-item menu-in top">
                                     <div class="area-in">
@@ -346,38 +258,10 @@
                                             <div class="menu-srot">
                                                 <div class="sort-side">
                                                     <dl class="dl-sort">
-                                                        <dt><span title="糖果">糖果</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                        <dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-                                                        <dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-                                                        <dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                    <dl class="dl-sort">
-                                                        <dt><span title="蜜饯">蜜饯</span></dt>
-                                                        <dd><a title="猕猴桃干" href="#"><span>猕猴桃干</span></a></dd>
-                                                        <dd><a title="糖樱桃" href="#"><span>糖樱桃</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                        <dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-                                                        <dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-                                                        <dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="brand-side">
-                                                    <dl class="dl-sort"><dt><span>实力商家</span></dt>
-                                                        <dd><a rel="nofollow" title="YYKCLOT" target="_blank" href="#" rel="nofollow"><span  class ="red" >YYKCLOT</span></a></dd>
-                                                        <dd><a rel="nofollow" title="池氏品牌男装" target="_blank" href="#" rel="nofollow"><span  class ="red" >池氏品牌男装</span></a></dd>
-                                                        <dd><a rel="nofollow" title="男装日志" target="_blank" href="#" rel="nofollow"><span >男装日志</span></a></dd>
-                                                        <dd><a rel="nofollow" title="索比诺官方旗舰店" target="_blank" href="#" rel="nofollow"><span >索比诺官方旗舰店</span></a></dd>
-                                                        <dd><a rel="nofollow" title="onTTno傲徒" target="_blank" href="#" rel="nofollow"><span  class ="red" >onTTno傲徒</span></a></dd>
-                                                        <dd><a rel="nofollow" title="卡斯郎世家批发城" target="_blank" href="#" rel="nofollow"><span  class ="red" >卡斯郎世家批发城</span></a></dd>
+                                                        <dt><span title="亲子/儿童">亲子/儿童</span></dt>
+                                                        <dd><a title="少儿英语" href="#" onclick="conditionPage('','少儿英语');return false;"><span>少儿英语</span></a></dd>
+                                                        <dd><a title="智力开发" href="#" onclick="conditionPage('','智力开发');return false;"><span>智力开发</span></a></dd>
+                                                        <dd><a title="婴儿游泳" href="#" onclick="conditionPage('','婴儿游泳');return false;"><span>婴儿游泳</span></a></dd>
                                                     </dl>
                                                 </div>
                                             </div>
@@ -388,7 +272,10 @@
                             </li>
                             <li >
                                 <div class="category-info">
-                                    <h3 class="category-name b-category-name"><i><img src="${pageContext.request.contextPath}/static/meituan/images/chocolate.png"></i><a class="ml-22" title="亲子/儿童乐园">亲子/儿童乐园</a></h3>
+                                    <h3 class="category-name b-category-name">
+                                        <i>
+                                            <img src="${pageContext.request.contextPath}/static/meituan/images/fish.png">
+                                        </i><a class="ml-22" title="运动健身/健身中心" href="#" onclick="conditionPage('运动健身/健身中心','');return false;">运动健身/健身中心</a></h3>
                                     <em>&gt;</em></div>
                                 <div class="menu-item menu-in top">
                                     <div class="area-in">
@@ -396,40 +283,12 @@
                                             <div class="menu-srot">
                                                 <div class="sort-side">
                                                     <dl class="dl-sort">
-                                                        <dt><span title="蛋糕">巧克力</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                        <dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-                                                        <dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-                                                        <dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                    <dl class="dl-sort">
-                                                        <dt><span title="蛋糕">果冻</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                        <dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-                                                        <dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-                                                        <dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="brand-side">
-                                                    <dl class="dl-sort"><dt><span>实力商家</span></dt>
-                                                        <dd><a rel="nofollow" title="花颜巧语 " target="_blank" href="#" rel="nofollow"><span  class="red" >花颜巧语 </span></a></dd>
-                                                        <dd><a rel="nofollow" title="糖衣小屋" target="_blank" href="#" rel="nofollow"><span >糖衣小屋</span></a></dd>
-                                                        <dd><a rel="nofollow" title="卡拉迪克  " target="_blank" href="#" rel="nofollow"><span  class="red" >卡拉迪克  </span></a></dd>
-                                                        <dd><a rel="nofollow" title="暖春童话 " target="_blank" href="#" rel="nofollow"><span >暖春童话 </span></a></dd>
-                                                        <dd><a rel="nofollow" title="华盛童装批发行 " target="_blank" href="#" rel="nofollow"><span >华盛童装批发行 </span></a></dd>
-                                                        <dd><a rel="nofollow" title="奈仕华童装旗舰店" target="_blank" href="#" rel="nofollow"><span >奈仕华童装旗舰店</span></a></dd>
-                                                        <dd><a rel="nofollow" title="斑蒂尼BONDYNI" target="_blank" href="#" rel="nofollow"><span  class="red" >斑蒂尼BONDYNI</span></a></dd>
-                                                        <dd><a rel="nofollow" title="童衣阁" target="_blank" href="#" rel="nofollow"><span  class="red" >童衣阁</span></a></dd>
+                                                        <dt><span title="运动/健身">运动/健身</span></dt>
+                                                        <dd><a title="篮球馆" href="#" onclick="conditionPage('','篮球馆');return false;"><span>篮球馆</span></a></dd>
+                                                        <dd><a title="网球馆" href="#" onclick="conditionPage('','网球馆');return false;"><span>网球馆</span></a></dd>
+                                                        <dd><a title="射箭馆" href="#" onclick="conditionPage('','射箭馆');return false;"><span>射箭馆</span></a></dd>
+                                                        <dd><a title="足球场" href="#" onclick="conditionPage('','足球场');return false;"><span>足球场</span></a></dd>
+                                                        <dd><a title="乒乓球" href="#" onclick="conditionPage('','乒乓球');return false;"><span>乒乓球</span></a></dd>
                                                     </dl>
                                                 </div>
                                             </div>
@@ -440,7 +299,10 @@
                             </li>
                             <li >
                                 <div class="category-info">
-                                    <h3 class="category-name b-category-name"><i><img src="${pageContext.request.contextPath}/static/meituan/images/fish.png"></i><a class="ml-22" title="海味、河鲜">运动健身/健身中心</a></h3>
+                                    <h3 class="category-name b-category-name">
+                                        <i>
+                                            <img src="${pageContext.request.contextPath}/static/meituan/images/tea.png">
+                                        </i><a class="ml-22" title="酒吧/网吧"  href="#" onclick="conditionPage('酒吧/网吧','');return false;">酒吧/网吧</a></h3>
                                     <em>&gt;</em></div>
                                 <div class="menu-item menu-in top">
                                     <div class="area-in">
@@ -448,95 +310,9 @@
                                             <div class="menu-srot">
                                                 <div class="sort-side">
                                                     <dl class="dl-sort">
-                                                        <dt><span title="海带丝">海带丝</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                        <dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-                                                        <dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-                                                        <dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                    <dl class="dl-sort">
-                                                        <dt><span title="小鱼干">小鱼干</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                    </dl>
-                                                    <dl class="dl-sort">
-                                                        <dt><span title="鱿鱼丝">鱿鱼丝</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="brand-side">
-                                                    <dl class="dl-sort"><dt><span>实力商家</span></dt>
-                                                        <dd><a rel="nofollow" title="歌芙品牌旗舰店" target="_blank" href="#" rel="nofollow"><span  class="red" >歌芙品牌旗舰店</span></a></dd>
-                                                        <dd><a rel="nofollow" title="爱丝蓝内衣厂" target="_blank" href="#" rel="nofollow"><span >爱丝蓝内衣厂</span></a></dd>
-                                                        <dd><a rel="nofollow" title="炫点服饰" target="_blank" href="#" rel="nofollow"><span >炫点服饰</span></a></dd>
-                                                        <dd><a rel="nofollow" title="雪茵美内衣厂批发" target="_blank" href="#" rel="nofollow"><span >雪茵美内衣厂批发</span></a></dd>
-                                                        <dd><a rel="nofollow" title="金钻夫人" target="_blank" href="#" rel="nofollow"><span >金钻夫人</span></a></dd>
-                                                        <dd><a rel="nofollow" title="伊美莎内衣" target="_blank" href="#" rel="nofollow"><span  class="red" >伊美莎内衣</span></a></dd>
-                                                        <dd><a rel="nofollow" title="粉客内衣旗舰店" target="_blank" href="#" rel="nofollow"><span >粉客内衣旗舰店</span></a></dd>
-                                                        <dd><a rel="nofollow" title="泽芳行旗舰店" target="_blank" href="#" rel="nofollow"><span >泽芳行旗舰店</span></a></dd>
-                                                        <dd><a rel="nofollow" title="彩婷" target="_blank" href="#" rel="nofollow"><span  class="red" >彩婷</span></a></dd>
-                                                        <dd><a rel="nofollow" title="黛兰希" target="_blank" href="#" rel="nofollow"><span >黛兰希</span></a></dd>
-                                                        <dd><a rel="nofollow" title="香港优蓓尔防辐射" target="_blank" href="#" rel="nofollow"><span >香港优蓓尔防辐射</span></a></dd>
-                                                        <dd><a rel="nofollow" title="蓉莉娜内衣批发" target="_blank" href="#" rel="nofollow"><span >蓉莉娜内衣批发</span></a></dd>
-                                                    </dl>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <b class="arrow"></b>
-                            </li>
-                            <li >
-                                <div class="category-info">
-                                    <h3 class="category-name b-category-name"><i><img src="${pageContext.request.contextPath}/static/meituan/images/tea.png"></i><a class="ml-22" title="花茶、果茶">酒吧</a></h3>
-                                    <em>&gt;</em></div>
-                                <div class="menu-item menu-in top">
-                                    <div class="area-in">
-                                        <div class="area-bg">
-                                            <div class="menu-srot">
-                                                <div class="sort-side">
-                                                    <dl class="dl-sort">
-                                                        <dt><span title="蛋糕">蛋糕</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                        <dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-                                                        <dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-                                                        <dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                    <dl class="dl-sort">
-                                                        <dt><span title="蛋糕">点心</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                        <dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-                                                        <dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-                                                        <dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="brand-side">
-                                                    <dl class="dl-sort"><dt><span>实力商家</span></dt>
-                                                        <dd><a title="今生只围你" target="_blank" href="#" rel="nofollow"><span >今生只围你</span></a></dd>
-                                                        <dd><a title="忆佳人" target="_blank" href="#" rel="nofollow"><span  class="red" >忆佳人</span></a></dd>
-                                                        <dd><a title="斐洱普斯" target="_blank" href="#" rel="nofollow"><span  class="red" >斐洱普斯</span></a></dd>
-                                                        <dd><a title="聚百坊" target="_blank" href="#" rel="nofollow"><span  class="red" >聚百坊</span></a></dd>
-                                                        <dd><a title="朵朵棉织直营店" target="_blank" href="#" rel="nofollow"><span >朵朵棉织直营店</span></a></dd>
+                                                        <dt><span title="酒吧/网吧">酒吧/网吧</span></dt>
+                                                        <dd><a title="KTV" href="#" onclick="conditionPage('','KTV');return false;"><span>KTV</span></a></dd>
+                                                        <dd><a title="网咖" href="#" onclick="conditionPage('','网咖');return false;"><span>网咖</span></a></dd>
                                                     </dl>
                                                 </div>
                                             </div>
@@ -547,7 +323,10 @@
                             </li>
                             <li>
                                 <div class="category-info">
-                                    <h3 class="category-name b-category-name"><i><img src="${pageContext.request.contextPath}/static/meituan/images/package.png"></i><a class="ml-22" title="学习培训/音乐培训">学习培训/音乐培训</a></h3>
+                                    <h3 class="category-name b-category-name">
+                                        <i>
+                                            <img src="${pageContext.request.contextPath}/static/meituan/images/package.png">
+                                        </i><a class="ml-22" title="学习培训/音乐培训" href="#" onclick="conditionPage('学习培训/音乐培训','');return false;">学习培训/音乐培训</a></h3>
                                     <em>&gt;</em></div>
                                 <div class="menu-item menu-in top">
                                     <div class="area-in">
@@ -555,45 +334,17 @@
                                             <div class="menu-srot">
                                                 <div class="sort-side">
                                                     <dl class="dl-sort">
-                                                        <dt><span title="大包装">大包装</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                        <dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-                                                        <dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-                                                        <dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                    <dl class="dl-sort">
-                                                        <dt><span title="两件套">两件套</span></dt>
-                                                        <dd><a title="蒸蛋糕" href="#"><span>蒸蛋糕</span></a></dd>
-                                                        <dd><a title="脱水蛋糕" href="#"><span>脱水蛋糕</span></a></dd>
-                                                        <dd><a title="瑞士卷" href="#"><span>瑞士卷</span></a></dd>
-                                                        <dd><a title="软面包" href="#"><span>软面包</span></a></dd>
-                                                        <dd><a title="马卡龙" href="#"><span>马卡龙</span></a></dd>
-                                                        <dd><a title="千层饼" href="#"><span>千层饼</span></a></dd>
-                                                        <dd><a title="甜甜圈" href="#"><span>甜甜圈</span></a></dd>
-                                                        <dd><a title="蒸三明治" href="#"><span>蒸三明治</span></a></dd>
-                                                        <dd><a title="铜锣烧" href="#"><span>铜锣烧</span></a></dd>
-                                                    </dl>
-                                                </div>
-                                                <div class="brand-side">
-                                                    <dl class="dl-sort"><dt><span>实力商家</span></dt>
-                                                        <dd><a title="琳琅鞋业" target="_blank" href="#" rel="nofollow"><span >琳琅鞋业</span></a></dd>
-                                                        <dd><a title="宏利鞋业" target="_blank" href="#" rel="nofollow"><span >宏利鞋业</span></a></dd>
-                                                        <dd><a title="比爱靓点鞋业" target="_blank" href="#" rel="nofollow"><span >比爱靓点鞋业</span></a></dd>
-                                                        <dd><a title="浪人怪怪" target="_blank" href="#" rel="nofollow"><span >浪人怪怪</span></a></dd>
+                                                        <dt><span title="培训">培训</span></dt>
+                                                        <dd><a title="钢琴" href="#" onclick="conditionPage('','钢琴');return false;"><span>钢琴</span></a></dd>
+                                                        <dd><a title="吉他" href="#" onclick="conditionPage('','吉他');return false;"><span>吉他</span></a></dd>
+                                                        <dd><a title="古筝" href="#" onclick="conditionPage('','古筝');return false;"><span>古筝</span></a></dd>
                                                     </dl>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </li>
-                            <!--比较多的导航	-->
                         </ul>
                     </div>
                 </div>
@@ -617,46 +368,13 @@
                 });
             })
         </script>
-
-        <!--缩小时小导航 -->
-        <div class="am-g am-g-fixed smallnav">
-            <div class="am-u-sm-3">
-                <a href="sort.html"><img src="${pageContext.request.contextPath}/static/meituan/images/navsmall.jpg" />
-                    <div class="title">商品分类</div>
-                </a>
-            </div>
-            <div class="am-u-sm-3">
-                <a href="#"><img src="${pageContext.request.contextPath}/static/meituan/images/huismall.jpg" />
-                    <div class="title">大聚惠</div>
-                </a>
-            </div>
-            <div class="am-u-sm-3">
-                <a href="#"><img src="${pageContext.request.contextPath}/static/meituan/images/mansmall.jpg" />
-                    <div class="title">个人中心</div>
-                </a>
-            </div>
-            <div class="am-u-sm-3">
-                <a href="#"><img src="${pageContext.request.contextPath}/static/meituan/images/moneysmall.jpg" />
-                    <div class="title">投资理财</div>
-                </a>
-            </div>
-        </div>
-
         <!--缩小时出现走马灯 -->
         <div class="marqueenTwo">
             <span class="marqueen-title"><i class="am-icon-volume-up am-icon-fw"></i>商城头条<em class="am-icon-angle-double-right"></em></span>
             <div class="demo">
 
                 <ul>
-                    <li class="title-first"><a target="_blank" href="#">
-                        <img src="${pageContext.request.contextPath}/static/meituan/images/TJ2.jpg"></img>
-                        <span>[特惠]</span>洋河年末大促，低至两件五折
-                    </a></li>
-                    <li class="title-first"><a target="_blank" href="#">
-                        <span>[公告]</span>商城与广州市签署战略合作协议
-                        <img src="${pageContext.request.contextPath}/static/meituan/images/TJ.jpg"></img>
-                        <p>XXXXXXXXXXXXXXXXXX</p>
-                    </a></li>
+
                     <li><a target="_blank" href="#"><span>[特惠]</span>女生节商城爆品1分秒	</a></li>
                     <li><a target="_blank" href="#"><span>[公告]</span>华北、华中部分地区配送延迟</a></li>
                     <li><a target="_blank" href="#"><span>[特惠]</span>家电狂欢千亿礼券 买1送1！</a></li>
@@ -687,22 +405,12 @@
         }
     </script>
 </div>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+<br/><br/><br/><br/><br/><br/><br/><br/>
 <%--商品展示--%>
 <div class="shopMainbg">
     <div class="shopMain" id="shopmain">
-
         <!--热门活动 -->
-
         <div class="am-container">
-
             <div class="sale-mt">
                 <i></i>
                 <em class="sale-title">限时秒杀</em>
@@ -712,8 +420,6 @@
                     <span class="ss">59</span>
                 </div>
             </div>
-
-
             <div class="am-g am-g-fixed sale">
                 <div class="am-u-sm-3 sale-item">
                     <div class="s-img">
@@ -767,22 +473,12 @@
         </div>
         <div class="clear "></div>
 
-        <!--甜点-->
+        <!--电影-->
         <div class="f1">
-
             <div class="am-container " >
                 <div class="shopTitle ">
                     <h4 class="floor-title">电影</h4>
                     <div class="floor-subtitle"><em class="am-icon-caret-left"></em><h3>每一部电影都有一个故事</h3></div>
-                    <div class="today-brands " style="right:0px ;top:13px;">
-                        <a href="# ">桂花糕</a>|
-                        <a href="# ">奶皮酥</a>|
-                        <a href="# ">栗子糕 </a>|
-                        <a href="# ">马卡龙</a>|
-                        <a href="# ">铜锣烧</a>|
-                        <a href="# ">豌豆黄</a>
-                    </div>
-
                 </div>
             </div>
 
@@ -1040,15 +736,6 @@
                 <div class="shopTitle ">
                     <h4 class="floor-title">喜欢</h4>
                     <div class="floor-subtitle"><em class="am-icon-caret-left"></em><h3>你喜欢的，这里都有</h3></div>
-                    <div class="today-brands " style="right:0px ;top:13px;">
-                        <a href="# ">桂花糕</a>|
-                        <a href="# ">奶皮酥</a>|
-                        <a href="# ">栗子糕 </a>|
-                        <a href="# ">马卡龙</a>|
-                        <a href="# ">铜锣烧</a>|
-                        <a href="# ">豌豆黄</a>
-                    </div>
-
                 </div>
             </div>
 
@@ -1172,21 +859,13 @@
             </div>
             <div class="clear "></div>
         </div>
+        <%----%>
         <div class="f10">
-
             <!--坚果-->
             <div class="am-container ">
                 <div class="shopTitle ">
                     <h4 class="floor-title">坚果</h4>
                     <div class="floor-subtitle"><em class="am-icon-caret-left"></em><h3>酥酥脆脆，回味无穷</h3></div>
-                    <div class="today-brands " style="right:0px ;top:13px">
-                        <a href="# ">腰果</a>|
-                        <a href="# ">松子</a>|
-                        <a href="# ">夏威夷果 </a>|
-                        <a href="# ">碧根果</a>|
-                        <a href="# ">开心果</a>|
-                        <a href="# ">核桃仁</a>
-                    </div>
                 </div>
             </div>
             <div class="am-g am-g-fixed floodSeven">
@@ -1309,18 +988,9 @@
         <jsp:include page="${pageContext.request.contextPath}/tail.jsp"></jsp:include>
     </div>
 </div>
-</div>
-</div>
-
-<!--缩小时底部的导航栏引导 -->
-<div clasos="navCir">
-    <li class="active"><a href="home2.html"><i class="am-icon-home "></i>首页</a></li>
-    <li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
-    <li><a href="shopcart.html"><i class="am-icon-shopping-basket"></i>购物车</a></li>
-    <li><a href="../person/index.html"><i class="am-icon-user"></i>我的</a></li>
-</div>
 <!--菜单 -->
 <div class=tip>
+    <%--右侧边栏--%>
     <div id="sidebar">
         <div id="wrap">
             <div id="prof" class="item ">
@@ -1409,79 +1079,10 @@
 
             <!--回到顶部 -->
             <div id="quick_links_pop " class="quick_links_pop hide "></div>
-
-        </div>
-
-    </div>
-    <div id="prof-content " class="nav-content ">
-        <div class="nav-con-close ">
-            <i class="am-icon-angle-right am-icon-fw "></i>
-        </div>
-        <div>
-            我
-        </div>
-    </div>
-    <div id="shopCart-content " class="nav-content ">
-        <div class="nav-con-close ">
-            <i class="am-icon-angle-right am-icon-fw "></i>
-        </div>
-        <div>
-            购物车
-        </div>
-    </div>
-    <div id="asset-content " class="nav-content ">
-        <div class="nav-con-close ">
-            <i class="am-icon-angle-right am-icon-fw "></i>
-        </div>
-        <div>
-            资产
-        </div>
-
-        <div class="ia-head-list ">
-            <a href="# " target="_blank " class="pl ">
-                <div class="num ">0</div>
-                <div class="text ">优惠券</div>
-            </a>
-            <a href="# " target="_blank " class="pl ">
-                <div class="num ">0</div>
-                <div class="text ">红包</div>
-            </a>
-            <a href="# " target="_blank " class="pl money ">
-                <div class="num ">￥0</div>
-                <div class="text ">余额</div>
-            </a>
-        </div>
-
-    </div>
-    <div id="foot-content " class="nav-content ">
-        <div class="nav-con-close ">
-            <i class="am-icon-angle-right am-icon-fw "></i>
-        </div>
-        <div>
-            足迹
-        </div>
-    </div>
-    <div id="brand-content " class="nav-content ">
-        <div class="nav-con-close ">
-            <i class="am-icon-angle-right am-icon-fw "></i>
-        </div>
-        <div>
-            收藏
-        </div>
-    </div>
-    <div id="broadcast-content " class="nav-content ">
-        <div class="nav-con-close ">
-            <i class="am-icon-angle-right am-icon-fw "></i>
-        </div>
-        <div>
-            充值
         </div>
     </div>
 </div>
-<script>
-    window.jQuery || document.write('<script src="basic/js/jquery.min.js "><\/script>');
-</script>
+
 <script type="text/javascript " src="${pageContext.request.contextPath}/static/meituan/basic/js/quick_links.js "></script>
 </body>
-
 </html>

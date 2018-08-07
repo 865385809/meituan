@@ -8,6 +8,8 @@
     <script src="${pageContext.request.contextPath}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 <body>
+
+
 <%--会员显示页面--%>
 <div class="container">
     <%--标题--%>

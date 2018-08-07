@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.StoreMapper">
+  <resultMap id="BaseResultMap" type="com.bean.Store">
+    <id column="sto_id" jdbcType="INTEGER" property="stoId" />
+    <result column="sto_name" jdbcType="VARCHAR" property="stoName" />
+    <result column="sto_type" jdbcType="VARCHAR" property="stoType" />
+    <result column="sto_city" jdbcType="VARCHAR" property="stoCity" />
+    <result column="sto_classify" jdbcType="VARCHAR" property="stoClassify" />
+    <result column="sto_address" jdbcType="VARCHAR" property="stoAddress" />
+    <result column="sto_price" jdbcType="DOUBLE" property="stoPrice" />
+    <result column="sto_picture" jdbcType="VARCHAR" property="stoPicture" />
+    <result column="sto_tel" jdbcType="VARCHAR" property="stoTel" />
+    <result column="sto_time" jdbcType="VARCHAR" property="stoTime" />
+    <result column="seller_id" jdbcType="INTEGER" property="sellerId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    sto_id, sto_name, sto_type, sto_city, sto_classify, sto_address, sto_price, sto_picture, 
+    sto_tel, sto_time, seller_id
+  </sql>
+  <select id="selectByExample" parameterType="com.bean.StoreExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from store
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from store
+    where sto_id = #{stoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from store
+    where sto_id = #{stoId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bean.StoreExample">
+    delete from store
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bean.Store">
+    insert into store (sto_id, sto_name, sto_type, 
+      sto_city, sto_classify, sto_address, 
+      sto_price, sto_picture, sto_tel, 
+      sto_time, seller_id)
+    values (#{stoId,jdbcType=INTEGER}, #{stoName,jdbcType=VARCHAR}, #{stoType,jdbcType=VARCHAR}, 
+      #{stoCity,jdbcType=VARCHAR}, #{stoClassify,jdbcType=VARCHAR}, #{stoAddress,jdbcType=VARCHAR}, 
+      #{stoPrice,jdbcType=DOUBLE}, #{stoPicture,jdbcType=VARCHAR}, #{stoTel,jdbcType=VARCHAR}, 
+      #{stoTime,jdbcType=VARCHAR}, #{sellerId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.Store">
+    insert into store
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="stoId != null">
+        sto_id,
+      </if>
+      <if test="stoName != null">
+        sto_name,
+      </if>
+      <if test="stoType != null">
+        sto_type,
+      </if>
+      <if test="stoCity != null">
+        sto_city,
+      </if>
+      <if test="stoClassify != null">
+        sto_classify,
+      </if>
+      <if test="stoAddress != null">
+        sto_address,
+      </if>
+      <if test="stoPrice != null">
+        sto_price,
+      </if>
+      <if test="stoPicture != null">
+        sto_picture,
+      </if>
+      <if test="stoTel != null">
+        sto_tel,
+      </if>
+      <if test="stoTime != null">
+        sto_time,
+      </if>
+      <if test="sellerId != null">
+        seller_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="stoId != null">
+        #{stoId,jdbcType=INTEGER},
+      </if>
+      <if test="stoName != null">
+        #{stoName,jdbcType=VARCHAR},
+      </if>
+      <if test="stoType != null">
+        #{stoType,jdbcType=VARCHAR},
+      </if>
+      <if test="stoCity != null">
+        #{stoCity,jdbcType=VARCHAR},
+      </if>
+      <if test="stoClassify != null">
+        #{stoClassify,jdbcType=VARCHAR},
+      </if>
+      <if test="stoAddress != null">
+        #{stoAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stoPrice != null">
+        #{stoPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="stoPicture != null">
+        #{stoPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="stoTel != null">
+        #{stoTel,jdbcType=VARCHAR},
+      </if>
+      <if test="stoTime != null">
+        #{stoTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null">
+        #{sellerId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bean.StoreExample" resultType="java.lang.Long">
+    select count(*) from store
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update store
+    <set>
+      <if test="record.stoId != null">
+        sto_id = #{record.stoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.stoName != null">
+        sto_name = #{record.stoName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stoType != null">
+        sto_type = #{record.stoType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stoCity != null">
+        sto_city = #{record.stoCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stoClassify != null">
+        sto_classify = #{record.stoClassify,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stoAddress != null">
+        sto_address = #{record.stoAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stoPrice != null">
+        sto_price = #{record.stoPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.stoPicture != null">
+        sto_picture = #{record.stoPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stoTel != null">
+        sto_tel = #{record.stoTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stoTime != null">
+        sto_time = #{record.stoTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerId != null">
+        seller_id = #{record.sellerId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update store
+    set sto_id = #{record.stoId,jdbcType=INTEGER},
+      sto_name = #{record.stoName,jdbcType=VARCHAR},
+      sto_type = #{record.stoType,jdbcType=VARCHAR},
+      sto_city = #{record.stoCity,jdbcType=VARCHAR},
+      sto_classify = #{record.stoClassify,jdbcType=VARCHAR},
+      sto_address = #{record.stoAddress,jdbcType=VARCHAR},
+      sto_price = #{record.stoPrice,jdbcType=DOUBLE},
+      sto_picture = #{record.stoPicture,jdbcType=VARCHAR},
+      sto_tel = #{record.stoTel,jdbcType=VARCHAR},
+      sto_time = #{record.stoTime,jdbcType=VARCHAR},
+      seller_id = #{record.sellerId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.Store">
+    update store
+    <set>
+      <if test="stoName != null">
+        sto_name = #{stoName,jdbcType=VARCHAR},
+      </if>
+      <if test="stoType != null">
+        sto_type = #{stoType,jdbcType=VARCHAR},
+      </if>
+      <if test="stoCity != null">
+        sto_city = #{stoCity,jdbcType=VARCHAR},
+      </if>
+      <if test="stoClassify != null">
+        sto_classify = #{stoClassify,jdbcType=VARCHAR},
+      </if>
+      <if test="stoAddress != null">
+        sto_address = #{stoAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stoPrice != null">
+        sto_price = #{stoPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="stoPicture != null">
+        sto_picture = #{stoPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="stoTel != null">
+        sto_tel = #{stoTel,jdbcType=VARCHAR},
+      </if>
+      <if test="stoTime != null">
+        sto_time = #{stoTime,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerId != null">
+        seller_id = #{sellerId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sto_id = #{stoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.Store">
+    update store
+    set sto_name = #{stoName,jdbcType=VARCHAR},
+      sto_type = #{stoType,jdbcType=VARCHAR},
+      sto_city = #{stoCity,jdbcType=VARCHAR},
+      sto_classify = #{stoClassify,jdbcType=VARCHAR},
+      sto_address = #{stoAddress,jdbcType=VARCHAR},
+      sto_price = #{stoPrice,jdbcType=DOUBLE},
+      sto_picture = #{stoPicture,jdbcType=VARCHAR},
+      sto_tel = #{stoTel,jdbcType=VARCHAR},
+      sto_time = #{stoTime,jdbcType=VARCHAR},
+      seller_id = #{sellerId,jdbcType=INTEGER}
+    where sto_id = #{stoId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -22,8 +22,11 @@
                     <c:if test="${member==null}">
                         <a href="member/member_register.jsp">注册</a>
                         <a href="member/member_login.jsp">登录</a>
-                        <a href="${pageContext.request.contextPath}/memberController/sendMail">发送邮件</a>
                     </c:if>
+                        <a href="${pageContext.request.contextPath}/memberController/sendMail">发送邮件</a>
+                        <a href="/storeController/searchShop">分页查询</a>
+                        <a href="/memberController/memberAllList">管理跳转信息</a>
+                        <a href="/excelController/excel">导入/导出</a>
                 </div>
             </div>
         </ul>
