@@ -1,43 +1,83 @@
 package com.bean;
 
 public class Goods {
-    private Integer gId;
+    private Integer godId;
 
-    private String gName;
+    private String godName;
 
-    private Double gSprice;
+    private Double godStoreprice;       //门店价
 
-    private Integer gNumber;
+    private Integer godNumber;
 
-    public Integer getgId() {
-        return gId;
+    private Double godPrice;            //折后价
+
+    private String godPicture;
+
+    private String godDescription;
+
+    private Integer storeId;
+
+    public Integer getGodId() {
+        return godId;
     }
 
-    public void setgId(Integer gId) {
-        this.gId = gId;
+    public void setGodId(Integer godId) {
+        this.godId = godId;
     }
 
-    public String getgName() {
-        return gName;
+    public String getGodName() {
+        return godName;
     }
 
-    public void setgName(String gName) {
-        this.gName = gName == null ? null : gName.trim();
+    public void setGodName(String godName) {
+        this.godName = godName == null ? null : godName.trim();
     }
 
-    public Double getgSprice() {
-        return gSprice;
+    public Double getGodStoreprice() {
+        return godStoreprice;
     }
 
-    public void setgSprice(Double gSprice) {
-        this.gSprice = gSprice;
+    public void setGodStoreprice(Double godStoreprice) {
+        this.godStoreprice = godStoreprice;
     }
 
-    public Integer getgNumber() {
-        return gNumber;
+    public Integer getGodNumber() {
+        return godNumber;
     }
 
-    public void setgNumber(Integer gNumber) {
-        this.gNumber = gNumber;
+    public void setGodNumber(Integer godNumber) {
+        this.godNumber = godNumber;
+    }
+
+    public Double getGodPrice() {
+        return godPrice;
+    }
+
+    public void setGodPrice(Double godPrice) {
+        this.godPrice = godPrice;
+    }
+
+    public String getGodPicture() {
+        return godPicture;
+    }
+
+    public void setGodPicture(String godPicture) {
+        this.godPicture = godPicture == null ? null : godPicture.trim();
+    }
+
+    public String getGodDescription() {
+        return godDescription;
+    }
+
+    public void setGodDescription(String godDescription) {
+        this.godDescription = godDescription == null ? null : godDescription.trim();
+    }
+
+    public Integer getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(Integer storeId) {
+        this.storeId = storeId;
     }
 }

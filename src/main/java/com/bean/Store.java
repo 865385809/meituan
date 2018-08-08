@@ -1,27 +1,27 @@
 package com.bean;
 
 public class Store {
-    private Integer stoId;
+    private Integer stoId;  //商店ID
 
-    private String stoName;
+    private String stoName; //商店名字
 
-    private String stoType;
+    private String stoType; //商店所属的大分类
 
-    private String stoCity;
+    private String stoCity; //商店所在的城市
 
-    private String stoClassify;
+    private String stoClassify;//商店所属的小种类
 
-    private String stoAddress;
+    private String stoAddress;  //商店地址
 
-    private Double stoPrice;
+    private Double stoPrice;//人均价格
 
-    private String stoPicture;
+    private String stoPicture; //商店图片
 
-    private String stoTel;
+    private String stoTel;      //商店电话
 
-    private String stoTime;
+    private String stoTime;     //营业时间
 
-    private Integer sellerId;
+    private Integer sellerId;   //所属商家的ID
 
     public Integer getStoId() {
         return stoId;

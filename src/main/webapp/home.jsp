@@ -30,7 +30,11 @@
     <!--悬浮搜索框-->
     <div class="nav white">
         <div class="logoBig">
-            <li><img height="100" width="10" src="${pageContext.request.contextPath}/static/meituan/images/logobig3.png" /></li>
+            <li>
+                <a href="${pageContext.request.contextPath}/home.jsp">
+                    <img height="100" width="10" src="${pageContext.request.contextPath}/static/meituan/images/logobig3.png" />
+                </a>
+            </li>
         </div>
 
         <div class="search-bar pr">
@@ -59,10 +63,10 @@
             <!--轮播 -->
             <div class="am-slider am-slider-default scoll" data-am-flexslider id="demo-slider-0">
                 <ul class="am-slides">
-                    <li class="banner1"><a href="#" target="_blank" onclick="conditionPage('电影','');return false;"><img src="${pageContext.request.contextPath}/static/meituan/images/lunbo4.jpg" /></a></li>
-                    <li class="banner2"><a href="#" target="_blank" onclick="conditionPage('美食','');return false;"><img src="${pageContext.request.contextPath}/static/meituan/images/lunbo5.jpg" /></a></li>
-                    <li class="banner3"><a href="#" target="_blank" onclick="conditionPage('生活服务','');return false;"><img src="${pageContext.request.contextPath}/static/meituan/images/lunbo2.jpg" /></a></li>
-                    <li class="banner4"><a href="#" target="_blank" onclick="conditionPage('外卖','');return false;"><img src="${pageContext.request.contextPath}/static/meituan/images/lunbo3.jpg" /></a></li>
+                    <li class="banner1"><a  href="#" onclick="conditionPage('电影','');return false;" target="_blank"><img src="${pageContext.request.contextPath}/static/meituan/images/lunbo4.jpg" /></a></li>
+                    <li class="banner2"><a href="#" onclick="conditionPage('美食','');return false;" target="_blank"><img src="${pageContext.request.contextPath}/static/meituan/images/lunbo5.jpg" /></a></li>
+                    <li class="banner3"><a href="#" onclick="conditionPage('生活服务','');return false;" target="_blank"><img src="${pageContext.request.contextPath}/static/meituan/images/lunbo2.jpg" /></a></li>
+                    <li class="banner4"><a href="#" onclick="conditionPage('外卖','');return false;" target="_blank"><img src="${pageContext.request.contextPath}/static/meituan/images/lunbo3.jpg" /></a></li>
                 </ul>
             </div>
             <div class="clear"></div>

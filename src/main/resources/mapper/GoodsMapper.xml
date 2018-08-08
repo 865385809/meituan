@@ -2,10 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.GoodsMapper">
   <resultMap id="BaseResultMap" type="com.bean.Goods">
-    <id column="g_id" jdbcType="INTEGER" property="gId" />
-    <result column="g_name" jdbcType="VARCHAR" property="gName" />
-    <result column="g_sprice" jdbcType="DOUBLE" property="gSprice" />
-    <result column="g_number" jdbcType="INTEGER" property="gNumber" />
+    <id column="god_id" jdbcType="INTEGER" property="godId" />
+    <result column="god_name" jdbcType="VARCHAR" property="godName" />
+    <result column="god_storeprice" jdbcType="DOUBLE" property="godStoreprice" />
+    <result column="god_number" jdbcType="INTEGER" property="godNumber" />
+    <result column="god_price" jdbcType="DOUBLE" property="godPrice" />
+    <result column="god_picture" jdbcType="VARCHAR" property="godPicture" />
+    <result column="god_description" jdbcType="VARCHAR" property="godDescription" />
+    <result column="store_id" jdbcType="INTEGER" property="storeId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +70,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    g_id, g_name, g_sprice, g_number
+    god_id, god_name, god_storeprice, god_number, god_price, god_picture, god_description, 
+    store_id
   </sql>
   <select id="selectByExample" parameterType="com.bean.GoodsExample" resultMap="BaseResultMap">
     select
@@ -86,11 +91,11 @@
     select 
     <include refid="Base_Column_List" />
     from goods
-    where g_id = #{gId,jdbcType=INTEGER}
+    where god_id = #{godId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from goods
-    where g_id = #{gId,jdbcType=INTEGER}
+    where god_id = #{godId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.bean.GoodsExample">
     delete from goods
@@ -99,39 +104,65 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.bean.Goods">
-    insert into goods (g_id, g_name, g_sprice, 
-      g_number)
-    values (#{gId,jdbcType=INTEGER}, #{gName,jdbcType=VARCHAR}, #{gSprice,jdbcType=DOUBLE}, 
-      #{gNumber,jdbcType=INTEGER})
+    insert into goods (god_id, god_name, god_storeprice, 
+      god_number, god_price, god_picture, 
+      god_description, store_id)
+    values (#{godId,jdbcType=INTEGER}, #{godName,jdbcType=VARCHAR}, #{godStoreprice,jdbcType=DOUBLE}, 
+      #{godNumber,jdbcType=INTEGER}, #{godPrice,jdbcType=DOUBLE}, #{godPicture,jdbcType=VARCHAR}, 
+      #{godDescription,jdbcType=VARCHAR}, #{storeId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.bean.Goods">
     insert into goods
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="gId != null">
-        g_id,
+      <if test="godId != null">
+        god_id,
       </if>
-      <if test="gName != null">
-        g_name,
+      <if test="godName != null">
+        god_name,
       </if>
-      <if test="gSprice != null">
-        g_sprice,
+      <if test="godStoreprice != null">
+        god_storeprice,
       </if>
-      <if test="gNumber != null">
-        g_number,
+      <if test="godNumber != null">
+        god_number,
+      </if>
+      <if test="godPrice != null">
+        god_price,
+      </if>
+      <if test="godPicture != null">
+        god_picture,
+      </if>
+      <if test="godDescription != null">
+        god_description,
+      </if>
+      <if test="storeId != null">
+        store_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="gId != null">
-        #{gId,jdbcType=INTEGER},
+      <if test="godId != null">
+        #{godId,jdbcType=INTEGER},
       </if>
-      <if test="gName != null">
-        #{gName,jdbcType=VARCHAR},
+      <if test="godName != null">
+        #{godName,jdbcType=VARCHAR},
       </if>
-      <if test="gSprice != null">
-        #{gSprice,jdbcType=DOUBLE},
+      <if test="godStoreprice != null">
+        #{godStoreprice,jdbcType=DOUBLE},
       </if>
-      <if test="gNumber != null">
-        #{gNumber,jdbcType=INTEGER},
+      <if test="godNumber != null">
+        #{godNumber,jdbcType=INTEGER},
+      </if>
+      <if test="godPrice != null">
+        #{godPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="godPicture != null">
+        #{godPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="godDescription != null">
+        #{godDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        #{storeId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -144,17 +175,29 @@
   <update id="updateByExampleSelective" parameterType="map">
     update goods
     <set>
-      <if test="record.gId != null">
-        g_id = #{record.gId,jdbcType=INTEGER},
+      <if test="record.godId != null">
+        god_id = #{record.godId,jdbcType=INTEGER},
       </if>
-      <if test="record.gName != null">
-        g_name = #{record.gName,jdbcType=VARCHAR},
+      <if test="record.godName != null">
+        god_name = #{record.godName,jdbcType=VARCHAR},
       </if>
-      <if test="record.gSprice != null">
-        g_sprice = #{record.gSprice,jdbcType=DOUBLE},
+      <if test="record.godStoreprice != null">
+        god_storeprice = #{record.godStoreprice,jdbcType=DOUBLE},
       </if>
-      <if test="record.gNumber != null">
-        g_number = #{record.gNumber,jdbcType=INTEGER},
+      <if test="record.godNumber != null">
+        god_number = #{record.godNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.godPrice != null">
+        god_price = #{record.godPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.godPicture != null">
+        god_picture = #{record.godPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.godDescription != null">
+        god_description = #{record.godDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storeId != null">
+        store_id = #{record.storeId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -163,10 +206,14 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update goods
-    set g_id = #{record.gId,jdbcType=INTEGER},
-      g_name = #{record.gName,jdbcType=VARCHAR},
-      g_sprice = #{record.gSprice,jdbcType=DOUBLE},
-      g_number = #{record.gNumber,jdbcType=INTEGER}
+    set god_id = #{record.godId,jdbcType=INTEGER},
+      god_name = #{record.godName,jdbcType=VARCHAR},
+      god_storeprice = #{record.godStoreprice,jdbcType=DOUBLE},
+      god_number = #{record.godNumber,jdbcType=INTEGER},
+      god_price = #{record.godPrice,jdbcType=DOUBLE},
+      god_picture = #{record.godPicture,jdbcType=VARCHAR},
+      god_description = #{record.godDescription,jdbcType=VARCHAR},
+      store_id = #{record.storeId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -174,23 +221,39 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.bean.Goods">
     update goods
     <set>
-      <if test="gName != null">
-        g_name = #{gName,jdbcType=VARCHAR},
+      <if test="godName != null">
+        god_name = #{godName,jdbcType=VARCHAR},
       </if>
-      <if test="gSprice != null">
-        g_sprice = #{gSprice,jdbcType=DOUBLE},
+      <if test="godStoreprice != null">
+        god_storeprice = #{godStoreprice,jdbcType=DOUBLE},
       </if>
-      <if test="gNumber != null">
-        g_number = #{gNumber,jdbcType=INTEGER},
+      <if test="godNumber != null">
+        god_number = #{godNumber,jdbcType=INTEGER},
+      </if>
+      <if test="godPrice != null">
+        god_price = #{godPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="godPicture != null">
+        god_picture = #{godPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="godDescription != null">
+        god_description = #{godDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="storeId != null">
+        store_id = #{storeId,jdbcType=INTEGER},
       </if>
     </set>
-    where g_id = #{gId,jdbcType=INTEGER}
+    where god_id = #{godId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bean.Goods">
     update goods
-    set g_name = #{gName,jdbcType=VARCHAR},
-      g_sprice = #{gSprice,jdbcType=DOUBLE},
-      g_number = #{gNumber,jdbcType=INTEGER}
-    where g_id = #{gId,jdbcType=INTEGER}
+    set god_name = #{godName,jdbcType=VARCHAR},
+      god_storeprice = #{godStoreprice,jdbcType=DOUBLE},
+      god_number = #{godNumber,jdbcType=INTEGER},
+      god_price = #{godPrice,jdbcType=DOUBLE},
+      god_picture = #{godPicture,jdbcType=VARCHAR},
+      god_description = #{godDescription,jdbcType=VARCHAR},
+      store_id = #{storeId,jdbcType=INTEGER}
+    where god_id = #{godId,jdbcType=INTEGER}
   </update>
 </mapper>

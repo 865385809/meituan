@@ -14,6 +14,7 @@ public class StoreService {
     @Autowired
     StoreMapper storeMapper;
 
+    //分页查询商店
     public List<Store> searchShop(String stoType,String stoClassify) throws Exception {
         StoreExample example = new StoreExample();
         StoreExample.Criteria criteria = example.createCriteria();
@@ -26,5 +27,11 @@ public class StoreService {
         }
         List<Store> storeList = storeMapper.selectByExample(example);
         return storeList;
+    }
+
+    //查询商品
+    public Store findStore(Integer stoId) {
+        Store store = storeMapper.selectByPrimaryKey(stoId);
+        return store;
     }
 }

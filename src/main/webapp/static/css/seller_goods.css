@@ -1,0 +1,75 @@
+/*商店列表*/
+#ka{width:950px;
+    height:240px;
+    border:solid #FFFFFF px;
+    background:#FFFFFF;
+    position:relative
+}
+#ka1,#ka2{
+    width:500px;
+    height:80px;
+    border-bottom:solid #CCCCCC 1px;
+}
+#ka3{width:500px;
+    height:80px;
+}
+#ka4{width:370px;
+    height:240px;
+    position:absolute;
+    right:0;
+    top:0;
+    border:#F1F1F1 solid 1px}
+/*字体*/
+.font1{font-size:30px;}
+.font2 {font-weight: bold;
+    font-size: 20px;}
+.font3 {font-weight: bold;
+    font-size: 15px;}
+.font4 {
+    font-size: 25px;
+    color: #f40;
+}
+.font5 {
+    font-size: 10px;
+    color: #977a6f;
+}
+/*商品列表*/
+#goodsList{width:760px;
+    border:solid #d0e9c6;
+    background:#FFFFFF;
+    position:relative
+}
+/*商品*/
+.goods{
+    width:740px;
+    height:150px;
+    position:relative;
+}
+/*商品的图片*/
+.goodsPicture{
+    width:200px;
+    height:150px;
+}
+/*商品的描述*/
+.goodsContext{
+    width:400px;
+    height:150px;
+    position:absolute;
+    left:220px;
+    top:0;
+}
+.goodsButton{
+    width:200px;
+    height:150px;
+    position:absolute;
+    left:620px;
+    top: 50px;
+}
+/*抢购按钮*/
+/*.goodsButton{*/
+    /*width:100px;*/
+    /*height:150px;*/
+    /*position:absolute;*/
+    /*left:620px;*/
+    /*top:0;*/
+/*}*/

@@ -104,253 +104,513 @@ public class GoodsExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andGIdIsNull() {
-            addCriterion("g_id is null");
+        public Criteria andGodIdIsNull() {
+            addCriterion("god_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andGIdIsNotNull() {
-            addCriterion("g_id is not null");
+        public Criteria andGodIdIsNotNull() {
+            addCriterion("god_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andGIdEqualTo(Integer value) {
-            addCriterion("g_id =", value, "gId");
+        public Criteria andGodIdEqualTo(Integer value) {
+            addCriterion("god_id =", value, "godId");
             return (Criteria) this;
         }
 
-        public Criteria andGIdNotEqualTo(Integer value) {
-            addCriterion("g_id <>", value, "gId");
+        public Criteria andGodIdNotEqualTo(Integer value) {
+            addCriterion("god_id <>", value, "godId");
             return (Criteria) this;
         }
 
-        public Criteria andGIdGreaterThan(Integer value) {
-            addCriterion("g_id >", value, "gId");
+        public Criteria andGodIdGreaterThan(Integer value) {
+            addCriterion("god_id >", value, "godId");
             return (Criteria) this;
         }
 
-        public Criteria andGIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("g_id >=", value, "gId");
+        public Criteria andGodIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("god_id >=", value, "godId");
             return (Criteria) this;
         }
 
-        public Criteria andGIdLessThan(Integer value) {
-            addCriterion("g_id <", value, "gId");
+        public Criteria andGodIdLessThan(Integer value) {
+            addCriterion("god_id <", value, "godId");
             return (Criteria) this;
         }
 
-        public Criteria andGIdLessThanOrEqualTo(Integer value) {
-            addCriterion("g_id <=", value, "gId");
+        public Criteria andGodIdLessThanOrEqualTo(Integer value) {
+            addCriterion("god_id <=", value, "godId");
             return (Criteria) this;
         }
 
-        public Criteria andGIdIn(List<Integer> values) {
-            addCriterion("g_id in", values, "gId");
+        public Criteria andGodIdIn(List<Integer> values) {
+            addCriterion("god_id in", values, "godId");
             return (Criteria) this;
         }
 
-        public Criteria andGIdNotIn(List<Integer> values) {
-            addCriterion("g_id not in", values, "gId");
+        public Criteria andGodIdNotIn(List<Integer> values) {
+            addCriterion("god_id not in", values, "godId");
             return (Criteria) this;
         }
 
-        public Criteria andGIdBetween(Integer value1, Integer value2) {
-            addCriterion("g_id between", value1, value2, "gId");
+        public Criteria andGodIdBetween(Integer value1, Integer value2) {
+            addCriterion("god_id between", value1, value2, "godId");
             return (Criteria) this;
         }
 
-        public Criteria andGIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("g_id not between", value1, value2, "gId");
+        public Criteria andGodIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("god_id not between", value1, value2, "godId");
             return (Criteria) this;
         }
 
-        public Criteria andGNameIsNull() {
-            addCriterion("g_name is null");
+        public Criteria andGodNameIsNull() {
+            addCriterion("god_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andGNameIsNotNull() {
-            addCriterion("g_name is not null");
+        public Criteria andGodNameIsNotNull() {
+            addCriterion("god_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andGNameEqualTo(String value) {
-            addCriterion("g_name =", value, "gName");
+        public Criteria andGodNameEqualTo(String value) {
+            addCriterion("god_name =", value, "godName");
             return (Criteria) this;
         }
 
-        public Criteria andGNameNotEqualTo(String value) {
-            addCriterion("g_name <>", value, "gName");
+        public Criteria andGodNameNotEqualTo(String value) {
+            addCriterion("god_name <>", value, "godName");
             return (Criteria) this;
         }
 
-        public Criteria andGNameGreaterThan(String value) {
-            addCriterion("g_name >", value, "gName");
+        public Criteria andGodNameGreaterThan(String value) {
+            addCriterion("god_name >", value, "godName");
             return (Criteria) this;
         }
 
-        public Criteria andGNameGreaterThanOrEqualTo(String value) {
-            addCriterion("g_name >=", value, "gName");
+        public Criteria andGodNameGreaterThanOrEqualTo(String value) {
+            addCriterion("god_name >=", value, "godName");
             return (Criteria) this;
         }
 
-        public Criteria andGNameLessThan(String value) {
-            addCriterion("g_name <", value, "gName");
+        public Criteria andGodNameLessThan(String value) {
+            addCriterion("god_name <", value, "godName");
             return (Criteria) this;
         }
 
-        public Criteria andGNameLessThanOrEqualTo(String value) {
-            addCriterion("g_name <=", value, "gName");
+        public Criteria andGodNameLessThanOrEqualTo(String value) {
+            addCriterion("god_name <=", value, "godName");
             return (Criteria) this;
         }
 
-        public Criteria andGNameLike(String value) {
-            addCriterion("g_name like", value, "gName");
+        public Criteria andGodNameLike(String value) {
+            addCriterion("god_name like", value, "godName");
             return (Criteria) this;
         }
 
-        public Criteria andGNameNotLike(String value) {
-            addCriterion("g_name not like", value, "gName");
+        public Criteria andGodNameNotLike(String value) {
+            addCriterion("god_name not like", value, "godName");
             return (Criteria) this;
         }
 
-        public Criteria andGNameIn(List<String> values) {
-            addCriterion("g_name in", values, "gName");
+        public Criteria andGodNameIn(List<String> values) {
+            addCriterion("god_name in", values, "godName");
             return (Criteria) this;
         }
 
-        public Criteria andGNameNotIn(List<String> values) {
-            addCriterion("g_name not in", values, "gName");
+        public Criteria andGodNameNotIn(List<String> values) {
+            addCriterion("god_name not in", values, "godName");
             return (Criteria) this;
         }
 
-        public Criteria andGNameBetween(String value1, String value2) {
-            addCriterion("g_name between", value1, value2, "gName");
+        public Criteria andGodNameBetween(String value1, String value2) {
+            addCriterion("god_name between", value1, value2, "godName");
             return (Criteria) this;
         }
 
-        public Criteria andGNameNotBetween(String value1, String value2) {
-            addCriterion("g_name not between", value1, value2, "gName");
+        public Criteria andGodNameNotBetween(String value1, String value2) {
+            addCriterion("god_name not between", value1, value2, "godName");
             return (Criteria) this;
         }
 
-        public Criteria andGSpriceIsNull() {
-            addCriterion("g_sprice is null");
+        public Criteria andGodStorepriceIsNull() {
+            addCriterion("god_storeprice is null");
             return (Criteria) this;
         }
 
-        public Criteria andGSpriceIsNotNull() {
-            addCriterion("g_sprice is not null");
+        public Criteria andGodStorepriceIsNotNull() {
+            addCriterion("god_storeprice is not null");
             return (Criteria) this;
         }
 
-        public Criteria andGSpriceEqualTo(Double value) {
-            addCriterion("g_sprice =", value, "gSprice");
+        public Criteria andGodStorepriceEqualTo(Double value) {
+            addCriterion("god_storeprice =", value, "godStoreprice");
             return (Criteria) this;
         }
 
-        public Criteria andGSpriceNotEqualTo(Double value) {
-            addCriterion("g_sprice <>", value, "gSprice");
+        public Criteria andGodStorepriceNotEqualTo(Double value) {
+            addCriterion("god_storeprice <>", value, "godStoreprice");
             return (Criteria) this;
         }
 
-        public Criteria andGSpriceGreaterThan(Double value) {
-            addCriterion("g_sprice >", value, "gSprice");
+        public Criteria andGodStorepriceGreaterThan(Double value) {
+            addCriterion("god_storeprice >", value, "godStoreprice");
             return (Criteria) this;
         }
 
-        public Criteria andGSpriceGreaterThanOrEqualTo(Double value) {
-            addCriterion("g_sprice >=", value, "gSprice");
+        public Criteria andGodStorepriceGreaterThanOrEqualTo(Double value) {
+            addCriterion("god_storeprice >=", value, "godStoreprice");
             return (Criteria) this;
         }
 
-        public Criteria andGSpriceLessThan(Double value) {
-            addCriterion("g_sprice <", value, "gSprice");
+        public Criteria andGodStorepriceLessThan(Double value) {
+            addCriterion("god_storeprice <", value, "godStoreprice");
             return (Criteria) this;
         }
 
-        public Criteria andGSpriceLessThanOrEqualTo(Double value) {
-            addCriterion("g_sprice <=", value, "gSprice");
+        public Criteria andGodStorepriceLessThanOrEqualTo(Double value) {
+            addCriterion("god_storeprice <=", value, "godStoreprice");
             return (Criteria) this;
         }
 
-        public Criteria andGSpriceIn(List<Double> values) {
-            addCriterion("g_sprice in", values, "gSprice");
+        public Criteria andGodStorepriceIn(List<Double> values) {
+            addCriterion("god_storeprice in", values, "godStoreprice");
             return (Criteria) this;
         }
 
-        public Criteria andGSpriceNotIn(List<Double> values) {
-            addCriterion("g_sprice not in", values, "gSprice");
+        public Criteria andGodStorepriceNotIn(List<Double> values) {
+            addCriterion("god_storeprice not in", values, "godStoreprice");
             return (Criteria) this;
         }
 
-        public Criteria andGSpriceBetween(Double value1, Double value2) {
-            addCriterion("g_sprice between", value1, value2, "gSprice");
+        public Criteria andGodStorepriceBetween(Double value1, Double value2) {
+            addCriterion("god_storeprice between", value1, value2, "godStoreprice");
             return (Criteria) this;
         }
 
-        public Criteria andGSpriceNotBetween(Double value1, Double value2) {
-            addCriterion("g_sprice not between", value1, value2, "gSprice");
+        public Criteria andGodStorepriceNotBetween(Double value1, Double value2) {
+            addCriterion("god_storeprice not between", value1, value2, "godStoreprice");
             return (Criteria) this;
         }
 
-        public Criteria andGNumberIsNull() {
-            addCriterion("g_number is null");
+        public Criteria andGodNumberIsNull() {
+            addCriterion("god_number is null");
             return (Criteria) this;
         }
 
-        public Criteria andGNumberIsNotNull() {
-            addCriterion("g_number is not null");
+        public Criteria andGodNumberIsNotNull() {
+            addCriterion("god_number is not null");
             return (Criteria) this;
         }
 
-        public Criteria andGNumberEqualTo(Integer value) {
-            addCriterion("g_number =", value, "gNumber");
+        public Criteria andGodNumberEqualTo(Integer value) {
+            addCriterion("god_number =", value, "godNumber");
             return (Criteria) this;
         }
 
-        public Criteria andGNumberNotEqualTo(Integer value) {
-            addCriterion("g_number <>", value, "gNumber");
+        public Criteria andGodNumberNotEqualTo(Integer value) {
+            addCriterion("god_number <>", value, "godNumber");
             return (Criteria) this;
         }
 
-        public Criteria andGNumberGreaterThan(Integer value) {
-            addCriterion("g_number >", value, "gNumber");
+        public Criteria andGodNumberGreaterThan(Integer value) {
+            addCriterion("god_number >", value, "godNumber");
             return (Criteria) this;
         }
 
-        public Criteria andGNumberGreaterThanOrEqualTo(Integer value) {
-            addCriterion("g_number >=", value, "gNumber");
+        public Criteria andGodNumberGreaterThanOrEqualTo(Integer value) {
+            addCriterion("god_number >=", value, "godNumber");
             return (Criteria) this;
         }
 
-        public Criteria andGNumberLessThan(Integer value) {
-            addCriterion("g_number <", value, "gNumber");
+        public Criteria andGodNumberLessThan(Integer value) {
+            addCriterion("god_number <", value, "godNumber");
             return (Criteria) this;
         }
 
-        public Criteria andGNumberLessThanOrEqualTo(Integer value) {
-            addCriterion("g_number <=", value, "gNumber");
+        public Criteria andGodNumberLessThanOrEqualTo(Integer value) {
+            addCriterion("god_number <=", value, "godNumber");
             return (Criteria) this;
         }
 
-        public Criteria andGNumberIn(List<Integer> values) {
-            addCriterion("g_number in", values, "gNumber");
+        public Criteria andGodNumberIn(List<Integer> values) {
+            addCriterion("god_number in", values, "godNumber");
             return (Criteria) this;
         }
 
-        public Criteria andGNumberNotIn(List<Integer> values) {
-            addCriterion("g_number not in", values, "gNumber");
+        public Criteria andGodNumberNotIn(List<Integer> values) {
+            addCriterion("god_number not in", values, "godNumber");
             return (Criteria) this;
         }
 
-        public Criteria andGNumberBetween(Integer value1, Integer value2) {
-            addCriterion("g_number between", value1, value2, "gNumber");
+        public Criteria andGodNumberBetween(Integer value1, Integer value2) {
+            addCriterion("god_number between", value1, value2, "godNumber");
             return (Criteria) this;
         }
 
-        public Criteria andGNumberNotBetween(Integer value1, Integer value2) {
-            addCriterion("g_number not between", value1, value2, "gNumber");
+        public Criteria andGodNumberNotBetween(Integer value1, Integer value2) {
+            addCriterion("god_number not between", value1, value2, "godNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPriceIsNull() {
+            addCriterion("god_price is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPriceIsNotNull() {
+            addCriterion("god_price is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPriceEqualTo(Double value) {
+            addCriterion("god_price =", value, "godPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPriceNotEqualTo(Double value) {
+            addCriterion("god_price <>", value, "godPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPriceGreaterThan(Double value) {
+            addCriterion("god_price >", value, "godPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPriceGreaterThanOrEqualTo(Double value) {
+            addCriterion("god_price >=", value, "godPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPriceLessThan(Double value) {
+            addCriterion("god_price <", value, "godPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPriceLessThanOrEqualTo(Double value) {
+            addCriterion("god_price <=", value, "godPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPriceIn(List<Double> values) {
+            addCriterion("god_price in", values, "godPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPriceNotIn(List<Double> values) {
+            addCriterion("god_price not in", values, "godPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPriceBetween(Double value1, Double value2) {
+            addCriterion("god_price between", value1, value2, "godPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPriceNotBetween(Double value1, Double value2) {
+            addCriterion("god_price not between", value1, value2, "godPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPictureIsNull() {
+            addCriterion("god_picture is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPictureIsNotNull() {
+            addCriterion("god_picture is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPictureEqualTo(String value) {
+            addCriterion("god_picture =", value, "godPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPictureNotEqualTo(String value) {
+            addCriterion("god_picture <>", value, "godPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPictureGreaterThan(String value) {
+            addCriterion("god_picture >", value, "godPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPictureGreaterThanOrEqualTo(String value) {
+            addCriterion("god_picture >=", value, "godPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPictureLessThan(String value) {
+            addCriterion("god_picture <", value, "godPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPictureLessThanOrEqualTo(String value) {
+            addCriterion("god_picture <=", value, "godPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPictureLike(String value) {
+            addCriterion("god_picture like", value, "godPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPictureNotLike(String value) {
+            addCriterion("god_picture not like", value, "godPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPictureIn(List<String> values) {
+            addCriterion("god_picture in", values, "godPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPictureNotIn(List<String> values) {
+            addCriterion("god_picture not in", values, "godPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPictureBetween(String value1, String value2) {
+            addCriterion("god_picture between", value1, value2, "godPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodPictureNotBetween(String value1, String value2) {
+            addCriterion("god_picture not between", value1, value2, "godPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodDescriptionIsNull() {
+            addCriterion("god_description is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodDescriptionIsNotNull() {
+            addCriterion("god_description is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodDescriptionEqualTo(String value) {
+            addCriterion("god_description =", value, "godDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodDescriptionNotEqualTo(String value) {
+            addCriterion("god_description <>", value, "godDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodDescriptionGreaterThan(String value) {
+            addCriterion("god_description >", value, "godDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodDescriptionGreaterThanOrEqualTo(String value) {
+            addCriterion("god_description >=", value, "godDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodDescriptionLessThan(String value) {
+            addCriterion("god_description <", value, "godDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodDescriptionLessThanOrEqualTo(String value) {
+            addCriterion("god_description <=", value, "godDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodDescriptionLike(String value) {
+            addCriterion("god_description like", value, "godDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodDescriptionNotLike(String value) {
+            addCriterion("god_description not like", value, "godDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodDescriptionIn(List<String> values) {
+            addCriterion("god_description in", values, "godDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodDescriptionNotIn(List<String> values) {
+            addCriterion("god_description not in", values, "godDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodDescriptionBetween(String value1, String value2) {
+            addCriterion("god_description between", value1, value2, "godDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andGodDescriptionNotBetween(String value1, String value2) {
+            addCriterion("god_description not between", value1, value2, "godDescription");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdIsNull() {
+            addCriterion("store_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdIsNotNull() {
+            addCriterion("store_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdEqualTo(Integer value) {
+            addCriterion("store_id =", value, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdNotEqualTo(Integer value) {
+            addCriterion("store_id <>", value, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdGreaterThan(Integer value) {
+            addCriterion("store_id >", value, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("store_id >=", value, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdLessThan(Integer value) {
+            addCriterion("store_id <", value, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdLessThanOrEqualTo(Integer value) {
+            addCriterion("store_id <=", value, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdIn(List<Integer> values) {
+            addCriterion("store_id in", values, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdNotIn(List<Integer> values) {
+            addCriterion("store_id not in", values, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdBetween(Integer value1, Integer value2) {
+            addCriterion("store_id between", value1, value2, "storeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStoreIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("store_id not between", value1, value2, "storeId");
             return (Criteria) this;
         }
     }

@@ -109,17 +109,20 @@
                     <%--商品展示--%>
                     <div class="container">
                         <c:forEach items="${storeListInfo.list}" var="store">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <img src="${pageContext.request.contextPath}/static/images/hualaishi.jpg" alt="华莱士" class="img-thumbnail">
+                                <div class="row">
+                                    <a href="${pageContext.request.contextPath}/goodsController/findGoodsByStoreId?stoId=${store.stoId}" >
+                                    <div class="col-md-3">
+                                        <img src="${pageContext.request.contextPath}/static/images/hualaishi.jpg" alt="华莱士" class="img-thumbnail">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <h1>【${store.stoName}】</h1><br/><br/>
+                                        1565評論<br/><br/>
+                                            ${store.stoAddress}<br><br/>
+                                        人均￥${store.stoPrice}<br><br/>
+                                    </div>
+                                    </a>
+
                                 </div>
-                                <div class="col-md-7">
-                                    <h1>【${store.stoName}】</h1><br/><br/>
-                                    1565評論<br/><br/>
-                                        ${store.stoAddress}<br><br/>
-                                    人均￥${store.stoPrice}<br><br/>
-                                </div>
-                            </div>
                             <br/><hr/><hr/><br/>
                         </c:forEach>
                         <%--显示分页的信息--%>

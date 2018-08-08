@@ -22,6 +22,12 @@ public class StoreController {
     @Autowired
     StoreService storeService;
 
+//    @RequestMapping("/searchGoogs")
+//    public String searchGoogs(@RequestParam(value = "stoId") Integer stoId ,Model model){
+//        Store store = storeService.findStore(stoId);
+//        model.addAttribute("store",store);
+//        return "seller/seller_goods";
+//    }
     //分页搜索商店
     @RequestMapping("/searchShop")
     public ModelAndView searchShop(@RequestParam(value = "pn",defaultValue = "1")Integer pn,

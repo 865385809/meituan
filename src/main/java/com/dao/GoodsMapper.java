@@ -2,15 +2,16 @@ package com.dao;
 
 import com.bean.Goods;
 import com.bean.GoodsExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface GoodsMapper {
     long countByExample(GoodsExample example);
 
     int deleteByExample(GoodsExample example);
 
-    int deleteByPrimaryKey(Integer gId);
+    int deleteByPrimaryKey(Integer godId);
 
     int insert(Goods record);
 
@@ -18,7 +19,7 @@ public interface GoodsMapper {
 
     List<Goods> selectByExample(GoodsExample example);
 
-    Goods selectByPrimaryKey(Integer gId);
+    Goods selectByPrimaryKey(Integer godId);
 
     int updateByExampleSelective(@Param("record") Goods record, @Param("example") GoodsExample example);
 
