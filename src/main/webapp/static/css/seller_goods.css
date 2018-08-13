@@ -29,15 +29,28 @@
     font-size: 25px;
     color: #f40;
 }
+.font7 {
+    font-size: 15px;
+    color: #f40;
+}
 .font5 {
     font-size: 10px;
     color: #977a6f;
 }
+
 /*商品列表*/
 #goodsList{width:760px;
     border:solid #d0e9c6;
     background:#FFFFFF;
     position:relative
+}
+/*未登录时显示需要登陆*/
+.goodsLogin{
+    width:500px;
+    height:150px;
+    position:absolute;
+    left:300px;
+    top:50px;
 }
 /*商品*/
 .goods{
@@ -52,6 +65,13 @@
 }
 /*商品的描述*/
 .goodsContext{
+    width:400px;
+    height:150px;
+    position:absolute;
+    left:220px;
+    top:0;
+}
+.goodsNoSee{
     width:400px;
     height:150px;
     position:absolute;
@@ -73,3 +93,60 @@
     /*left:620px;*/
     /*top:0;*/
 /*}*/
+/*商品*/
+.order{
+    width:740px;
+    height:100px;
+    position:relative;
+}
+/*商品的图片*/
+.orderPicture{
+    width:100px;
+    height:90px;
+    position:absolute;
+
+}
+/*商品的描述*/
+.orderContext{
+    width:300px;
+    height:100px;
+    position:absolute;
+    left:120px;
+    top:0;
+}
+.orderPrice{
+    width:200px;
+    height:100px;
+    position:absolute;
+    left:420px;
+    top: 25px;
+}
+.orderState{
+    width:140px;
+    height:100px;
+    position:absolute;
+    left:620px;
+    top: 25px;
+}
+
+/*个人信息*/
+.people{
+    width:770px;
+    border:solid #FFFFFF;
+    background:#FFFFFF;
+    position:relative
+}
+.people1{
+    width:770px;
+    height:80px;
+    position:absolute;
+    top: 20px;
+    border-top:solid #CCCCCC 1px;
+    position:relative
+}
+.people2{width:370px;
+    height:240px;
+    position:absolute;
+    left: 100px;
+    top:0;
+    border:#F1F1F1 solid 1px}

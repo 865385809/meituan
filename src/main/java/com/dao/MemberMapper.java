@@ -2,8 +2,9 @@ package com.dao;
 
 import com.bean.Member;
 import com.bean.MemberExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface MemberMapper {
     long countByExample(MemberExample example);
@@ -15,12 +16,8 @@ public interface MemberMapper {
     int insert(Member record);
 
     int insertSelective(Member record);
-    //导入
-    int insertInfoBatch(List<Member> record);
 
     List<Member> selectByExample(MemberExample example);
-    //登陆
-    Member selectMemberByExample(MemberExample example);
 
     Member selectByPrimaryKey(Integer mId);
 
@@ -31,4 +28,6 @@ public interface MemberMapper {
     int updateByPrimaryKeySelective(Member record);
 
     int updateByPrimaryKey(Member record);
+
+    Member selectMemberByExample(MemberExample example);
 }

@@ -20,9 +20,20 @@
     </div>
     <%--按钮--%>
     <div class="row">
+        <div class="col-md-4">
+            <form method="POST"  enctype="multipart/form-data" id="form1" action="${pageContext.request.contextPath}/excelController/upLoadPayerCreditInfoExcel">
+                上传文件:<input id="upfile" type="file" name="upfile"><br>
+                <input type="submit" value="导入" class="btn btn-primary">
+            </form>
+        </div>
         <div class="col-md-4 col-md-offset-10">
             <%--注意点击事件的JS代码应该放在下面，因为js代码的执行顺序--%>
-            <button id="member_add_modal_btn" class="btn btn-primary" >添加</button>
+            <%--<button id="member_add_modal_btn" class="btn btn-primary" >添加</button>--%>
+            <%--<button class="btn btn-primary" >导入</button>--%>
+                <a href="${pageContext.request.contextPath}/excelController/excelExport">
+            <button class="btn btn-primary" >
+                导出
+            </button></a>
             <button class="btn btn-danger" id="member_delete_all">删除</button>
         </div>
     </div>

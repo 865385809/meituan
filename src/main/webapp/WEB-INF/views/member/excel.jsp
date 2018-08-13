@@ -44,7 +44,6 @@
                 <input type="submit" value="提交" onclick="checkData()"><br>
                 <input type="button" value="ajax方式提交" id="btn" name="btn" >
     </form>
-
     <br>
     <a href="${pageContext.request.contextPath}/excelController/excelExport">导出</a>
 <script type="text/javascript">

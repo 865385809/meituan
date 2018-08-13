@@ -12,14 +12,14 @@ import java.util.List;
 public class MemberService {
 
     @Autowired              //没有配置可能导致空指针异常
-    MemberMapper memberMapper;
+            MemberMapper memberMapper;
 
     //登陆
     public Member selectMember(String mUsername, String mPassword) {
         MemberExample example = new MemberExample();
         MemberExample.Criteria criteria = example.createCriteria();
-        criteria.andMUsernameEqualTo(mUsername).andMPasswordEqualTo(mPassword);
-        Member member = (Member) memberMapper.selectMemberByExample(example);
+        criteria.andMPasswordEqualTo(mPassword).andMUsernameEqualTo(mUsername);
+        Member member = memberMapper.selectMemberByExample(example);
         return member;
     }
     //分页查询会员数据

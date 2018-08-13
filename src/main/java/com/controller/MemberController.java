@@ -5,22 +5,19 @@ import com.bean.Msg;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.service.MemberService;
-import com.service.StoreService;
 import com.utils.MailUtils;
+import com.utils.UploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 @Controller
@@ -30,25 +27,41 @@ public class MemberController {
     @Autowired
     MemberService memberService;
 
+
     //发送邮件
     @RequestMapping("/sendMail")
     public String sendMail() throws MessagingException {
         MailUtils.secdMail("2621372230@qq.com","ogcrugzbxtjfbbhc");
         return "redirect:/member/member_login.jsp";
     }
-    //登陆
+    //登陆注销
     @RequestMapping("/memberLoginOut")
     public String memberLoginOut(HttpServletRequest request){
         request.getSession().removeAttribute("member");
         System.out.println("正常退出");
-        return "redirect:/home.jsp";
+        return "redirect:/index.jsp";
     }
     //登陆
     @RequestMapping("/selectMember")
     public String selectMember(HttpServletRequest request, String mUsername, String mPassword){
         Member member = memberService.selectMember(mUsername, mPassword);
         request.getSession().setAttribute("member",member);
-        return "redirect:/home.jsp";
+        return "redirect:/index.jsp";
+    }
+    //跳转至注册的隐私条款
+    @RequestMapping("/toCopyRight")
+    public String toCopyRight(){
+        return "member/member_copyright";
+    }
+    //跳转至登陆页面
+    @RequestMapping("/toLogin")
+    public String toLogin(){
+        return "member/member_login";
+    }
+    //跳转至注册页面
+    @RequestMapping("/toRegister")
+    public String toRegister(){
+        return "member/member_register";
     }
     //选择删除
     @RequestMapping(value="/deleteMemberById/{m_id}",method=RequestMethod.DELETE)
@@ -99,22 +112,30 @@ public class MemberController {
     }
     //添加员工，JSR303校验，注册
     @RequestMapping(value = "/member_save",method = RequestMethod.POST)
-    @ResponseBody
-    public Msg saveMember(@Valid Member member, BindingResult result){
-        System.out.println("%%%%%%%%%%%%%%%%%%%" +result.hasErrors());
-        if (result.hasErrors()){
-            Map<String, Object> map = new HashMap<>();
-            List<FieldError> errors = result.getFieldErrors();
-            for (FieldError fieldError : errors) {
-                System.out.println("错误的字段名："+fieldError.getField());
-                System.out.println("错误信息："+fieldError.getDefaultMessage());
-                map.put(fieldError.getField(), fieldError.getDefaultMessage());
-            }
-            return Msg.fail().add("errorFields", map);
-        }else{
-            memberService.saveMember(member);
-            return Msg.success();
+//    @ResponseBody
+    //@Valid Member member, BindingResult result
+    public String saveMember(Member member,MultipartFile upload,HttpServletRequest request) throws IOException {
+        //上传图片
+        if(upload.getSize()!=0) {
+            String newFileName = UploadUtil.uploadFile(request,upload);
+            member.setmPicture("/static/upload/"+newFileName);
         }
+        //System.out.println("%%%%%%%%%%%%%%%%%%%" +result.hasErrors());
+//        if (result.hasErrors()){
+//            Map<String, Object> map = new HashMap<>();
+//            List<FieldError> errors = result.getFieldErrors();
+//            for (FieldError fieldError : errors) {
+//                System.out.println("错误的字段名："+fieldError.getField());
+//                System.out.println("错误信息："+fieldError.getDefaultMessage());
+//                map.put(fieldError.getField(), fieldError.getDefaultMessage());
+//            }
+//            return Msg.fail().add("errorFields", map);
+//        }else{
+        System.out.println("#########getmPicture##+"+member.getmPicture());
+            memberService.saveMember(member);
+//            return Msg.success();
+            return "/member/member_login";
+//        }
     }
     //Ajax的分页查询
     //页面的转发

@@ -1,93 +1,135 @@
 package com.bean;
 
+import java.util.Date;
+
 public class Orders {
-    private Integer oId;
+    private Integer odrId;
 
-    private String oName;
+    private String odrName;
 
-    private String oGoodsinfo;
+    private String odrPhone;
 
-    private String oMemberinfo;
+    private String odrPaystate; //付款状态
 
-    private String oData;
+    private Date odrData;
 
-    private String oAddress;
+    private String odrUserstate;    //消费状态
 
-    private String oRedit;
+    private Double odrPrice;    //总价
 
-    private String oDelete;
+    private String odrNumber;
 
-    private String oAdd;
+    private Date paytime;
 
-    public Integer getoId() {
-        return oId;
+    private String godCount;    //商品数量
+
+    private Integer godId;
+
+    private Integer mbrId;
+
+    private String isEvaluation;    //评价状态
+
+    public Integer getOdrId() {
+        return odrId;
     }
 
-    public void setoId(Integer oId) {
-        this.oId = oId;
+    public void setOdrId(Integer odrId) {
+        this.odrId = odrId;
     }
 
-    public String getoName() {
-        return oName;
+    public String getOdrName() {
+        return odrName;
     }
 
-    public void setoName(String oName) {
-        this.oName = oName == null ? null : oName.trim();
+    public void setOdrName(String odrName) {
+        this.odrName = odrName == null ? null : odrName.trim();
     }
 
-    public String getoGoodsinfo() {
-        return oGoodsinfo;
+    public String getOdrPhone() {
+        return odrPhone;
     }
 
-    public void setoGoodsinfo(String oGoodsinfo) {
-        this.oGoodsinfo = oGoodsinfo == null ? null : oGoodsinfo.trim();
+    public void setOdrPhone(String odrPhone) {
+        this.odrPhone = odrPhone == null ? null : odrPhone.trim();
     }
 
-    public String getoMemberinfo() {
-        return oMemberinfo;
+    public String getOdrPaystate() {
+        return odrPaystate;
     }
 
-    public void setoMemberinfo(String oMemberinfo) {
-        this.oMemberinfo = oMemberinfo == null ? null : oMemberinfo.trim();
+    public void setOdrPaystate(String odrPaystate) {
+        this.odrPaystate = odrPaystate == null ? null : odrPaystate.trim();
     }
 
-    public String getoData() {
-        return oData;
+    public Date getOdrData() {
+        return odrData;
     }
 
-    public void setoData(String oData) {
-        this.oData = oData == null ? null : oData.trim();
+    public void setOdrData(Date odrData) {
+        this.odrData = odrData;
     }
 
-    public String getoAddress() {
-        return oAddress;
+    public String getOdrUserstate() {
+        return odrUserstate;
     }
 
-    public void setoAddress(String oAddress) {
-        this.oAddress = oAddress == null ? null : oAddress.trim();
+    public void setOdrUserstate(String odrUserstate) {
+        this.odrUserstate = odrUserstate == null ? null : odrUserstate.trim();
     }
 
-    public String getoRedit() {
-        return oRedit;
+    public Double getOdrPrice() {
+        return odrPrice;
     }
 
-    public void setoRedit(String oRedit) {
-        this.oRedit = oRedit == null ? null : oRedit.trim();
+    public void setOdrPrice(Double odrPrice) {
+        this.odrPrice = odrPrice;
     }
 
-    public String getoDelete() {
-        return oDelete;
+    public String getOdrNumber() {
+        return odrNumber;
     }
 
-    public void setoDelete(String oDelete) {
-        this.oDelete = oDelete == null ? null : oDelete.trim();
+    public void setOdrNumber(String odrNumber) {
+        this.odrNumber = odrNumber == null ? null : odrNumber.trim();
     }
 
-    public String getoAdd() {
-        return oAdd;
+    public Date getPaytime() {
+        return paytime;
     }
 
-    public void setoAdd(String oAdd) {
-        this.oAdd = oAdd == null ? null : oAdd.trim();
+    public void setPaytime(Date paytime) {
+        this.paytime = paytime;
+    }
+
+    public String getGodCount() {
+        return godCount;
+    }
+
+    public void setGodCount(String godCount) {
+        this.godCount = godCount == null ? null : godCount.trim();
+    }
+
+    public Integer getGodId() {
+        return godId;
+    }
+
+    public void setGodId(Integer godId) {
+        this.godId = godId;
+    }
+
+    public Integer getMbrId() {
+        return mbrId;
+    }
+
+    public void setMbrId(Integer mbrId) {
+        this.mbrId = mbrId;
+    }
+
+    public String getIsEvaluation() {
+        return isEvaluation;
+    }
+
+    public void setIsEvaluation(String isEvaluation) {
+        this.isEvaluation = isEvaluation == null ? null : isEvaluation.trim();
     }
 }

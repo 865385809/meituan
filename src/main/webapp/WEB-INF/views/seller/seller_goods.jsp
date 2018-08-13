@@ -15,7 +15,15 @@
     <link href="${pageContext.request.contextPath}/static/css/seller_goods.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/meituan/basic/js/jquery-1.7.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/meituan/js/script.js"></script>
-
+    <style type="text/css">
+        .goodsLogin{
+            width:500px;
+            height:150px;
+            position:absolute;
+            left:300px;
+            top:200px;
+        }
+    </style>
 </head>
 <body>
 <!--顶部导航条 -->
@@ -23,13 +31,17 @@
 <!--悬浮搜索框-->
 <div class="nav white">
     <div class="logoBig">
-        <li><img height="100" width="10" src="${pageContext.request.contextPath}/static/meituan/images/logobig3.png" /></li>
+        <li>
+            <a href="${pageContext.request.contextPath}/storeController/homeSearch">
+                <img height="100" width="10" src="${pageContext.request.contextPath}/static/meituan/images/logobig3.png" />
+            </a>
+        </li>
     </div>
     <div class="search-bar pr">
         <a name="index_none_header_sysc" href="#"></a>
-        <form>
-            <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="" autocomplete="off">
-            <input id="ai-topsearch" class="submit am-btn"  value="搜索" index="1" type="submit">
+        <form method="post" action="${pageContext.request.contextPath}/storeController/searchShop">
+            <input id="searchInput" name="stoName" type="text" placeholder="输入商店名称" autocomplete="off">
+            <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
         </form>
     </div>
 </div>
@@ -58,7 +70,7 @@
                                 营业时间 : ${store.stoTime}
                             </div>
                             <div id="ka4">
-                                <img src="${pageContext.request.contextPath}/static/images/hualaishi.jpg" alt="华莱士" class="img-thumbnail">
+                                <img src="${store.stoPicture}">
                             </div>
                         </div>
                         <div class="clear"></div>
@@ -68,24 +80,44 @@
                     <div class="clear"></div>
                     <%--商品展示--%>
                     <div class="font2">商家团购及优惠</div>
-                    <div id="goodsList">
-                        <div class="font3">${goodsList.size()}款优惠商品</div>
-                        <c:forEach items="${goodsList}" var="goods">
-                            <div class="goods">
-                                <div class="goodsPicture">
-                                    <img src="${pageContext.request.contextPath}/static/images/hualaishi.jpg" alt="华莱士" class="img-thumbnail">
+
+                        <div id="goodsList">
+                            <c:if test="${member!=null}">
+                                <div class="font3">${goodsList.size()}款优惠商品</div>
+                                <c:forEach items="${goodsList}" var="goods">
+                                    <div class="goods">
+                                        <div class="goodsPicture">
+                                            <img src="${goods.godPicture}">
+                                        </div>
+                                        <div class="goodsContext">
+                                            ${goods.godName}<br><br><br>
+                                            <div class="font4">￥${goods.godPrice}</div>
+                                            <div class="font5"><del>门店价￥${goods.godStoreprice}</del></div>
+                                        </div>
+                                        <div class="goodsButton">
+                                            <button  class="btn btn-warning payment_btn">
+                                                <a href="${pageContext.request.contextPath}/goodsController/creatOrder?godId=${goods.godId}&stoName=${store.stoName}&stoId=${store.stoId}">
+                                                    立即抢购
+                                                </a>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </c:if>
+                            <c:if test="${member==null}">
+                                <div class="goodsLogin">
+                                    <div class="font1">查看更多商品优惠</div>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button id="btn_login" class="btn btn-info btn-primary btn-lg">登陆</button>
                                 </div>
-                                <div class="goodsContext">
-                                    ${goods.godName}<br><br><br>
-                                    <div class="font4">￥${goods.godPrice}</div>
-                                    <div class="font5"><del>门店价￥${goods.godStoreprice}</del></div>
-                                </div>
-                                <div class="goodsButton">
-                                    <button id="payment_btn" class="btn btn-warning">立即抢购</button>
-                                </div>
-                            </div>
-                        </c:forEach>
+                            </c:if>
                     </div>
+
+                    <script type="text/javascript">
+                        $("#btn_login").click(function () {
+                            window.location.href="${pageContext.request.contextPath}/memberController/toLogin"
+                        });
+                    </script>
                 </div>
                 <%--猜你喜欢--%>
                 <div class="search-side">
@@ -127,10 +159,5 @@
         <jsp:include page="${pageContext.request.contextPath}/tail.jsp"></jsp:include>
     </div>
 </div>
-<script type="text/javascript">
-    $("#payment_btn").click(function () {
-        window.location.href="${pageContext.request.contextPath}/goodsController/creatOrder";
-    });
-</script>
 </body>
 </html>

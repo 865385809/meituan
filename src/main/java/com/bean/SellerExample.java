@@ -443,6 +443,76 @@ public class SellerExample {
             addCriterion("s_phone not between", value1, value2, "sPhone");
             return (Criteria) this;
         }
+
+        public Criteria andSNameIsNull() {
+            addCriterion("s_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSNameIsNotNull() {
+            addCriterion("s_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSNameEqualTo(String value) {
+            addCriterion("s_name =", value, "sName");
+            return (Criteria) this;
+        }
+
+        public Criteria andSNameNotEqualTo(String value) {
+            addCriterion("s_name <>", value, "sName");
+            return (Criteria) this;
+        }
+
+        public Criteria andSNameGreaterThan(String value) {
+            addCriterion("s_name >", value, "sName");
+            return (Criteria) this;
+        }
+
+        public Criteria andSNameGreaterThanOrEqualTo(String value) {
+            addCriterion("s_name >=", value, "sName");
+            return (Criteria) this;
+        }
+
+        public Criteria andSNameLessThan(String value) {
+            addCriterion("s_name <", value, "sName");
+            return (Criteria) this;
+        }
+
+        public Criteria andSNameLessThanOrEqualTo(String value) {
+            addCriterion("s_name <=", value, "sName");
+            return (Criteria) this;
+        }
+
+        public Criteria andSNameLike(String value) {
+            addCriterion("s_name like", value, "sName");
+            return (Criteria) this;
+        }
+
+        public Criteria andSNameNotLike(String value) {
+            addCriterion("s_name not like", value, "sName");
+            return (Criteria) this;
+        }
+
+        public Criteria andSNameIn(List<String> values) {
+            addCriterion("s_name in", values, "sName");
+            return (Criteria) this;
+        }
+
+        public Criteria andSNameNotIn(List<String> values) {
+            addCriterion("s_name not in", values, "sName");
+            return (Criteria) this;
+        }
+
+        public Criteria andSNameBetween(String value1, String value2) {
+            addCriterion("s_name between", value1, value2, "sName");
+            return (Criteria) this;
+        }
+
+        public Criteria andSNameNotBetween(String value1, String value2) {
+            addCriterion("s_name not between", value1, value2, "sName");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

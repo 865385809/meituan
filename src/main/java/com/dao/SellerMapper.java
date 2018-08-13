@@ -2,8 +2,9 @@ package com.dao;
 
 import com.bean.Seller;
 import com.bean.SellerExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface SellerMapper {
     long countByExample(SellerExample example);
@@ -27,4 +28,7 @@ public interface SellerMapper {
     int updateByPrimaryKeySelective(Seller record);
 
     int updateByPrimaryKey(Seller record);
+
+    //商家登陆
+    Seller selectBySellerExample(SellerExample example);
 }

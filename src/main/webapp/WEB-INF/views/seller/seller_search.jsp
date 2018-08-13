@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">--%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>商家搜索中心</title>
@@ -15,6 +14,8 @@
     <link href="${pageContext.request.contextPath}/static/meituan/css/seastyle.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/meituan/basic/js/jquery-1.7.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/meituan/js/script.js"></script>
+    <%--自建的css--%>
+    <link href="${pageContext.request.contextPath}/static/css/seller_goods.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <!--顶部导航条 -->
@@ -22,13 +23,17 @@
 <!--悬浮搜索框-->
 <div class="nav white">
     <div class="logoBig">
-        <li><img height="100" width="10" src="${pageContext.request.contextPath}/static/meituan/images/logobig3.png" /></li>
+        <li>
+            <a href="${pageContext.request.contextPath}/storeController/homeSearch">
+                <img height="100" width="10" src="${pageContext.request.contextPath}/static/meituan/images/logobig3.png" />
+            </a>
+        </li>
     </div>
     <div class="search-bar pr">
         <a name="index_none_header_sysc" href="#"></a>
-        <form>
-            <input id="searchInput" name="index_none_header_sysc" type="text" placeholder="" autocomplete="off">
-            <input id="ai-topsearch" class="submit am-btn"  value="搜索" index="1" type="submit">
+        <form method="post" action="${pageContext.request.contextPath}/storeController/searchShop">
+            <input id="searchInput" name="stoName" type="text" placeholder="输入商店名称" autocomplete="off">
+            <input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
         </form>
     </div>
 </div>
@@ -43,10 +48,10 @@
                 <%--相关搜索--%>
                 <div class="theme-popover">
                     <div class="searchAbout">
-                        <span class="font-pale">相关搜索：</span>
-                        <a title="坚果" href="#">坚果</a>
-                        <a title="瓜子" href="#">瓜子</a>
-                        <a title="鸡腿" href="#">豆干</a>
+                        <%--<span class="font-pale">相关搜索：</span>--%>
+                        <%--<a title="坚果" href="#">坚果</a>--%>
+                        <%--<a title="瓜子" href="#">瓜子</a>--%>
+                        <%--<a title="鸡腿" href="#">豆干</a>--%>
 
                     </div>
                     <%--选择分类--%>
@@ -70,7 +75,7 @@
 
                                 <div class="dd-conent">
                                     <dd class="select-all selected"><a href="#">全部</a></dd>
-                                    <dd><a href="#">美食</a></dd>
+                                    <%--<dd><a href="#">美食</a></dd>--%>
                                     
                                 </div>
 
@@ -111,14 +116,14 @@
                         <c:forEach items="${storeListInfo.list}" var="store">
                                 <div class="row">
                                     <a href="${pageContext.request.contextPath}/goodsController/findGoodsByStoreId?stoId=${store.stoId}" >
-                                    <div class="col-md-3">
-                                        <img src="${pageContext.request.contextPath}/static/images/hualaishi.jpg" alt="华莱士" class="img-thumbnail">
+                                    <div class="col-md-4">
+                                        <img src="${store.stoPicture}">
                                     </div>
-                                    <div class="col-md-7">
-                                        <h1>【${store.stoName}】</h1><br/><br/>
-                                        1565評論<br/><br/>
+                                    <div class="col-md-6">
+                                        <div class="font2">【${store.stoName}】</div> <br/><br/>
+                                        1565评论<br/><br/>
                                             ${store.stoAddress}<br><br/>
-                                        人均￥${store.stoPrice}<br><br/>
+                                        人均<div class="font4">￥${store.stoPrice}</div><br><br/>
                                     </div>
                                     </a>
 
@@ -185,99 +190,99 @@
 </div>
 <!--菜单 -->
 <div class=tip>
+    <%--右侧边栏--%>
     <div id="sidebar">
         <div id="wrap">
-            <div id="prof" class="item">
-                <a href="#">
-                    <span class="setting"></span>
-                </a>
-                <div class="ibar_login_box status_login">
-                    <div class="avatar_box">
-                        <p class="avatar_imgbox"><img src="${pageContext.request.contextPath}/static/meituan/images/no-img_mid_.jpg" /></p>
-                        <ul class="user_info">
+            <%--个人信息--%>
+            <div id="prof" class="item ">
+                <%--个人信息的小图片--%>
+                <a href="# "><span class="setting "></span></a>
+                <%--个人信息显示--%>
+                <div class="ibar_login_box status_login ">
+                    <div class="avatar_box ">
+                        <p class="avatar_imgbox "><img src="${pageContext.request.contextPath}/static/meituan/images/no-img_mid_.jpg " /></p>
+                        <ul class="user_info ">
                             <li>用户名：sl1903</li>
                             <li>级&nbsp;别：普通会员</li>
                         </ul>
                     </div>
-                    <div class="login_btnbox">
-                        <a href="#" class="login_order">我的订单</a>
-                        <a href="#" class="login_favorite">我的收藏</a>
+                    <div class="login_btnbox ">
+                        <a href="# " class="login_order ">我的订单</a>
+                        <a href="# " class="login_favorite ">我的收藏</a>
                     </div>
-                    <i class="icon_arrow_white"></i>
+                    <i class="icon_arrow_white "></i>
                 </div>
-
             </div>
-            <div id="shopCart" class="item">
-                <a href="#">
-                    <span class="message"></span>
+            <%--购物车--%>
+            <div id="shopCart " class="item ">
+                <a href="# ">
+                    <span class="message "></span>
                 </a>
                 <p>
                     购物车
                 </p>
-                <p class="cart_num">0</p>
+                <p class="cart_num ">0</p>
             </div>
-            <div id="asset" class="item">
-                <a href="#">
-                    <span class="view"></span>
+            <%--我的资产--%>
+            <div id="asset " class="item ">
+                <a href="# ">
+                    <span class="view "></span>
                 </a>
-                <div class="mp_tooltip">
+                <div class="mp_tooltip ">
                     我的资产
-                    <i class="icon_arrow_right_black"></i>
+                    <i class="icon_arrow_right_black "></i>
                 </div>
             </div>
-
-            <div id="foot" class="item">
-                <a href="#">
-                    <span class="zuji"></span>
+            <%--我的足迹--%>
+            <div id="foot " class="item ">
+                <a href="# ">
+                    <span class="zuji "></span>
                 </a>
-                <div class="mp_tooltip">
+                <div class="mp_tooltip ">
                     我的足迹
-                    <i class="icon_arrow_right_black"></i>
+                    <i class="icon_arrow_right_black "></i>
                 </div>
             </div>
-
-            <div id="brand" class="item">
+            <%--我的收藏--%>
+            <div id="brand " class="item ">
                 <a href="#">
-                    <span class="wdsc"><img src="${pageContext.request.contextPath}/static/meituan/images/wdsc.png" /></span>
+                    <span class="wdsc "><img src="${pageContext.request.contextPath}/static/meituan/images/wdsc.png " /></span>
                 </a>
-                <div class="mp_tooltip">
+                <div class="mp_tooltip ">
                     我的收藏
-                    <i class="icon_arrow_right_black"></i>
+                    <i class="icon_arrow_right_black "></i>
                 </div>
             </div>
-
-            <div id="broadcast" class="item">
-                <a href="#">
-                    <span class="chongzhi"><img src="${pageContext.request.contextPath}/static/meituan/images/chongzhi.png" /></span>
+            <%--我要充值--%>
+            <div id="broadcast " class="item ">
+                <a href="# ">
+                    <span class="chongzhi "><img src="${pageContext.request.contextPath}/static/meituan/images/chongzhi.png " /></span>
                 </a>
-                <div class="mp_tooltip">
+                <div class="mp_tooltip ">
                     我要充值
-                    <i class="icon_arrow_right_black"></i>
+                    <i class="icon_arrow_right_black "></i>
                 </div>
             </div>
-
-            <div class="quick_toggle">
-                <li class="qtitem">
-                    <a href="#"><span class="kfzx"></span></a>
-                    <div class="mp_tooltip">客服中心<i class="icon_arrow_right_black"></i></div>
+            <%--右侧靠边栏下方--%>
+            <div class="quick_toggle ">
+                <%--客服中心--%>
+                <li class="qtitem ">
+                    <a href="# "><span class="kfzx "></span></a>
+                    <div class="mp_tooltip ">客服中心<i class="icon_arrow_right_black "></i></div>
                 </li>
                 <!--二维码 -->
-                <li class="qtitem">
-                    <a href="#none"><span class="mpbtn_qrcode"></span></a>
-                    <div class="mp_qrcode" style="display:none;"><img src="${pageContext.request.contextPath}/static/meituan/images/weixin_code_145.png" /><i class="icon_arrow_white"></i></div>
+                <li class="qtitem ">
+                    <a href="#none "><span class="mpbtn_qrcode "></span></a>
+                    <div class="mp_qrcode " style="display:none; "><img src="${pageContext.request.contextPath}/static/meituan/images/weixin_code_145.png " /><i class="icon_arrow_white "></i></div>
                 </li>
-                <li class="qtitem">
-                    <a href="#top" class="return_top"><span class="top"></span></a>
+                <%--回到顶部--%>
+                <li class="qtitem ">
+                    <a href="#top " class="return_top "><span class="top "></span></a>
                 </li>
             </div>
-
             <!--回到顶部 -->
-            <div id="quick_links_pop" class="quick_links_pop hide"></div>
-
         </div>
-
     </div>
-
 </div>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/meituan/basic/js/quick_links.js"></script>
 <div class="theme-popover-mask"></div>
@@ -286,14 +291,19 @@
 <form id="form1" method="post" action="${pageContext.request.contextPath}/storeController/searchShop">
     <input type="hidden" id="setStoType" name="stoType">
     <input type="hidden" id="setStoClassify" name="stoClassify">
+    <input type="hidden" id="searchStoName" name="stoName">
     <input type="hidden" id="setPn" name="pn">
 </form>
 <%--分页ajax--%>
 <script type="text/javascript">
     //调到指定的页面
     function to_page(pn){
+        //分类
         var searchStoType = "${searchStoType }";
+        //种类
         var setStoClassify = "${setStoClassify}";
+        //商店名称
+        var searchStoName = "${searchStoName}";
         //window.location.href="${pageContext.request.contextPath}/storeController/searchShop?pn=" + pn;
         document.getElementById("setPn").value=pn;
         if( searchStoType != null && searchStoType != ""){
@@ -301,6 +311,9 @@
         }
         if( setStoClassify != null && setStoClassify !="") {
             document.getElementById("setStoClassify").value=setStoClassify;
+        }
+        if( searchStoName != null && searchStoName !="") {
+            document.getElementById("searchStoName").value=searchStoName;
         }
         $("#form1").submit();
     }

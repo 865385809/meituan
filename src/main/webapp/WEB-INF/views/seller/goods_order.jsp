@@ -65,18 +65,18 @@
                                 <li class="td td-item">
                                     <div class="item-pic">
                                         <a href="#" class="J_MakePoint">
-                                            <img src="${pageContext.request.contextPath}/static/meituan/images/kouhong.jpg_80x80.jpg" class="itempic J_ItemImg"></a>
+                                            <img src="${godPicture}"></a>
                                     </div>
                                     <div class="item-info">
                                         <div class="item-basic-info">
-                                            <a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</a>
+                                            <a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">${stoName} :  ${godName}</a>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="td td-price">
                                         <div class="item-price price-promo-promo">
                                             <div class="price-content">
-                                                <em class="J_Price price-now">39.00</em>
+                                                <em class="J_Price price-now">${godPrice}</em>
                                             </div>
                                         </div>
                                     </li>
@@ -86,9 +86,15 @@
                                         <div class="item-amount ">
                                             <span class="phone-title">购买数量</span>
                                             <div class="sl">
-                                                <input class="min am-btn" name="" type="button" value="-" />
-                                                <input class="text_box" name="" type="text" value="3" style="width:30px;" />
-                                                <input class="add am-btn" name="" type="button" value="+" />
+                                                <span onclick="numDec()">
+                                                    <input class="min am-btn" type="button" value="-" />
+                                                </span>
+                                                <input class="quantity"  type="text" value="1"size="1"/>
+                                                <span onclick="numAdd()">
+                                                    <input class="add am-btn"  type="button" value="+" />
+                                                </span>
+                                                <input type="hidden" value="${godPrice}" id="price" /><!--单价-->
+
                                             </div>
                                         </div>
                                     </div>
@@ -96,7 +102,7 @@
                                 <%--总数--%>
                                 <li class="td td-sum">
                                     <div class="td-inner">
-                                        <em tabindex="0" class="J_ItemSum number">117.00</em>
+                                        <em tabindex="0" class="J_ItemSum number"><span class="totalPrice">${godPrice}</span></em>
                                     </div>
                                 </li>
                             </ul>
@@ -108,7 +114,7 @@
         <!--含运费小计 -->
         <div class="buy-point-discharge ">
             <p class="price g_price ">
-                合计（含运费） <span>¥</span><em class="pay-sum">244.00</em>
+                合计（含运费） <span>¥</span><em class="pay-sum"><span class="totalPrice">${godPrice}</span></em>
             </p>
         </div>
         <!--信息 -->
@@ -117,18 +123,80 @@
                 <div class="box">
                     <div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em>
                         <span class="price g_price ">
-                            <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">244.00</em>
+                            <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee"><span class="totalPrice">${godPrice}</span></em>
                         </span>
                     </div>
                 </div>
                 <div id="holyshit269" class="submitOrder">
                     <div class="go-btn-wrap">
-                        <a id="J_Go" href="success.html" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
+                        <%--<button class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</button>--%>
+                        <a  id="A_toAddOrder" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
                     </div>
                 </div>
                 <div class="clear"></div>
             </div>
         </div>
+
+<%--添加的订单信息--%>
+<form class="form2" method="post" action="${pageContext.request.contextPath}/ordersController/addOrder">
+    <input type="hidden"  name="odrName" value="${stoName} :  ${godName}">
+    <input type="hidden"  name="odrPhone" value="${member.mPhone}">
+    <input type="hidden"  name="odrPaystate" value="0">
+    <input type="hidden"  name="odrUserstate" value="0">
+    <input type="hidden"  name="isEvaluation" value="0">
+    <input type="hidden" name="odrPrice" id="tolPrice" value="${godPrice}" >
+    <input type="hidden" name="godCount"  class="quantity" value="1">
+    <input type="hidden"  name="godId" value="${godId}">
+    <input type="hidden"  name="mbrId" value="${member.mId}">
+</form>
+
+<%--添加订单操作--%>
+<script type="text/javascript">
+    $("#A_toAddOrder").click(function () {
+        $(".form2").submit();
+        <%--&lt;%&ndash;window.location.href="${pageContext.request.contextPath}/goodsController/creatOrder";&ndash;%&gt;--%>
+    });
+</script>
+<%--价格的增减--%>
+<script type="text/javascript">
+    $(function(){
+        $(".quantity").keyup(function(){
+            if(isNaN($(this).val()) || parseInt($(this).val())<1){
+                $(this).val("1");
+                $(".totalPrice").html($("#price").val());
+                return;
+            }
+            var total = parseFloat($("#price").val())*parseInt($(this).val());
+            $(".totalPrice").html(total.toFixed(2));
+            $("#tolPrice").val(total.toFixed(2));
+        })
+
+    })
+    /*商品数量+1*/
+    function numAdd(){
+        var num_add = parseInt($(".quantity").val())+1;
+        if($(".quantity").val()==""){
+            num_add = 1;
+        }
+        $(".quantity").val(num_add);
+        var total = parseFloat($("#price").val())*parseInt($(".quantity").val());
+        $(".totalPrice").html(total.toFixed(2));
+        $("#tolPrice").val(total.toFixed(2));
+    }
+    /*商品数量-1*/
+    function numDec(){
+        var num_dec = parseInt($(".quantity").val())-1;
+        if(num_dec<1){
+            //购买数量必须大于或等于1
+            alert("not lt 1");
+        }else{
+            $(".quantity").val(num_dec);
+            var total = parseFloat($("#price").val())*parseInt($(".quantity").val());
+            $(".totalPrice").html(total.toFixed(2));
+            $("#tolPrice").val(total.toFixed(2));
+        }
+    }
+</script>
 <jsp:include page="${pageContext.request.contextPath}/tail.jsp"></jsp:include>
 </body>
 </html>

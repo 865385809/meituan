@@ -2,15 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dao.OrdersMapper">
   <resultMap id="BaseResultMap" type="com.bean.Orders">
-    <id column="o_id" jdbcType="INTEGER" property="oId" />
-    <result column="o_name" jdbcType="VARCHAR" property="oName" />
-    <result column="o_goodsinfo" jdbcType="VARCHAR" property="oGoodsinfo" />
-    <result column="o_memberinfo" jdbcType="VARCHAR" property="oMemberinfo" />
-    <result column="o_data" jdbcType="VARCHAR" property="oData" />
-    <result column="o_address" jdbcType="VARCHAR" property="oAddress" />
-    <result column="o_redit" jdbcType="VARCHAR" property="oRedit" />
-    <result column="o_delete" jdbcType="VARCHAR" property="oDelete" />
-    <result column="o_add" jdbcType="VARCHAR" property="oAdd" />
+    <id column="odr_id" jdbcType="INTEGER" property="odrId" />
+    <result column="odr_name" jdbcType="VARCHAR" property="odrName" />
+    <result column="odr_phone" jdbcType="VARCHAR" property="odrPhone" />
+    <result column="odr_paystate" jdbcType="VARCHAR" property="odrPaystate" />
+    <result column="odr_data" jdbcType="DATE" property="odrData" />
+    <result column="odr_userstate" jdbcType="VARCHAR" property="odrUserstate" />
+    <result column="odr_price" jdbcType="DOUBLE" property="odrPrice" />
+    <result column="odr_number" jdbcType="VARCHAR" property="odrNumber" />
+    <result column="paytime" jdbcType="DATE" property="paytime" />
+    <result column="god_count" jdbcType="VARCHAR" property="godCount" />
+    <result column="god_id" jdbcType="INTEGER" property="godId" />
+    <result column="mbr_id" jdbcType="INTEGER" property="mbrId" />
+    <result column="is_evaluation" jdbcType="VARCHAR" property="isEvaluation" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -71,7 +75,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    o_id, o_name, o_goodsinfo, o_memberinfo, o_data, o_address, o_redit, o_delete, o_add
+    odr_id, odr_name, odr_phone, odr_paystate, odr_data, odr_userstate, odr_price, odr_number, 
+    paytime, god_count, god_id, mbr_id, is_evaluation
   </sql>
   <select id="selectByExample" parameterType="com.bean.OrdersExample" resultMap="BaseResultMap">
     select
@@ -91,11 +96,11 @@
     select 
     <include refid="Base_Column_List" />
     from orders
-    where o_id = #{oId,jdbcType=INTEGER}
+    where odr_id = #{odrId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from orders
-    where o_id = #{oId,jdbcType=INTEGER}
+    where odr_id = #{odrId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.bean.OrdersExample">
     delete from orders
@@ -104,73 +109,99 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.bean.Orders">
-    insert into orders (o_id, o_name, o_goodsinfo, 
-      o_memberinfo, o_data, o_address, 
-      o_redit, o_delete, o_add
-      )
-    values (#{oId,jdbcType=INTEGER}, #{oName,jdbcType=VARCHAR}, #{oGoodsinfo,jdbcType=VARCHAR}, 
-      #{oMemberinfo,jdbcType=VARCHAR}, #{oData,jdbcType=VARCHAR}, #{oAddress,jdbcType=VARCHAR}, 
-      #{oRedit,jdbcType=VARCHAR}, #{oDelete,jdbcType=VARCHAR}, #{oAdd,jdbcType=VARCHAR}
-      )
+    insert into orders (odr_id, odr_name, odr_phone, 
+      odr_paystate, odr_data, odr_userstate, 
+      odr_price, odr_number, paytime, 
+      god_count, god_id, mbr_id, 
+      is_evaluation)
+    values (#{odrId,jdbcType=INTEGER}, #{odrName,jdbcType=VARCHAR}, #{odrPhone,jdbcType=VARCHAR}, 
+      #{odrPaystate,jdbcType=VARCHAR}, #{odrData,jdbcType=DATE}, #{odrUserstate,jdbcType=VARCHAR}, 
+      #{odrPrice,jdbcType=DOUBLE}, #{odrNumber,jdbcType=VARCHAR}, #{paytime,jdbcType=DATE}, 
+      #{godCount,jdbcType=VARCHAR}, #{godId,jdbcType=INTEGER}, #{mbrId,jdbcType=INTEGER}, 
+      #{isEvaluation,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bean.Orders">
     insert into orders
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="oId != null">
-        o_id,
+      <if test="odrId != null">
+        odr_id,
       </if>
-      <if test="oName != null">
-        o_name,
+      <if test="odrName != null">
+        odr_name,
       </if>
-      <if test="oGoodsinfo != null">
-        o_goodsinfo,
+      <if test="odrPhone != null">
+        odr_phone,
       </if>
-      <if test="oMemberinfo != null">
-        o_memberinfo,
+      <if test="odrPaystate != null">
+        odr_paystate,
       </if>
-      <if test="oData != null">
-        o_data,
+      <if test="odrData != null">
+        odr_data,
       </if>
-      <if test="oAddress != null">
-        o_address,
+      <if test="odrUserstate != null">
+        odr_userstate,
       </if>
-      <if test="oRedit != null">
-        o_redit,
+      <if test="odrPrice != null">
+        odr_price,
       </if>
-      <if test="oDelete != null">
-        o_delete,
+      <if test="odrNumber != null">
+        odr_number,
       </if>
-      <if test="oAdd != null">
-        o_add,
+      <if test="paytime != null">
+        paytime,
+      </if>
+      <if test="godCount != null">
+        god_count,
+      </if>
+      <if test="godId != null">
+        god_id,
+      </if>
+      <if test="mbrId != null">
+        mbr_id,
+      </if>
+      <if test="isEvaluation != null">
+        is_evaluation,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="oId != null">
-        #{oId,jdbcType=INTEGER},
+      <if test="odrId != null">
+        #{odrId,jdbcType=INTEGER},
       </if>
-      <if test="oName != null">
-        #{oName,jdbcType=VARCHAR},
+      <if test="odrName != null">
+        #{odrName,jdbcType=VARCHAR},
       </if>
-      <if test="oGoodsinfo != null">
-        #{oGoodsinfo,jdbcType=VARCHAR},
+      <if test="odrPhone != null">
+        #{odrPhone,jdbcType=VARCHAR},
       </if>
-      <if test="oMemberinfo != null">
-        #{oMemberinfo,jdbcType=VARCHAR},
+      <if test="odrPaystate != null">
+        #{odrPaystate,jdbcType=VARCHAR},
       </if>
-      <if test="oData != null">
-        #{oData,jdbcType=VARCHAR},
+      <if test="odrData != null">
+        #{odrData,jdbcType=DATE},
       </if>
-      <if test="oAddress != null">
-        #{oAddress,jdbcType=VARCHAR},
+      <if test="odrUserstate != null">
+        #{odrUserstate,jdbcType=VARCHAR},
       </if>
-      <if test="oRedit != null">
-        #{oRedit,jdbcType=VARCHAR},
+      <if test="odrPrice != null">
+        #{odrPrice,jdbcType=DOUBLE},
       </if>
-      <if test="oDelete != null">
-        #{oDelete,jdbcType=VARCHAR},
+      <if test="odrNumber != null">
+        #{odrNumber,jdbcType=VARCHAR},
       </if>
-      <if test="oAdd != null">
-        #{oAdd,jdbcType=VARCHAR},
+      <if test="paytime != null">
+        #{paytime,jdbcType=DATE},
+      </if>
+      <if test="godCount != null">
+        #{godCount,jdbcType=VARCHAR},
+      </if>
+      <if test="godId != null">
+        #{godId,jdbcType=INTEGER},
+      </if>
+      <if test="mbrId != null">
+        #{mbrId,jdbcType=INTEGER},
+      </if>
+      <if test="isEvaluation != null">
+        #{isEvaluation,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -183,32 +214,44 @@
   <update id="updateByExampleSelective" parameterType="map">
     update orders
     <set>
-      <if test="record.oId != null">
-        o_id = #{record.oId,jdbcType=INTEGER},
+      <if test="record.odrId != null">
+        odr_id = #{record.odrId,jdbcType=INTEGER},
       </if>
-      <if test="record.oName != null">
-        o_name = #{record.oName,jdbcType=VARCHAR},
+      <if test="record.odrName != null">
+        odr_name = #{record.odrName,jdbcType=VARCHAR},
       </if>
-      <if test="record.oGoodsinfo != null">
-        o_goodsinfo = #{record.oGoodsinfo,jdbcType=VARCHAR},
+      <if test="record.odrPhone != null">
+        odr_phone = #{record.odrPhone,jdbcType=VARCHAR},
       </if>
-      <if test="record.oMemberinfo != null">
-        o_memberinfo = #{record.oMemberinfo,jdbcType=VARCHAR},
+      <if test="record.odrPaystate != null">
+        odr_paystate = #{record.odrPaystate,jdbcType=VARCHAR},
       </if>
-      <if test="record.oData != null">
-        o_data = #{record.oData,jdbcType=VARCHAR},
+      <if test="record.odrData != null">
+        odr_data = #{record.odrData,jdbcType=DATE},
       </if>
-      <if test="record.oAddress != null">
-        o_address = #{record.oAddress,jdbcType=VARCHAR},
+      <if test="record.odrUserstate != null">
+        odr_userstate = #{record.odrUserstate,jdbcType=VARCHAR},
       </if>
-      <if test="record.oRedit != null">
-        o_redit = #{record.oRedit,jdbcType=VARCHAR},
+      <if test="record.odrPrice != null">
+        odr_price = #{record.odrPrice,jdbcType=DOUBLE},
       </if>
-      <if test="record.oDelete != null">
-        o_delete = #{record.oDelete,jdbcType=VARCHAR},
+      <if test="record.odrNumber != null">
+        odr_number = #{record.odrNumber,jdbcType=VARCHAR},
       </if>
-      <if test="record.oAdd != null">
-        o_add = #{record.oAdd,jdbcType=VARCHAR},
+      <if test="record.paytime != null">
+        paytime = #{record.paytime,jdbcType=DATE},
+      </if>
+      <if test="record.godCount != null">
+        god_count = #{record.godCount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.godId != null">
+        god_id = #{record.godId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mbrId != null">
+        mbr_id = #{record.mbrId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isEvaluation != null">
+        is_evaluation = #{record.isEvaluation,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -217,15 +260,19 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update orders
-    set o_id = #{record.oId,jdbcType=INTEGER},
-      o_name = #{record.oName,jdbcType=VARCHAR},
-      o_goodsinfo = #{record.oGoodsinfo,jdbcType=VARCHAR},
-      o_memberinfo = #{record.oMemberinfo,jdbcType=VARCHAR},
-      o_data = #{record.oData,jdbcType=VARCHAR},
-      o_address = #{record.oAddress,jdbcType=VARCHAR},
-      o_redit = #{record.oRedit,jdbcType=VARCHAR},
-      o_delete = #{record.oDelete,jdbcType=VARCHAR},
-      o_add = #{record.oAdd,jdbcType=VARCHAR}
+    set odr_id = #{record.odrId,jdbcType=INTEGER},
+      odr_name = #{record.odrName,jdbcType=VARCHAR},
+      odr_phone = #{record.odrPhone,jdbcType=VARCHAR},
+      odr_paystate = #{record.odrPaystate,jdbcType=VARCHAR},
+      odr_data = #{record.odrData,jdbcType=DATE},
+      odr_userstate = #{record.odrUserstate,jdbcType=VARCHAR},
+      odr_price = #{record.odrPrice,jdbcType=DOUBLE},
+      odr_number = #{record.odrNumber,jdbcType=VARCHAR},
+      paytime = #{record.paytime,jdbcType=DATE},
+      god_count = #{record.godCount,jdbcType=VARCHAR},
+      god_id = #{record.godId,jdbcType=INTEGER},
+      mbr_id = #{record.mbrId,jdbcType=INTEGER},
+      is_evaluation = #{record.isEvaluation,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -233,43 +280,59 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.bean.Orders">
     update orders
     <set>
-      <if test="oName != null">
-        o_name = #{oName,jdbcType=VARCHAR},
+      <if test="odrName != null">
+        odr_name = #{odrName,jdbcType=VARCHAR},
       </if>
-      <if test="oGoodsinfo != null">
-        o_goodsinfo = #{oGoodsinfo,jdbcType=VARCHAR},
+      <if test="odrPhone != null">
+        odr_phone = #{odrPhone,jdbcType=VARCHAR},
       </if>
-      <if test="oMemberinfo != null">
-        o_memberinfo = #{oMemberinfo,jdbcType=VARCHAR},
+      <if test="odrPaystate != null">
+        odr_paystate = #{odrPaystate,jdbcType=VARCHAR},
       </if>
-      <if test="oData != null">
-        o_data = #{oData,jdbcType=VARCHAR},
+      <if test="odrData != null">
+        odr_data = #{odrData,jdbcType=DATE},
       </if>
-      <if test="oAddress != null">
-        o_address = #{oAddress,jdbcType=VARCHAR},
+      <if test="odrUserstate != null">
+        odr_userstate = #{odrUserstate,jdbcType=VARCHAR},
       </if>
-      <if test="oRedit != null">
-        o_redit = #{oRedit,jdbcType=VARCHAR},
+      <if test="odrPrice != null">
+        odr_price = #{odrPrice,jdbcType=DOUBLE},
       </if>
-      <if test="oDelete != null">
-        o_delete = #{oDelete,jdbcType=VARCHAR},
+      <if test="odrNumber != null">
+        odr_number = #{odrNumber,jdbcType=VARCHAR},
       </if>
-      <if test="oAdd != null">
-        o_add = #{oAdd,jdbcType=VARCHAR},
+      <if test="paytime != null">
+        paytime = #{paytime,jdbcType=DATE},
+      </if>
+      <if test="godCount != null">
+        god_count = #{godCount,jdbcType=VARCHAR},
+      </if>
+      <if test="godId != null">
+        god_id = #{godId,jdbcType=INTEGER},
+      </if>
+      <if test="mbrId != null">
+        mbr_id = #{mbrId,jdbcType=INTEGER},
+      </if>
+      <if test="isEvaluation != null">
+        is_evaluation = #{isEvaluation,jdbcType=VARCHAR},
       </if>
     </set>
-    where o_id = #{oId,jdbcType=INTEGER}
+    where odr_id = #{odrId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bean.Orders">
     update orders
-    set o_name = #{oName,jdbcType=VARCHAR},
-      o_goodsinfo = #{oGoodsinfo,jdbcType=VARCHAR},
-      o_memberinfo = #{oMemberinfo,jdbcType=VARCHAR},
-      o_data = #{oData,jdbcType=VARCHAR},
-      o_address = #{oAddress,jdbcType=VARCHAR},
-      o_redit = #{oRedit,jdbcType=VARCHAR},
-      o_delete = #{oDelete,jdbcType=VARCHAR},
-      o_add = #{oAdd,jdbcType=VARCHAR}
-    where o_id = #{oId,jdbcType=INTEGER}
+    set odr_name = #{odrName,jdbcType=VARCHAR},
+      odr_phone = #{odrPhone,jdbcType=VARCHAR},
+      odr_paystate = #{odrPaystate,jdbcType=VARCHAR},
+      odr_data = #{odrData,jdbcType=DATE},
+      odr_userstate = #{odrUserstate,jdbcType=VARCHAR},
+      odr_price = #{odrPrice,jdbcType=DOUBLE},
+      odr_number = #{odrNumber,jdbcType=VARCHAR},
+      paytime = #{paytime,jdbcType=DATE},
+      god_count = #{godCount,jdbcType=VARCHAR},
+      god_id = #{godId,jdbcType=INTEGER},
+      mbr_id = #{mbrId,jdbcType=INTEGER},
+      is_evaluation = #{isEvaluation,jdbcType=VARCHAR}
+    where odr_id = #{odrId,jdbcType=INTEGER}
   </update>
 </mapper>

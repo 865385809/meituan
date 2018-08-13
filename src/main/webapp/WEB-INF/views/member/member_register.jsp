@@ -13,7 +13,7 @@
 <body>
 
 <div class="login-boxtitle">
-    <a href="${pageContext.request.contextPath}/home.jsp"><img alt="美团" src="${pageContext.request.contextPath}/static/meituan/images/logobig3.png" /></a>
+    <a href="${pageContext.request.contextPath}/storeController/homeSearch"><img alt="美团" src="${pageContext.request.contextPath}/static/meituan/images/logobig3.png" /></a>
 </div>
 
 <div class="res-banner">
@@ -24,12 +24,12 @@
             <div class="am-tabs" id="doc-my-tabs">
                 <ul class="am-tabs-nav am-nav am-nav-tabs am-nav-justify">
                     <li class="am-active"><a href="">用户注册</a></li>
-                    <a href="${pageContext.request.contextPath}/member/member_login.jsp" class="zcnext am-fr am-btn-default">登陆</a>
+                    <a href="${pageContext.request.contextPath}/memberController/toLogin" class="zcnext am-fr am-btn-default">登陆</a>
                 </ul>
 
                 <div class="am-tabs-bd">
                     <div id="register_div" class="am-tab-panel am-active">
-                        <form method="post">
+                        <form method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/memberController/member_save">
                             <div class="user-name">
                                 <label for="username"><i class="am-icon-user"></i></label>
                                 <input type="text" name="mUsername" id="username" placeholder="请输入账号">
@@ -37,6 +37,14 @@
                             <div class="user-pass">
                                 <label for="password"><i class="am-icon-lock"></i></label>
                                 <input type="password" name="mPassword" id="password" placeholder="设置密码">
+                            </div>
+                            <div class="user-name">
+                                <label for="password"><i class="am-icon-navicon"></i></label>
+                                <input type="text" name="mName" id="name" placeholder="输入昵称">
+                            </div>
+                            <div class="user-name">
+                                <label for="upload"><i class="am-icon-file"></i></label>
+                                <input type="file" name="upload" id="upload" value="上传头像" placeholder="上传头像">
                             </div>
                             <div class="user-email">
                                 <label for="email"><i class="am-icon-envelope-o"></i></label>
@@ -46,40 +54,39 @@
                                 <label for="phone"><i class="am-icon-mobile-phone am-icon-md"></i></label>
                                 <input type="tel" name="mPhone" id="phone" placeholder="激活账号需要手机短信验证">
                             </div>
+                            <div class="am-cf">
+                                <input type="submit" name="" id="member_sava_sub" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
+                            </div>
                         </form>
-
-                        <div class="login-links">
-                            <label for="reader-me">
-                                <input id="reader-me" type="checkbox" checked="true"  onclick="return false;"  />我已阅读并接受
-                                <a href="${pageContext.request.contextPath}/member/member_copyright.jsp">版权说明和隐私保护条款</a>
-                            </label>
-                        </div>
-                        <div class="am-cf">
-                            <input type="submit" name="" id="member_sava_sub" value="注册" class="am-btn am-btn-primary am-btn-sm am-fl">
-                        </div>
+                            <div class="login-links">
+                                <label for="reader-me">
+                                    <input id="reader-me" type="checkbox" checked="true"  onclick="return false;"  />我已阅读并接受
+                                    <a href="${pageContext.request.contextPath}/memberController/toCopyRight">版权说明和隐私保护条款</a>
+                                </label>
+                            </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+<%--尾部--%>
     <jsp:include page="${pageContext.request.contextPath}/tail.jsp"></jsp:include>
-    <script type="text/javascript">
-        //注册ajax提交表单数据
-        $("#member_sava_sub").click(function () {
-            $.ajax({
-                url:"${pageContext.request.contextPath}/memberController/member_save",
-                type:"POST",
-                data:$("#register_div form").serialize(),
-                success:function (result) {
-                    if(result.code == 100){
-                        //会员注册成功；
-                        window.location.href="${pageContext.request.contextPath}/member/member_login.jsp";
-                        alert(result.msg);
-                    }
-                }
-            });
-        });
-    </script>
+    <%--<script type="text/javascript">--%>
+        <%--//注册ajax提交表单数据--%>
+        <%--$("#member_sava_sub").click(function () {--%>
+            <%--$.ajax({--%>
+                <%--url:"${pageContext.request.contextPath}/memberController/member_save",--%>
+                <%--type:"POST",--%>
+                <%--data:$("#register_div form").serialize(),--%>
+                <%--success:function (result) {--%>
+                    <%--if(result.code == 100){--%>
+                        <%--//会员注册成功；--%>
+                        <%--window.location.href="${pageContext.request.contextPath}/memberController/toLogin";--%>
+                        <%--alert(result.msg);--%>
+                    <%--}--%>
+                <%--}--%>
+            <%--});--%>
+        <%--});--%>
+    <%--</script>--%>
 </body>
 </html>

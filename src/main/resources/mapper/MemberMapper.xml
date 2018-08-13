@@ -7,6 +7,8 @@
     <result column="m_password" jdbcType="VARCHAR" property="mPassword" />
     <result column="m_mailbox" jdbcType="VARCHAR" property="mMailbox" />
     <result column="m_phone" jdbcType="VARCHAR" property="mPhone" />
+    <result column="m_name" jdbcType="VARCHAR" property="mName" />
+    <result column="m_picture" jdbcType="VARCHAR" property="mPicture" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    m_id, m_username, m_password, m_mailbox, m_phone
+    m_id, m_username, m_password, m_mailbox, m_phone, m_name, m_picture
   </sql>
   <select id="selectByExample" parameterType="com.bean.MemberExample" resultMap="BaseResultMap">
     select
@@ -98,7 +100,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select
+    select 
     <include refid="Base_Column_List" />
     from member
     where m_id = #{mId,jdbcType=INTEGER}
@@ -113,51 +115,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-
-  <insert id="insertInfoBatch" parameterType="java.util.List">
-    insert into member
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="mId != null">
-        m_id,
-      </if>
-      <if test="mUsername != null">
-        m_username,
-      </if>
-      <if test="mPassword != null">
-        m_password,
-      </if>
-      <if test="mMailbox != null">
-        m_mailbox,
-      </if>
-      <if test="mPhone != null">
-        m_phone,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <foreach collection="list" item="item" index="index" separator=",">
-        <if test="item.mId != null">
-          #{mId,jdbcType=INTEGER},
-        </if>
-        <if test="item.mUsername != null">
-          #{mUsername,jdbcType=VARCHAR},
-        </if>
-        <if test="item.mPassword != null">
-          #{mPassword,jdbcType=VARCHAR},
-        </if>
-        <if test="item.mMailbox != null">
-          #{mMailbox,jdbcType=VARCHAR},
-        </if>
-        <if test="item.mPhone != null">
-          #{mPhone,jdbcType=VARCHAR},
-        </if>
-      </foreach>
-    </trim>
-  </insert>
   <insert id="insert" parameterType="com.bean.Member">
-    insert into member (m_id, m_username, m_password,
-      m_mailbox, m_phone)
+    insert into member (m_id, m_username, m_password, 
+      m_mailbox, m_phone, m_name, 
+      m_picture)
     values (#{mId,jdbcType=INTEGER}, #{mUsername,jdbcType=VARCHAR}, #{mPassword,jdbcType=VARCHAR}, 
-      #{mMailbox,jdbcType=VARCHAR}, #{mPhone,jdbcType=VARCHAR})
+      #{mMailbox,jdbcType=VARCHAR}, #{mPhone,jdbcType=VARCHAR}, #{mName,jdbcType=VARCHAR}, 
+      #{mPicture,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bean.Member">
     insert into member
@@ -177,6 +141,12 @@
       <if test="mPhone != null">
         m_phone,
       </if>
+      <if test="mName != null">
+        m_name,
+      </if>
+      <if test="mPicture != null">
+        m_picture,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="mId != null">
@@ -193,6 +163,12 @@
       </if>
       <if test="mPhone != null">
         #{mPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="mName != null">
+        #{mName,jdbcType=VARCHAR},
+      </if>
+      <if test="mPicture != null">
+        #{mPicture,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -220,6 +196,12 @@
       <if test="record.mPhone != null">
         m_phone = #{record.mPhone,jdbcType=VARCHAR},
       </if>
+      <if test="record.mName != null">
+        m_name = #{record.mName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mPicture != null">
+        m_picture = #{record.mPicture,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -231,7 +213,9 @@
       m_username = #{record.mUsername,jdbcType=VARCHAR},
       m_password = #{record.mPassword,jdbcType=VARCHAR},
       m_mailbox = #{record.mMailbox,jdbcType=VARCHAR},
-      m_phone = #{record.mPhone,jdbcType=VARCHAR}
+      m_phone = #{record.mPhone,jdbcType=VARCHAR},
+      m_name = #{record.mName,jdbcType=VARCHAR},
+      m_picture = #{record.mPicture,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -251,6 +235,12 @@
       <if test="mPhone != null">
         m_phone = #{mPhone,jdbcType=VARCHAR},
       </if>
+      <if test="mName != null">
+        m_name = #{mName,jdbcType=VARCHAR},
+      </if>
+      <if test="mPicture != null">
+        m_picture = #{mPicture,jdbcType=VARCHAR},
+      </if>
     </set>
     where m_id = #{mId,jdbcType=INTEGER}
   </update>
@@ -259,7 +249,9 @@
     set m_username = #{mUsername,jdbcType=VARCHAR},
       m_password = #{mPassword,jdbcType=VARCHAR},
       m_mailbox = #{mMailbox,jdbcType=VARCHAR},
-      m_phone = #{mPhone,jdbcType=VARCHAR}
+      m_phone = #{mPhone,jdbcType=VARCHAR},
+      m_name = #{mName,jdbcType=VARCHAR},
+      m_picture = #{mPicture,jdbcType=VARCHAR}
     where m_id = #{mId,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -10,6 +10,7 @@ import java.util.Properties;
  *@description: 邮件
  *@author: myy
  */
+//邮箱验证
 public class MailUtils {
 
     /*

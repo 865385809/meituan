@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+//excel表导出
 public class ViewExcel extends AbstractExcelView {
 
     private String[] titles;

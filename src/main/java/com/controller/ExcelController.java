@@ -38,7 +38,7 @@ public class ExcelController {
         return "member/excel";
     }
     @RequestMapping(value="/upLoadPayerCreditInfoExcel",method={RequestMethod.GET,RequestMethod.POST})
-    public void uploadPayerCreditInfoExcel(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String uploadPayerCreditInfoExcel(HttpServletRequest request, HttpServletResponse response) throws Exception {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         MultipartFile file = multipartRequest.getFile("upfile");
         if(file.isEmpty()){
@@ -53,13 +53,14 @@ public class ExcelController {
         out.print("文件导入成功！");
         out.flush();
         out.close();
+        return "redirect:/memberController/memberAllList";
     }
 
     //excel表的导出
     @RequestMapping("/excelExport")
     public ModelAndView excelExport(ModelMap map) throws Exception{
         List<Map<String,String>> list = excelService.selectAllMemberInfo();
-        String[] titles={"编号","用户名","密码","邮箱","手机号"};
+        String[] titles={"编号","用户名","密码","邮箱","手机号","昵称","头像"};
         ViewExcel excel=new ViewExcel(titles);
         map.put("excelList", list);
         return new ModelAndView(excel,map);

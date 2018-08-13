@@ -11,6 +11,7 @@ import java.util.Date;
 
 import org.json.JSONObject;
 
+//手机验证
 public class GetMessageCode {
     private static final String QUERY_PATH="https://api.miaodiyun.com/20150822/industrySMS/sendSMS";
     private static final String ACCOUNT_SID="上面提到的ACCOUNT SID";

@@ -11,6 +11,8 @@ public class Seller {
 
     private String sPhone;
 
+    private String sName;
+
     public Integer getsId() {
         return sId;
     }
@@ -49,5 +51,13 @@ public class Seller {
 
     public void setsPhone(String sPhone) {
         this.sPhone = sPhone == null ? null : sPhone.trim();
+    }
+
+    public String getsName() {
+        return sName;
+    }
+
+    public void setsName(String sName) {
+        this.sName = sName == null ? null : sName.trim();
     }
 }
