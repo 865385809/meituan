@@ -40,7 +40,8 @@ public class MailUtils {
         //设置邮件的主体
         message.setSubject("这是一封来自假美团的邮件，请注意！！！");
         //设置内容
-        String msg="<h1>点击<a href='http://localhost:8080/book/users/activation.action?code="+code+"'>此处</a>激活账户<h1>";
+//        String msg="<h1>点击<a href='http://localhost:8080/book/users/activation.action?code="+code+"'>此处</a>激活账户<h1>";
+        String msg="你的美团账号注册验证码为：  <h1>" + code + "</h1>   如非本人操作请忽略";
         message.setContent(msg, "text/html;charset=utf-8");
         //发送邮件
         Transport.send(message);

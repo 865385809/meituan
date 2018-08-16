@@ -3,6 +3,7 @@
 <head>
     <title>会员信息管理</title>
     <%--request.getContextPath()以斜线开始，不以斜线结束--%>
+    <%--bookstrap--%>
     <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-1.12.4.min.js"></script>
     <link href="${pageContext.request.contextPath}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>

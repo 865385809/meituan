@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller
@@ -29,10 +30,12 @@ public class MemberController {
 
 
     //发送邮件
-    @RequestMapping("/sendMail")
-    public String sendMail() throws MessagingException {
-        MailUtils.secdMail("2621372230@qq.com","ogcrugzbxtjfbbhc");
-        return "redirect:/member/member_login.jsp";
+    @ResponseBody
+    @RequestMapping(value = "/sendMail")
+    public Msg sendMail(String  email,HttpServletRequest request) throws MessagingException {
+        String mailCode = UUID.randomUUID().toString().substring(0, 6);
+        MailUtils.secdMail(email,mailCode);
+        return Msg.success().add("mailCode",mailCode);
     }
     //登陆注销
     @RequestMapping("/memberLoginOut")
@@ -115,11 +118,6 @@ public class MemberController {
 //    @ResponseBody
     //@Valid Member member, BindingResult result
     public String saveMember(Member member,MultipartFile upload,HttpServletRequest request) throws IOException {
-        //上传图片
-        if(upload.getSize()!=0) {
-            String newFileName = UploadUtil.uploadFile(request,upload);
-            member.setmPicture("/static/upload/"+newFileName);
-        }
         //System.out.println("%%%%%%%%%%%%%%%%%%%" +result.hasErrors());
 //        if (result.hasErrors()){
 //            Map<String, Object> map = new HashMap<>();
@@ -131,9 +129,12 @@ public class MemberController {
 //            }
 //            return Msg.fail().add("errorFields", map);
 //        }else{
-        System.out.println("#########getmPicture##+"+member.getmPicture());
+            //上传图片
+            if(upload.getSize()!=0) {
+                String newFileName = UploadUtil.uploadFile(request,upload);
+                member.setmPicture("/static/upload/"+newFileName);
+            }
             memberService.saveMember(member);
-//            return Msg.success();
             return "/member/member_login";
 //        }
     }
