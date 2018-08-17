@@ -40,9 +40,6 @@ public class StoreController {
         foodStore = stores2.toArray(foodStore);
         Store[] hotelStore = new Store[stores3.size()];
         hotelStore = stores3.toArray(hotelStore);
-        System.out.println("#############"  + movieStore);
-        System.out.println("#############"  + foodStore);
-        System.out.println("#############"  + hotelStore);
         model.addAttribute("movieStore",movieStore);
         model.addAttribute("foodStore",foodStore);
         model.addAttribute("hotelStore",hotelStore);

@@ -1,3 +1,4 @@
+//手机验证工具类
 package com.utils;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -11,19 +12,22 @@ import java.util.Date;
 
 import org.json.JSONObject;
 
-//手机验证
+
 public class GetMessageCode {
     private static final String QUERY_PATH="https://api.miaodiyun.com/20150822/industrySMS/sendSMS";
-    private static final String ACCOUNT_SID="上面提到的ACCOUNT SID";
-    private static final String AUTH_TOKEN="上面提到的AUTH TOKEN";
-
+    private static final String ACCOUNT_SID="90ea81e3225f40a6b0d5425befb0a987";
+    private static final String AUTH_TOKEN="56294a8b0db64167b4cdf0c01aa8037d";
 
     //根据相应的手机号发送验证码
     public static String getCode(String phone){
+        //创建验证码
         String rod=smsCode();
+        //获取时间戳
         String timestamp=getTimestamp();
+        //sing签名
         String sig=getMD5(ACCOUNT_SID,AUTH_TOKEN,timestamp);
-        String tamp="【xxxx】尊敬的用户，您的验证码为"+rod+"，如非本人操作请忽略此短信。";//这里一定要与新建模板中的短信内容一致，一个空格都不能多，否者短信打死都发不过去哦
+        //【xxxx】尊敬的用户，您的验证码为"+rod+"，如非本人操作请忽略此短信。
+        String tamp="【银河科技】尊敬的用户，您的验证码为"+rod;//这里一定要与新建模板中的短信内容一致，一个空格都不能多，否者短信打死都发不过去哦
         OutputStreamWriter out=null;
         BufferedReader br=null;
         StringBuilder result=new StringBuilder();
@@ -33,7 +37,7 @@ public class GetMessageCode {
             connection.setRequestMethod("POST");
             connection.setDoInput(true);//设置是否允许数据写入
             connection.setDoOutput(true);//设置是否允许参数数据输出
-            connection.setConnectTimeout(5000);//设置链接响应时间
+            connection.setConnectTimeout(2000);//设置链接响应时间
             connection.setReadTimeout(10000);//设置参数读取时间
             connection.setRequestProperty("Content-type","application/x-www-form-urlencoded");
             //提交请求
@@ -71,7 +75,6 @@ public class GetMessageCode {
     }
     //sing签名
     public static String getMD5(String sid,String token,String timestamp){
-
         StringBuilder result=new StringBuilder();
         String source=sid+token+timestamp;
         //获取某个类的实例

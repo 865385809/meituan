@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.bean.Member;
 import com.bean.Orders;
 import com.service.OrdersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,15 +36,11 @@ public class OrdersController {
         if (request.getSession().getAttribute("member")==null){
             return "member/member_login";
         }
+        //用户ID
+        Member member = (Member) request.getSession().getAttribute("member");
         //搜索全部订单
-        List<Orders> allOrders = ordersService.selectOrderByMemberId(1);
-//        List<Orders> noPayOrders = ordersService.selectOrderByPayState();
-//        List<Orders> noUserOrders = ordersService.selectOrderByUserState();
-//        List<Orders> noEvaOrders = ordersService.selectOrderByIsEva();
+        List<Orders> allOrders = ordersService.selectOrderByMemberId(member.getmId());
         model.addAttribute("allOrders",allOrders);
-//        model.addAttribute("noPayOrders",noPayOrders);
-//        model.addAttribute("noUserOrders",noUserOrders);
-//        model.addAttribute("noEvaOrders",noEvaOrders);
         return "member/member_center";
     }
     //生成订单
@@ -51,13 +48,15 @@ public class OrdersController {
     public String addOrder(Orders orders){
         //随机生成订单号
         int hashCodeV = UUID.randomUUID().toString().hashCode();
-        if(hashCodeV < 0) {//有可能是负数
+        //有可能是负数
+        if(hashCodeV < 0) {
             hashCodeV = - hashCodeV;
         }
-        //System.out.println("##########订单号：" + String.format("%015d", hashCodeV));
+        //订单号
         orders.setOdrNumber(String.format("%015d", hashCodeV));
         orders.setOdrData(new Date());
         ordersService.addOrder(orders);
-        return "redirect:/index.jsp";
+        Integer orderId = orders.getOdrId();
+        return "redirect:/alipayController/goAlipay/"+orderId;
     }
 }

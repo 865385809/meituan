@@ -1,5 +1,5 @@
+//excel表导出
 package com.utils;
-
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -13,17 +13,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-
-//excel表导出
 public class ViewExcel extends AbstractExcelView {
 
     private String[] titles;
-
     //传入指定的标题头
     public ViewExcel(String[] titles) {
         this.titles=titles;
     }
-
     @Override
     protected void buildExcelDocument(Map<String, Object> model,
                                       HSSFWorkbook workbook, HttpServletRequest request,

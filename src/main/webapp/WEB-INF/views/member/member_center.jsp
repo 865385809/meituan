@@ -100,7 +100,7 @@
                                             <hr>
                                             <div class="order">
                                                 <div class="orderPicture">
-                                                    <img width="100" height="80" src="${pageContext.request.contextPath}/static/images/hualaishi.jpg" alt="华莱士" class="img-thumbnail">
+                                                    <img width="100" height="80" src="${allOrders.odrPicture}" alt="商品图片" class="img-thumbnail">
                                                 </div>
                                                 <div class="orderContext">
                                                     ${allOrders.odrName}<br><br><br>
@@ -134,7 +134,7 @@
                                             <hr>
                                             <div class="order">
                                                 <div class="orderPicture">
-                                                    <img width="100" height="80" src="${pageContext.request.contextPath}/static/images/hualaishi.jpg" alt="华莱士" class="img-thumbnail">
+                                                    <img width="100" height="80" src="${allOrders.odrPicture}" alt="商品图片"  class="img-thumbnail">
                                                 </div>
                                                 <div class="orderContext">
                                                         ${allOrders.odrName}<br><br><br>
@@ -162,7 +162,7 @@
                                                 <hr>
                                                 <div class="order">
                                                     <div class="orderPicture">
-                                                        <img width="100" height="80" src="${pageContext.request.contextPath}/static/images/hualaishi.jpg" alt="华莱士" class="img-thumbnail">
+                                                        <img width="100" height="80" src="${allOrders.odrPicture}" alt="商品图片"  class="img-thumbnail">
                                                     </div>
                                                     <div class="orderContext">
                                                             ${allOrders.odrName}<br><br><br>
@@ -172,7 +172,7 @@
                                                         总价 : ${allOrders.odrPrice}
                                                     </div>
                                                     <div class="orderState">
-                                                        待付款
+                                                        待使用
                                                     </div>
                                                 </div>
                                                 <hr>
@@ -193,7 +193,7 @@
                                                             <div class="order">
                                                                 <a href="${pageContext.request.contextPath}/ordersController/toCreatComment?goodsId=${allOrders.godId}&storeId=2">
                                                                     <div class="orderPicture">
-                                                                        <img width="100" height="80" src="${pageContext.request.contextPath}/static/images/hualaishi.jpg" alt="华莱士" class="img-thumbnail">
+                                                                        <img width="100" height="80" src="${allOrders.odrPicture}" alt="商品图片"  class="img-thumbnail">
                                                                     </div>
                                                                     <div class="orderContext">
                                                                             ${allOrders.odrName}<br><br><br>

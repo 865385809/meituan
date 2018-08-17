@@ -9,25 +9,27 @@ public class Orders {
 
     private String odrPhone;
 
-    private String odrPaystate; //付款状态
+    private String odrPaystate;
 
     private Date odrData;
 
-    private String odrUserstate;    //消费状态
+    private String odrUserstate;
 
-    private Double odrPrice;    //总价
+    private Double odrPrice;
 
     private String odrNumber;
 
     private Date paytime;
 
-    private String godCount;    //商品数量
+    private String godCount;
 
     private Integer godId;
 
     private Integer mbrId;
 
-    private String isEvaluation;    //评价状态
+    private String isEvaluation;
+
+    private String odrPicture;
 
     public Integer getOdrId() {
         return odrId;
@@ -131,5 +133,13 @@ public class Orders {
 
     public void setIsEvaluation(String isEvaluation) {
         this.isEvaluation = isEvaluation == null ? null : isEvaluation.trim();
+    }
+
+    public String getOdrPicture() {
+        return odrPicture;
+    }
+
+    public void setOdrPicture(String odrPicture) {
+        this.odrPicture = odrPicture == null ? null : odrPicture.trim();
     }
 }

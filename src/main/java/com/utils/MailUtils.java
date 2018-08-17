@@ -1,3 +1,4 @@
+//发送邮箱工具类
 package com.utils;
 
 import javax.mail.*;

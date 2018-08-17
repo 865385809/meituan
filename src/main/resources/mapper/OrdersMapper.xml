@@ -15,6 +15,7 @@
     <result column="god_id" jdbcType="INTEGER" property="godId" />
     <result column="mbr_id" jdbcType="INTEGER" property="mbrId" />
     <result column="is_evaluation" jdbcType="VARCHAR" property="isEvaluation" />
+    <result column="odr_picture" jdbcType="VARCHAR" property="odrPicture" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -76,7 +77,7 @@
   </sql>
   <sql id="Base_Column_List">
     odr_id, odr_name, odr_phone, odr_paystate, odr_data, odr_userstate, odr_price, odr_number, 
-    paytime, god_count, god_id, mbr_id, is_evaluation
+    paytime, god_count, god_id, mbr_id, is_evaluation, odr_picture
   </sql>
   <select id="selectByExample" parameterType="com.bean.OrdersExample" resultMap="BaseResultMap">
     select
@@ -113,14 +114,17 @@
       odr_paystate, odr_data, odr_userstate, 
       odr_price, odr_number, paytime, 
       god_count, god_id, mbr_id, 
-      is_evaluation)
+      is_evaluation, odr_picture)
     values (#{odrId,jdbcType=INTEGER}, #{odrName,jdbcType=VARCHAR}, #{odrPhone,jdbcType=VARCHAR}, 
       #{odrPaystate,jdbcType=VARCHAR}, #{odrData,jdbcType=DATE}, #{odrUserstate,jdbcType=VARCHAR}, 
       #{odrPrice,jdbcType=DOUBLE}, #{odrNumber,jdbcType=VARCHAR}, #{paytime,jdbcType=DATE}, 
       #{godCount,jdbcType=VARCHAR}, #{godId,jdbcType=INTEGER}, #{mbrId,jdbcType=INTEGER}, 
-      #{isEvaluation,jdbcType=VARCHAR})
+      #{isEvaluation,jdbcType=VARCHAR}, #{odrPicture,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.bean.Orders">
+    <selectKey keyProperty="odrId" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into orders
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="odrId != null">
@@ -162,6 +166,9 @@
       <if test="isEvaluation != null">
         is_evaluation,
       </if>
+      <if test="odrPicture != null">
+        odr_picture,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="odrId != null">
@@ -202,6 +209,9 @@
       </if>
       <if test="isEvaluation != null">
         #{isEvaluation,jdbcType=VARCHAR},
+      </if>
+      <if test="odrPicture != null">
+        #{odrPicture,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -253,6 +263,9 @@
       <if test="record.isEvaluation != null">
         is_evaluation = #{record.isEvaluation,jdbcType=VARCHAR},
       </if>
+      <if test="record.odrPicture != null">
+        odr_picture = #{record.odrPicture,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -272,7 +285,8 @@
       god_count = #{record.godCount,jdbcType=VARCHAR},
       god_id = #{record.godId,jdbcType=INTEGER},
       mbr_id = #{record.mbrId,jdbcType=INTEGER},
-      is_evaluation = #{record.isEvaluation,jdbcType=VARCHAR}
+      is_evaluation = #{record.isEvaluation,jdbcType=VARCHAR},
+      odr_picture = #{record.odrPicture,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -316,6 +330,9 @@
       <if test="isEvaluation != null">
         is_evaluation = #{isEvaluation,jdbcType=VARCHAR},
       </if>
+      <if test="odrPicture != null">
+        odr_picture = #{odrPicture,jdbcType=VARCHAR},
+      </if>
     </set>
     where odr_id = #{odrId,jdbcType=INTEGER}
   </update>
@@ -332,7 +349,8 @@
       god_count = #{godCount,jdbcType=VARCHAR},
       god_id = #{godId,jdbcType=INTEGER},
       mbr_id = #{mbrId,jdbcType=INTEGER},
-      is_evaluation = #{isEvaluation,jdbcType=VARCHAR}
+      is_evaluation = #{isEvaluation,jdbcType=VARCHAR},
+      odr_picture = #{odrPicture,jdbcType=VARCHAR}
     where odr_id = #{odrId,jdbcType=INTEGER}
   </update>
 </mapper>

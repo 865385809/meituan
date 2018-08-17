@@ -148,6 +148,7 @@
     <input type="hidden" name="godCount"  class="quantity" value="1">
     <input type="hidden"  name="godId" value="${godId}">
     <input type="hidden"  name="mbrId" value="${member.mId}">
+    <input type="hidden" name="odrPicture" value="${godPicture}">
 </form>
 
 <%--添加订单操作--%>

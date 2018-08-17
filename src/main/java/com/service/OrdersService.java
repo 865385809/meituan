@@ -26,6 +26,17 @@ public class OrdersService {
         List<Orders> orders = ordersMapper.selectByExample(example);
         return orders;
     }
+
+    //根据ID找到订单信息
+    public Orders findOrderById(Integer o_id) {
+        Orders order = ordersMapper.selectByPrimaryKey(o_id);
+        return order;
+    }
+
+    //修改订单付款状态
+    public void updateOrder(Orders order) {
+        ordersMapper.updateByPrimaryKeySelective(order);
+    }
 //    //找到未付款订单
 //    public List<Orders> selectOrderByPayState() {
 //        OrdersExample example = new OrdersExample();

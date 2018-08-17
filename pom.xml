@@ -21,6 +21,12 @@
 
   <!--引入项目依赖的jar包 -->
   <dependencies>
+    <!--支付宝认证-->
+    <dependency>
+      <groupId>com.alipay.sdk</groupId>
+      <artifactId>alipay-sdk-java</artifactId>
+      <version>3.3.4.ALL</version>
+    </dependency>
     <!--手机短信认证-->
     <!-- https://mvnrepository.com/artifact/org.json/json -->
     <dependency>

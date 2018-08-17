@@ -342,7 +342,7 @@ public class OrdersExample {
             return (Criteria) this;
         }
 
-        public Criteria andOdrPaystateEqualTo(int value) {
+        public Criteria andOdrPaystateEqualTo(String value) {
             addCriterion("odr_paystate =", value, "odrPaystate");
             return (Criteria) this;
         }
@@ -472,7 +472,7 @@ public class OrdersExample {
             return (Criteria) this;
         }
 
-        public Criteria andOdrUserstateEqualTo(int value) {
+        public Criteria andOdrUserstateEqualTo(String value) {
             addCriterion("odr_userstate =", value, "odrUserstate");
             return (Criteria) this;
         }
@@ -922,7 +922,7 @@ public class OrdersExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsEvaluationEqualTo(int value) {
+        public Criteria andIsEvaluationEqualTo(String value) {
             addCriterion("is_evaluation =", value, "isEvaluation");
             return (Criteria) this;
         }
@@ -979,6 +979,76 @@ public class OrdersExample {
 
         public Criteria andIsEvaluationNotBetween(String value1, String value2) {
             addCriterion("is_evaluation not between", value1, value2, "isEvaluation");
+            return (Criteria) this;
+        }
+
+        public Criteria andOdrPictureIsNull() {
+            addCriterion("odr_picture is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOdrPictureIsNotNull() {
+            addCriterion("odr_picture is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOdrPictureEqualTo(String value) {
+            addCriterion("odr_picture =", value, "odrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andOdrPictureNotEqualTo(String value) {
+            addCriterion("odr_picture <>", value, "odrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andOdrPictureGreaterThan(String value) {
+            addCriterion("odr_picture >", value, "odrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andOdrPictureGreaterThanOrEqualTo(String value) {
+            addCriterion("odr_picture >=", value, "odrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andOdrPictureLessThan(String value) {
+            addCriterion("odr_picture <", value, "odrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andOdrPictureLessThanOrEqualTo(String value) {
+            addCriterion("odr_picture <=", value, "odrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andOdrPictureLike(String value) {
+            addCriterion("odr_picture like", value, "odrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andOdrPictureNotLike(String value) {
+            addCriterion("odr_picture not like", value, "odrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andOdrPictureIn(List<String> values) {
+            addCriterion("odr_picture in", values, "odrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andOdrPictureNotIn(List<String> values) {
+            addCriterion("odr_picture not in", values, "odrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andOdrPictureBetween(String value1, String value2) {
+            addCriterion("odr_picture between", value1, value2, "odrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andOdrPictureNotBetween(String value1, String value2) {
+            addCriterion("odr_picture not between", value1, value2, "odrPicture");
             return (Criteria) this;
         }
     }
