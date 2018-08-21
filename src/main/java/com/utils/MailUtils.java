@@ -24,6 +24,7 @@ public class MailUtils {
         //可以设置邮件服务器
         properties.setProperty("mail.host","smtp.qq.com");
         properties.setProperty("mail.smtp.auth","true");
+        properties.put("mail.smtp.socketFactory.port", "465");
         //与邮件服务器的连接
         Session session = Session.getInstance(properties, new Authenticator() {
             @Override

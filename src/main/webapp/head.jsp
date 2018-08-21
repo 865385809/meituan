@@ -29,6 +29,7 @@
                         <a href="${pageContext.request.contextPath}/memberController/toLogin">登录</a>
                     </c:if>
                         <a href="${pageContext.request.contextPath}/memberController/sendMail">发送邮件</a>
+                        <a href="${pageContext.request.contextPath}/goodsController/creatOrder?godId=2&stoName=啦啦啦&stoId=20">抢购</a>
                         <%--<a href="/storeController/searchShop">分页查询</a>--%>
                         <%--<a href="/memberController/memberAllList">管理跳转信息</a>--%>
                         <%--<a href="/excelController/excel">导入/导出</a>--%>

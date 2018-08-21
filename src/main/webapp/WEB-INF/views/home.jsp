@@ -423,7 +423,7 @@
             <div class="am-g am-g-fixed sale">
                 <div class="am-u-sm-3 sale-item">
                     <div class="s-img">
-                        <a href="${pageContext.request.contextPath}/ordersController/memberCenter" target="_blank""><img src="${pageContext.request.contextPath}/static/images/tu1.jpg" /></a>
+                        <a href="${pageContext.request.contextPath}/ordersController/memberCenter" target="_blank"><img src="${pageContext.request.contextPath}/static/images/tu1.jpg" /></a>
                     </div>
                     <div class="s-info">
                         <div class="s-price">
@@ -433,34 +433,31 @@
                 </div>
                 <div class="am-u-sm-3 sale-item">
                     <div class="s-img">
-                        <a href="# "><img src="${pageContext.request.contextPath}/static/meituan/images/sale2.jpg" /></a>
+                        <a href="${pageContext.request.contextPath}/sellerController/storeCenter" target="_blank"><img src="${pageContext.request.contextPath}/static/meituan/images/seller.jpg" /></a>
                     </div>
                     <div class="s-info">
-                        <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
-                        <div class="s-price">￥<b>9.90</b>
-                            <a class="s-buy" href="#">秒杀</a>
+                        <div class="s-price">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商家中心
                         </div>
                     </div>
                 </div>
                 <div class="am-u-sm-3 sale-item">
                     <div class="s-img">
-                        <a href="# "><img src="${pageContext.request.contextPath}/static/meituan/images/sale1.jpg" /></a>
+                        <a href="${pageContext.request.contextPath}/ordersController/memberCenter" target="_blank"><img src="${pageContext.request.contextPath}/static/images/tu1.jpg" /></a>
                     </div>
                     <div class="s-info">
-                        <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
-                        <div class="s-price">￥<b>9.90</b>
-                            <a class="s-buy" href="#">秒杀</a>
+                        <div class="s-price">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;个人中心
                         </div>
                     </div>
                 </div>
                 <div class="am-u-sm-3 sale-item">
                     <div class="s-img">
-                        <a href="# "><img src="${pageContext.request.contextPath}/static/meituan/images/sale2.jpg " /></a>
+                        <a href="${pageContext.request.contextPath}/sellerController/storeCenter" target="_blank"><img src="${pageContext.request.contextPath}/static/meituan/images/seller.jpg" /></a>
                     </div>
                     <div class="s-info">
-                        <a href="#"><p class="s-title">ZEK 原味海苔</p></a>
-                        <div class="s-price">￥<b>9.90</b>
-                            <a class="s-buy" href="#">秒杀</a>
+                        <div class="s-price">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商家中心
                         </div>
                     </div>
                 </div>

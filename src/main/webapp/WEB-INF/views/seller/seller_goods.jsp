@@ -95,11 +95,12 @@
                                             <div class="font5"><del>门店价￥${goods.godStoreprice}</del></div>
                                         </div>
                                         <div class="goodsButton">
-                                            <button  class="btn btn-warning payment_btn">
-                                                <a href="${pageContext.request.contextPath}/goodsController/creatOrder?godId=${goods.godId}&stoName=${store.stoName}&stoId=${store.stoId}">
+                                            <%--<button  class="btn btn-warning payment_btn btn_buy" >--%>
+                                               <%--<a href="${pageContext.request.contextPath}/goodsController/creatOrder?godId=${goods.godId}&stoName=${store.stoName}&stoId=${store.stoId}">--%>
+                                                <a href="#" class="btn btn-warning payment_btn btn_buy" onclick="buyGood('${goods.godId}');return false;" >
                                                     立即抢购
                                                 </a>
-                                            </button>
+                                            <%--</button>--%>
                                         </div>
                                     </div>
                                 </c:forEach>
@@ -112,8 +113,17 @@
                                 </div>
                             </c:if>
                     </div>
-
+                    <%--抢购提交用的表单--%>
+                    <form id="buy_form" method="post" action="${pageContext.request.contextPath}/goodsController/creatOrder">
+                        <input type="hidden" name="stoName" value=${store.stoName}>
+                        <input type="hidden" name="stoId" value=stoId=${store.stoId}>
+                        <input type="hidden" name="godId" id="goodId" value="">
+                    </form>
                     <script type="text/javascript">
+                        function buyGood(goodId) {
+                            document.getElementById("goodId").value = goodId;
+                            document.getElementById("buy_form").submit();
+                        }
                         $("#btn_login").click(function () {
                             window.location.href="${pageContext.request.contextPath}/memberController/toLogin"
                         });

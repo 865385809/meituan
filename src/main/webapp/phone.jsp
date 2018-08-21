@@ -11,7 +11,7 @@
         #btn{ margin-left:100px; margin-top:-25px; width: 120px;height: 25px; font-size: 11px; }
         body{ background-color: #ecfcf9;}
     </style>
-</head>AlipayConfig.java
+</head>
 <!-- 图片验证码  -->
 <script src="${pageContext.request.contextPath}/static/js/gVerify.js"></script>
 <script>

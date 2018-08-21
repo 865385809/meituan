@@ -62,7 +62,8 @@
                     </div>
                     <br><br><br>验证码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <button onclick="sendMail();return false;"> 发送邮箱</button>
+                        <a class="btn btn-primary" href="#" onclick="sendMail();return false;">发送邮箱</a>
+                        <%--<button onclick="sendMail();return false;"> 发送邮箱</button>--%>
                         <input type="text" name="mailCode" id="mailCode_input" placeholder="输入邮箱验证码">
                         <span id="span_mailCode"> </span>
                     <div class="am-cf">
@@ -229,9 +230,12 @@
             document.getElementById("span_email").style.color='red';
             return false;
         }
+        //用json形式发送数据
         $.ajax({
-            url:"${pageContext.request.contextPath}/memberController/sendMail?email="+email,
-            type:"GET",
+            url:"${pageContext.request.contextPath}/memberController/sendMail",
+            type:"post",
+            data:{"email":email},
+            dataType:"json",
             success:function (result) {
                 if(result.code == 100){
                     alert("发送成功");

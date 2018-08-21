@@ -36,9 +36,9 @@ public class GoodsController {
     //添加订单
     @RequestMapping("/creatOrder")
     public String creatOrder(HttpServletRequest request){
-        String godId = request.getParameter("godId");
-        String stoId = (String) request.getParameter("stoId");
-        String stoName = (String) request.getParameter("stoName");
+        String godId =  request.getParameter("godId");
+        String stoId = request.getParameter("stoId");
+        String stoName = request.getParameter("stoName");
         Goods goods = goodsService.findGoods(Integer.parseInt(godId));
         request.setAttribute("stoName",stoName);
         request.setAttribute("stoId",stoId);

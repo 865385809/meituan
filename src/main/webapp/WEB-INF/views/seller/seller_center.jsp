@@ -51,18 +51,18 @@
                         <h3>${store.stoName}</h3>
                     </td>
                     <td>
-                        <button class="btn btn-primary">
-                            <a href="${pageContext.request.contextPath}/sellerController/toAddGoods?stoId=${store.stoId}">
+                        <%--<button class="btn btn-primary">--%>
+                            <a class="btn btn-primary" href="${pageContext.request.contextPath}/sellerController/toAddGoods?stoId=${store.stoId}">
                                 添加商品
                             </a>
-                        </button>
+                        <%--</button>--%>
                     </td>
                     <td>
-                        <button class="btn btn-danger">
-                            <a href="${pageContext.request.contextPath}/goodsController/goodList?stoId=${store.stoId}">
+                        <%--<button class="btn btn-danger">--%>
+                            <a class="btn btn-danger" href="${pageContext.request.contextPath}/goodsController/goodList?stoId=${store.stoId}">
                                 商品列表
                             </a>
-                        </button>
+                        <%--</button>--%>
                     </td>
                 </tr>
                 </c:forEach>

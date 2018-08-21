@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.ProvincedMapper">
+  <resultMap id="BaseResultMap" type="com.bean.Provinced">
+    <id column="pr_id" jdbcType="INTEGER" property="prId" />
+    <result column="pr_number" jdbcType="VARCHAR" property="prNumber" />
+    <result column="pr_name" jdbcType="VARCHAR" property="prName" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    pr_id, pr_number, pr_name
+  </sql>
+  <select id="selectByExample" parameterType="com.bean.ProvincedExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from provinced
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from provinced
+    where pr_id = #{prId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from provinced
+    where pr_id = #{prId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bean.ProvincedExample">
+    delete from provinced
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.bean.Provinced">
+    insert into provinced (pr_id, pr_number, pr_name
+      )
+    values (#{prId,jdbcType=INTEGER}, #{prNumber,jdbcType=VARCHAR}, #{prName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.bean.Provinced">
+    insert into provinced
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="prId != null">
+        pr_id,
+      </if>
+      <if test="prNumber != null">
+        pr_number,
+      </if>
+      <if test="prName != null">
+        pr_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="prId != null">
+        #{prId,jdbcType=INTEGER},
+      </if>
+      <if test="prNumber != null">
+        #{prNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="prName != null">
+        #{prName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bean.ProvincedExample" resultType="java.lang.Long">
+    select count(*) from provinced
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update provinced
+    <set>
+      <if test="record.prId != null">
+        pr_id = #{record.prId,jdbcType=INTEGER},
+      </if>
+      <if test="record.prNumber != null">
+        pr_number = #{record.prNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prName != null">
+        pr_name = #{record.prName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update provinced
+    set pr_id = #{record.prId,jdbcType=INTEGER},
+      pr_number = #{record.prNumber,jdbcType=VARCHAR},
+      pr_name = #{record.prName,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bean.Provinced">
+    update provinced
+    <set>
+      <if test="prNumber != null">
+        pr_number = #{prNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="prName != null">
+        pr_name = #{prName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pr_id = #{prId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bean.Provinced">
+    update provinced
+    set pr_number = #{prNumber,jdbcType=VARCHAR},
+      pr_name = #{prName,jdbcType=VARCHAR}
+    where pr_id = #{prId,jdbcType=INTEGER}
+  </update>
+</mapper>

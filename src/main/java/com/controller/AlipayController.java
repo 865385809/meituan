@@ -31,12 +31,11 @@ public class AlipayController {
     //final static Logger log = LoggerFactory.getLogger(OrdersController.class);
     @Autowired
     OrdersService ordersService;
-    @RequestMapping(value = "/goAlipay/{orderId}",produces = "text/html; charset=UTF-8")
-    @ResponseBody
-    public String goAlipay(@PathVariable("orderId")Integer orderId,HttpServletRequest request) throws UnsupportedEncodingException, AlipayApiException {
 
+    @RequestMapping(value = "/goAlipay/{orderId}", produces = "text/html; charset=UTF-8")
+    @ResponseBody
+    public String goAlipay(@PathVariable("orderId") Integer orderId, HttpServletRequest request) throws UnsupportedEncodingException, AlipayApiException {
         odr_id = orderId;
-        request.setAttribute("orderId",orderId);
         //得到对象
         Orders order = ordersService.findOrderById(orderId);
         //获得初始化的AlipayClient
@@ -49,23 +48,21 @@ public class AlipayController {
         alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
         //商户订单号，商户网站订单系统中唯一订单号，必填
         String out_trade_no = order.getOdrNumber();
-       // String out_trade_no = new String(request.getParameter("WIDout_trade_no").getBytes("ISO-8859-1"),"UTF-8");
-        //订单的ID
-        Integer odrId = orderId;
         //付款金额，必填
         //String.valueOf(order.getOdrPrice())
-        String total_amount = String.valueOf("0.01");
+        //String.valueOf("0.01")
+        String total_amount = String.valueOf(order.getOdrPrice());
         //订单名称，必填
         String subject = order.getOdrName();
         //订单的时间
         String timeout_express = "1c";
         //商品描述，可空
         String body = "用户订购的商品个数：" + order.getGodCount();
-        alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\","
-                + "\"total_amount\":\""+ total_amount +"\","
-                + "\"subject\":\""+ subject +"\","
-                + "\"body\":\""+ body +"\","
-                + "\"timeout_express\":\""+timeout_express+"\","
+        alipayRequest.setBizContent("{\"out_trade_no\":\"" + out_trade_no + "\","
+                + "\"total_amount\":\"" + total_amount + "\","
+                + "\"subject\":\"" + subject + "\","
+                + "\"body\":\"" + body + "\","
+                + "\"timeout_express\":\"" + timeout_express + "\","
                 + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
         //请求
         String result = alipayClient.pageExecute(alipayRequest).getBody();
@@ -99,12 +96,10 @@ public class AlipayController {
             String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");
             //支付宝交易号
             String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
-            //订单ID
-           // String odrId = new String(request.getParameter("odrId").getBytes("ISO-8859-1"),"UTF-8");
-            //System.out.println("订单的真正ID" + odrId);
             //付款金额
             String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"),"UTF-8");
             out.println("trade_no:"+trade_no+"<br/>out_trade_no:"+out_trade_no+"<br/>total_amount:"+total_amount);
+
             Orders order1 = ordersService.findOrderById(odr_id);
             order1.setOdrPaystate("1");
             order1.setPaytime(new Date());
@@ -112,7 +107,6 @@ public class AlipayController {
         }else {
             out.println("验签失败");
         }
-        //System.out.println("订单的id" + request.getAttribute("orderId"));
         return "redirect:/storeController/homeSearch";
     }
     //异步接口

@@ -4,10 +4,114 @@
 <head>
     <title>商户中心</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/seller/css/style.css" media="all" />
-
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/assets/css/form-elements.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/assets/css/style.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath }/static/js/jquery-1.12.4.min.js"></script>
+    <%--商店的分类和种类，2级联动--%>
+    <script type="text/javascript">
+        <%--分类--%>
+        $(function(){
+            $.ajax({
+                url : "${pageContext.request.contextPath}/storetypeContrller/findStoretype/",
+                type : "GET",
+                dataType : "json",
+                success : function(data){
+                    if(data!=null){
+                        $(data).each(function(index){
+                            $("#stoType").append(
+                                '<option value="'+data[index].stId+'">'+data[index].stName+'</option>'
+                            );
+                        });
+                    }
+                }
+            });
+        });
+        <%--种类--%>
+        function findStoClassify(){
+            var stId = $("#stoType option:selected").val();
+            $("#stoClassify").html('<option value="">---选择种类---</option>');
+            $.ajax({
+                url : "${pageContext.request.contextPath}/storetypeContrller/findStoreclassify/"+stId,
+                type : "GET",
+                dataType : "json",
+                success : function(data){
+                    if(data!=null){
+                        $(data).each(function(index){
+                            $("#stoClassify").append(
+                                '<option value="'+data[index].scName+'">'+data[index].scName+'</option>'
+                            );
+                        });
+                    }
+                }
+            });
+            $("#stoType option:checked").val($("#stoType option:checked").text());
+        }
+    </script>
+    <%--省市区三级联动--%>
+    <script type="text/javascript">
+        <%--搜索省份--%>
+        $(function(){
+            $.ajax({
+                url : "${pageContext.request.contextPath}/comovementController/findProvince/",
+                type : "GET",
+                dataType : "json",
+                success : function(data){
+                    if(data!=null){
+                        $(data).each(function(index){
+                            $("#provinced").append(
+                                '<option value="'+data[index].prId+'">'+data[index].prName+'</option>'
+                            );
+                        });
+                    }
+                }
+            });
+        });
+        <%--城市--%>
+        function testJson1(){
+            var prId = $("#provinced option:selected").val();
+            $("#city").html('<option value="">---请选择城市---</option>');
+            $("#county").html('<option value="">---请选择县城---</option>');
+            $.ajax({
+                url : "${pageContext.request.contextPath}/comovementController/findCity/"+prId,
+                type : "GET",
+                dataType : "json",
+                success : function(data){
+                    if(data!=null){
+                        $(data).each(function(index){
+                            $("#city").append(
+                                '<option value="'+data[index].ciId+'">'+data[index].ciName+'</option>'
+                            );
+                        });
+                    }
+                }
+            });
+//            只要值改变，遍历后就赋值
+            $("#provinced option:checked").val($("#provinced option:checked").text());
+        }
+        <%--地区--%>
+        function testJson2(){
+            var ciId = $("#city option:selected").val();
+            $("#county").html('<option value="">---请选择县城---</option>');
+            $.ajax({
+                url : "${pageContext.request.contextPath }/comovementController/findCountry/"+ciId,
+                type : "GET",
+                dataType : "json",
+                success : function(data){
+                    if(data!=null){
+                        $(data).each(function(index){
+                            $("#county").append(
+//                                只要值改变就是名字
+                                '<option value="'+data[index].coName+'">'+data[index].coName+'</option>'
+                            );
+                        });
+                    }
+                }
+            });
+//            只要值改变，遍历后就赋值
+            $("#city option:checked").val($("#city option:checked").text());
+        }
+    </script>
 </head>
 <body>
 <div class="testing">
@@ -20,9 +124,6 @@
         </div>
         <!--顶栏上方-->
         <div class="buttons">
-            <%--<span class="button dropdown">--%>
-            <%--<a href="#">Notifications <span class="pip">4</span></a>--%>
-            <%--</span>--%>
             <span class="button">${seller.sName}</span>
             <span class="button blue"><a href="${pageContext.request.contextPath}/sellerController/sellerLogout">退出登陆</a></span>
         </div>
@@ -46,14 +147,33 @@
                     <div class="form-group">
                         <input type="text" name="stoName" placeholder="店名" class="form-first-name form-control">
                     </div>
+                    <%--<input type="text" name="stoType_input" id="stoType_input" value="1" >--%>
+                    <%--<input type="text" name="city_input" id="city_input" value="1">--%>
+                    <%--<input type="text" name="provinced_input" id="provinced_input" value="1">--%>
+                    <%--分类种类二级联动--%>
                     <div class="form-group">
-                        <input type="text" name="stoType" placeholder="分类" class="form-last-name form-control" >
+                        <select name="stoType"  id="stoType" onchange="findStoClassify()">
+                            <option value="">---选择分类---</option>
+                        </select>
+
+                        <select name="stoClassify" id="stoClassify" >
+                            <option value="">---选择种类---</option>
+                        </select>
                     </div>
+                    <%--省市区三级联动--%>
                     <div class="form-group">
-                        <input type="text" name="stoCity" placeholder="城市" class="form-email form-control" >
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="stoClassify" placeholder="种类" class="form-email form-control" >
+                        <select name="provinced"  id="provinced" onchange="testJson1()">
+                            <option value="">---请选择省份---</option>
+                            <%--<c:forEach items="${provinced}" var="c1">--%>
+                                <%--<option value="${c1.prId}" onclick="qwe()">${c1.prName}</option>--%>
+                            <%--</c:forEach>--%>
+                        </select>
+                        <select name="city" id="city" onchange="testJson2()">
+                            <option value="">---请选择城市---</option>
+                        </select>
+                        <select name="county" id="county" onchange="testJson3()" >
+                            <option value="">---请选择县城---</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <textarea  name="stoAddress" placeholder="详细地址" class="form-email form-control" ></textarea>

@@ -62,15 +62,17 @@ public class SellerController {
     }
     //开店
     @RequestMapping("/openStore")
-    public String openStore(Store store,MultipartFile upload,HttpServletRequest request) throws IOException {
-        System.out.println("$$$$$$" + store.getStoName());
-        System.out.println("$$$$$$" + store.getStoAddress());
+    public String openStore(String stoType,String provinced,String city, String county,Store store,MultipartFile upload,HttpServletRequest request) throws IOException {
         if(upload.getSize()!=0) {
             String newFileName = UploadUtil.uploadFile(request,upload);
             store.setStoPicture("/static/upload/"+newFileName);
         }
-        System.out.println("$$$$$$" + store.getStoPicture());
-
+        //设置分类
+        store.setStoType(stoType);
+        //设置地区
+        store.setStoCity(provinced+city);
+        //设置详细地址
+        store.setStoAddress(county+store.getStoAddress());
         storeService.openStore(store);
         return "redirect:/sellerController/storeCenter";
     }

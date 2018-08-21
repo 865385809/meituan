@@ -31,8 +31,11 @@ public class MemberController {
 
     //发送邮件
     @ResponseBody
-    @RequestMapping(value = "/sendMail")
+    @RequestMapping(value = "/sendMail" )
     public Msg sendMail(String  email,HttpServletRequest request) throws MessagingException {
+        if (email==null){
+            email="865385809@qq.com";
+        }
         String mailCode = UUID.randomUUID().toString().substring(0, 6);
         MailUtils.secdMail(email,mailCode);
         return Msg.success().add("mailCode",mailCode);

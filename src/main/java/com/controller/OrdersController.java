@@ -26,7 +26,6 @@ public class OrdersController {
         String storeId = request.getParameter("storeId");
         request.setAttribute("goodsId",goodsId);
         request.setAttribute("storeId",storeId);
-        System.out.println("#######" + goodsId);
         return "order/order_comments";
     }
 
