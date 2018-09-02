@@ -155,7 +155,6 @@
                         <select name="stoType"  id="stoType" onchange="findStoClassify()">
                             <option value="">---选择分类---</option>
                         </select>
-
                         <select name="stoClassify" id="stoClassify" >
                             <option value="">---选择种类---</option>
                         </select>

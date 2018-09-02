@@ -10,7 +10,22 @@
         <welcome-file>/index.jsp</welcome-file>
     </welcome-file-list>
 
+
   <display-name>Archetype Created Web Application</display-name>
+
+  <!--共享session-->
+  <!--<filter>-->
+    <!--<filter-name>springSessionRepositoryFilter</filter-name>-->
+    <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
+  <!--</filter>-->
+  <!--<filter-mapping>-->
+    <!--<filter-name>springSessionRepositoryFilter</filter-name>-->
+    <!--<url-pattern>/*</url-pattern>-->
+    <!--<dispatcher>REQUEST</dispatcher>-->
+    <!--<dispatcher>ERROR</dispatcher>-->
+  <!--</filter-mapping>-->
+
+
   <!--1、启动Spring的容器  -->
   <!-- needed for ContextLoaderListener -->
   <context-param>
@@ -41,6 +56,8 @@
     <servlet-name>dispatcherServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+
+
 
   <!-- 3、字符编码过滤器，一定要放在所有过滤器之前 -->
   <filter>

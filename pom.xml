@@ -21,29 +21,30 @@
 
   <!--引入项目依赖的jar包 -->
   <dependencies>
-    <!--websocket-->
+    <!-- Jedis -->
+    <dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>2.9.0</version>
+    </dependency>
+    <!--&lt;!&ndash; Spring Data Redis &ndash;&gt;-->
     <!--<dependency>-->
-      <!--<groupId>org.springframework</groupId>-->
-      <!--<artifactId>spring-websocket</artifactId>-->
-      <!--<version>5.0.8.RELEASE</version>-->
+      <!--<groupId>org.springframework.data</groupId>-->
+      <!--<artifactId>spring-data-redis</artifactId>-->
+      <!--<version>1.7.3.RELEASE</version>-->
     <!--</dependency>-->
+    <!--&lt;!&ndash; Spring Session &ndash;&gt;-->
     <!--<dependency>-->
-      <!--<groupId>org.springframework</groupId>-->
-      <!--<artifactId>spring-messaging</artifactId>-->
-      <!--<version>5.0.8.RELEASE</version>-->
+      <!--<groupId>org.springframework.session</groupId>-->
+      <!--<artifactId>spring-session</artifactId>-->
+      <!--<version>1.2.2.RELEASE</version>-->
     <!--</dependency>-->
+    <!--&lt;!&ndash; Apache Commons Pool &ndash;&gt;-->
     <!--<dependency>-->
-      <!--<groupId>com.google.code.gson</groupId>-->
-      <!--<artifactId>gson</artifactId>-->
-      <!--<version>2.8.2</version>-->
+      <!--<groupId>org.apache.commons</groupId>-->
+      <!--<artifactId>commons-pool2</artifactId>-->
+      <!--<version>2.4.2</version>-->
     <!--</dependency>-->
-    <!--<dependency>-->
-      <!--<groupId>javax.websocket</groupId>-->
-      <!--<artifactId>javax.websocket-api</artifactId>-->
-      <!--<version>1.1</version>-->
-      <!--<scope>provided</scope>-->
-    <!--</dependency>-->
-
 
     <!--支付宝认证-->
     <dependency>

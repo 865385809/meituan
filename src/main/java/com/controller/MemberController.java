@@ -2,6 +2,7 @@ package com.controller;
 
 import com.bean.Member;
 import com.bean.Msg;
+import com.bean.ReturnContant;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.service.MemberService;
@@ -13,9 +14,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -27,18 +34,27 @@ public class MemberController {
 
     @Autowired
     MemberService memberService;
+    @Resource
+    private ReturnContant returnContant;
 
 
-    //发送邮件
+    /**
+     * 发送邮件
+     * @param email
+     * @param request
+     * @return
+     * @throws MessagingException
+     * @throws UnknownHostException
+     */
     @ResponseBody
     @RequestMapping(value = "/sendMail" )
-    public Msg sendMail(String  email,HttpServletRequest request) throws MessagingException {
-        if (email==null){
-            email="865385809@qq.com";
-        }
+    public ReturnContant sendMail(String  email, HttpServletRequest request) throws MessagingException, UnknownHostException {
         String mailCode = UUID.randomUUID().toString().substring(0, 6);
         MailUtils.secdMail(email,mailCode);
-        return Msg.success().add("mailCode",mailCode);
+        returnContant.setStatus(1);
+        returnContant.setData(mailCode);
+        return returnContant;
+//        return Msg.success().add("mailCode",mailCode);
     }
     //登陆注销
     @RequestMapping("/memberLoginOut")
@@ -49,8 +65,26 @@ public class MemberController {
     }
     //登陆
     @RequestMapping("/selectMember")
-    public String selectMember(HttpServletRequest request, String mUsername, String mPassword){
+    public String selectMember(HttpServletRequest request, String mUsername, String mPassword, HttpServletResponse response) throws IOException, InterruptedException {
         Member member = memberService.selectMember(mUsername, mPassword);
+        Integer error  = 0;
+        //后台校验
+        if(mUsername==""){
+            error=1;
+            request.setAttribute("username","账号不能为空");
+        }
+        if(mPassword==""){
+            error=1;
+            request.setAttribute("password","密码不能为空");
+        }
+        //账号密码错误
+        if(member==null&error!=1){
+            error=1;
+            request.setAttribute("message","账号或密码错误");
+        }
+        if(error!=0){
+            return "member/member_login";
+        }
         request.getSession().setAttribute("member",member);
         return "redirect:/index.jsp";
     }
@@ -131,8 +165,8 @@ public class MemberController {
 //                map.put(fieldError.getField(), fieldError.getDefaultMessage());
 //            }
 //            return Msg.fail().add("errorFields", map);
-//        }else{
-            //上传图片
+//        }
+        System.out.println("进入注册-------------------");
             if(upload.getSize()!=0) {
                 String newFileName = UploadUtil.uploadFile(request,upload);
                 member.setmPicture("/static/upload/"+newFileName);

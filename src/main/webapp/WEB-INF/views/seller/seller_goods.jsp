@@ -87,7 +87,7 @@
                                 <c:forEach items="${goodsList}" var="goods">
                                     <div class="goods">
                                         <div class="goodsPicture">
-                                            <img src="${goods.godPicture}">
+                                            <img src="${goods.godPicture}" height="150">
                                         </div>
                                         <div class="goodsContext">
                                             ${goods.godName}<br><br><br>
@@ -102,7 +102,7 @@
                                                 </a>
                                             <%--</button>--%>
                                         </div>
-                                    </div>
+                                    </div><br><hr>
                                 </c:forEach>
                             </c:if>
                             <c:if test="${member==null}">

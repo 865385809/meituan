@@ -86,6 +86,24 @@ public class SellerController {
     @RequestMapping("/sellerLogin")
     public String sellerLogin(String sUsername, String sPassword, HttpServletRequest request){
         Seller seller = sellerService.sellerLogin(sUsername,sPassword);
+        //后台校验
+        Integer error  = 0;
+        if(sUsername==""){
+            error=1;
+            request.setAttribute("username","不能为空");
+        }
+        if(sPassword==""){
+            error=1;
+            request.setAttribute("password","不能为空");
+        }
+        //账号密码错误
+        if(seller==null&error!=1){
+            error=1;
+            request.setAttribute("message","账号或密码错误");
+        }
+        if(error!=0){
+            return "seller/seller_login";
+        }
         request.getSession().setAttribute("seller",seller);
         return "redirect:/sellerController/storeCenter";
     }

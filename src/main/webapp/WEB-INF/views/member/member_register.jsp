@@ -13,7 +13,6 @@
     <link href="${pageContext.request.contextPath}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
-
 <body>
 
 <div class="login-boxtitle">
@@ -29,6 +28,7 @@
                     <a href="${pageContext.request.contextPath}/memberController/toLogin" class="zcnext am-fr am-btn-default">登陆</a>
                 </ul>
                 <form id="register_form" method="post" enctype="multipart/form-data" action="${pageContext.request.contextPath}/memberController/member_save">
+
                     <div class="user-name">
                         <label for="username_input"><i class="am-icon-user"></i></label>
                         <input type="text" name="mUsername" id="username_input" placeholder="请输入账号">
@@ -48,40 +48,40 @@
                         <label for="phone_input"><i class="am-icon-mobile-phone am-icon-md"></i></label>
                         <input type="tel" name="mPhone" id="phone_input" placeholder="输入手机号">
                         <span id="span_phone"></span>
-                    </div>
-                    <%--<div class="user-name">--%>
-                        <%--<label for="upload"><i class="am-icon-file"></i></label>--%>
-                        <br>上传头像:
-                        <input type="file" name="upload" id="upload_input" value="上传头像" placeholder="上传头像">
+                    </div><br>
+                    <div class="user-name">
+                        <label for="upload_input"><i class="am-icon-file"></i></label>
+                        <input type='button' value='上传头像' OnClick='javascript:$("#upload_input").click();'/>
+                        <input type="file" style="display:none;" name="upload" id="upload_input" value="上传头像" >
                         <span id="span_file"></span>
-                    <%--</div>--%>
+                    </div><br>
                     <div class="user-email">
                         <label for="email_input"><i class="am-icon-envelope-o"></i></label>
                         <input type="email" name="mMailbox" id="email_input" size="5" placeholder="输入邮箱获取验证码">
                         <span id="span_email"></span>
-                    </div>
-                    <br><br><br>验证码：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a class="btn btn-primary" href="#" onclick="sendMail();return false;">发送邮箱</a>
+                    </div><br><br><br>
+                        验证码：&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+                        <a id="push_mail" class="btn btn-primary" href="#" >发送邮箱</a>
+                        <%--<button id="push_mail" class="btn btn-primary">发送邮箱</button>--%>
                         <%--<button onclick="sendMail();return false;"> 发送邮箱</button>--%>
+                    <div class="user-name">
+                        <label for="mailCode_input"><i class="am-icon-navicon"></i></label>
                         <input type="text" name="mailCode" id="mailCode_input" placeholder="输入邮箱验证码">
                         <span id="span_mailCode"> </span>
+                    </div>
                     <div class="am-cf">
                         <input type="submit"  id="member_sava_sub" value="注册" onclick="sendForm();return false;" class="am-btn am-btn-primary am-btn-sm am-fl">
                     </div>
                 </form>
                 <%--协议--%>
-                <div class="login-links">
-                    <label for="reader-me">
                         <input id="reader-me" type="checkbox" checked="true"  onclick="return false;"  />我已阅读并接受
                         <a href="${pageContext.request.contextPath}/memberController/toCopyRight">版权说明和隐私保护条款</a>
-                    </label>
-                </div>
         </div>
     </div>
 <%--尾部--%>
-<br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br>
 <jsp:include page="${pageContext.request.contextPath}/tail.jsp"></jsp:include>
+<%--前台验证--%>
 <script type="text/javascript">
     var name = "";var username="";var password = "";var file = "";var phone = "";var email = "";var mailCode = "";var regpassword = /^([a-zA-Z0-9_-]{6,18}$)/;var regusername = /^([a-zA-Z0-9_-]{6,16}$)|(^[\u2E80-\u9FFF]{2,5}$)/;var regmail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;var regphone = /^1\d{10}$/;
     var sendCode = "";
@@ -203,7 +203,6 @@
     //邮箱改变校验
     $("#email_input").change(function(){
         email = $("#email_input").val();
-
         document.getElementById("span_email").innerHTML="";
             if(!regmail.test(email)){
             document.getElementById("span_email").innerHTML='*邮箱格式不对';
@@ -222,28 +221,43 @@
         }
     });
     //点击发送邮箱验证
-    function sendMail() {
+    $("#push_mail").click(function () {
+//    function sendMail() {
+//        alert("邮箱校验");
         email = $("#email_input").val();
         document.getElementById("span_email").innerHTML="";
             if(!regmail.test(email)){
             document.getElementById("span_email").innerHTML='*邮箱格式不对';
             document.getElementById("span_email").style.color='red';
             return false;
-        }
-        //用json形式发送数据
-        $.ajax({
-            url:"${pageContext.request.contextPath}/memberController/sendMail",
-            type:"post",
-            data:{"email":email},
-            dataType:"json",
-            success:function (result) {
-                if(result.code == 100){
-                    alert("发送成功");
-                    sendCode=result.extend.mailCode;
-                }
+            }else{
+                $.ajax({
+                    url:"${pageContext.request.contextPath}/memberController/sendMail",
+                    type:"post",
+                    data:{"email":email},
+                    dataType:"json",
+                    success:function(result){
+                        if(result.status==1){
+                            alert("发送成功");
+                            sendCode=result.data;
+                        }
+                    }
+                });
+                <%--$.ajax({--%>
+                    <%--url:"${pageContext.request.contextPath}/memberController/sendMail",--%>
+                    <%--type:"post",--%>
+                    <%--data:{"email":email},--%>
+                    <%--dataType:"json",--%>
+                    <%--success:function (result) {--%>
+                        <%--if(result.code == 100){--%>
+                            <%--alert("发送成功");--%>
+                            <%--sendCode=result.extend.mailCode;--%>
+                        <%--}--%>
+                    <%--}--%>
+                <%--});--%>
             }
-        });
-    }
+        return false;
+    });
 </script>
 </body>
 </html>

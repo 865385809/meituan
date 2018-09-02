@@ -16,6 +16,7 @@ public class MemberService {
 
     //登陆
     public Member selectMember(String mUsername, String mPassword) {
+
         MemberExample example = new MemberExample();
         MemberExample.Criteria criteria = example.createCriteria();
         criteria.andMPasswordEqualTo(mPassword).andMUsernameEqualTo(mUsername);

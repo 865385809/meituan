@@ -140,7 +140,6 @@
                             </div>
                             <%--分页条信息--%>
                             <div class="col-md-6" id="page_nav"></div>
-
                         </div>
                     </div>
 
